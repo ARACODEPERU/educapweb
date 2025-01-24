@@ -1267,7 +1267,7 @@
 						<div class="footer-widget about-widget">
 							<div class="logo">
                                 <a href="">
-                                    <img src="{{ asset('themes/webpage/images/logo-2.png') }}" alt="" >
+                                    <img src="{{ asset('themes/webpage/images/EDUCAP-LogoFondo.jpg') }}" alt="" >
                                 </a>
                             </div>
 							<div class="text">Presentación corta de educap</div>
