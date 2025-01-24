@@ -765,12 +765,14 @@
 <section class="team-section" id="teachers">
     <div class="auto-container">
         <div class="sec-title text-center">
-            <span class="sub-title">qualified teachers</span>
-            <h2>Meet the teacher who <br>teaches you online</h2>
+            <span class="sub-title">Staff de Docentes</span>
+            <h2>
+                Conoce a los docentes que te enseñan <br>
+                en línea
+            </h2>
         </div>
 
         <div class="row">
-            <!-- Team block -->
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner-box">
                     <div class="image-box">
@@ -789,12 +791,11 @@
                     </div>
                     <div class="info-box">
                         <h4 class="name"><a href="">Edward norton</a></h4>
-                        <span class="designation">Musian</span>
+                        <span class="designation">Musica</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Team block -->
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
                 <div class="inner-box">
                     <div class="image-box">
@@ -813,12 +814,11 @@
                     </div>
                     <div class="info-box">
                         <h4 class="name"><a href="page-team-details.php">Jane seymour</a></h4>
-                        <span class="designation">Designer</span>
+                        <span class="designation">Diseñador</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Team block -->
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
                 <div class="inner-box">
                     <div class="image-box">
@@ -837,12 +837,11 @@
                     </div>
                     <div class="info-box">
                         <h4 class="name"><a href="page-team-details.php">Mike hardson</a></h4>
-                        <span class="designation">Developer</span>
+                        <span class="designation">Desarrollador</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Team block -->
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
                 <div class="inner-box">
                     <div class="image-box">
@@ -861,7 +860,7 @@
                     </div>
                     <div class="info-box">
                         <h4 class="name"><a href="page-team-details.php">Christine eve</a></h4>
-                        <span class="designation">Artisit</span>
+                        <span class="designation">Artista</span>
                     </div>
                 </div>
             </div>
@@ -881,10 +880,10 @@
             <div class="title-column col-lg-8 col-md-12">
                 <div class="inner-column">
                     <div class="sec-title light">
-                        <span class="style-font">Get your quality</span>
-                        <h1>Skills certificate <br>from the edulerns</h1>
+                        <span class="style-font">Obtenga su</span>
+                        <h1>Certificado de <br>Estudio</h1>
                         <a href="" class="theme-btn btn-style-one">
-                            <span class="btn-title">Get started now</span>
+                            <span class="btn-title">Ver Cusos</span>
                         </a>
                     </div>
                 </div>
@@ -907,22 +906,23 @@
     </div>
     <div class="auto-container">
         <div class="row">
-            <!-- Title Column -->
             <div class="title-column col-xl-4 col-lg-5 col-md-12">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <span class="sub-title">Our testimonials</span>
-                        <h2>What they’re <br>saying about our <br>courses</h2>
-                        <div class="text">Quisque commodo, magna nec accu man euismod tellus mi ornare enim.</div>
+                        <span class="sub-title">Nuestros testimonios</span>
+                        <h2>
+                            Lo que
+                            dicen <br>
+                            de nuestros cursos
+                        </h2>
+                        <div class="text">Aqui un pequeño texto descriptivo.</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Testimonial Column -->
             <div class="testimonial-column col-xl-8 col-lg-7 col-md-12">
                 <div class="carousel-outer">
                     <div class="testimonial-carousel owl-carousel owl-theme">
-                        <!-- Testimonial Block -->
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="content-box">
@@ -1086,14 +1086,16 @@
             <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <h2>Over 36 years in distant learning for skills</h2>
-                        <div class="text">Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod tempor incididunt labore dolore magna aliquaenim ad minim. Sed risus augue, commodo ornare felis non, eleifend molestie metus pharetra eleifend.</div>
+                        <h2>Formación a distancia para desarrollar tus habilidades</h2>
+                        <div class="text">
+                            Descripción corta de la sección
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="about-block col-lg-6 col-md-6 col-sm-6 wow fadeInUp">
                             <div class="inner-box">
-                                <span class="info-text">Best off canvas program</span>
+                                <span class="info-text">Son excelentes cursos</span>
                                 <div class="info-box">
                                     <div class="thumb">
                                         <img src="{{ asset('themes/webpage/images/resource/avatar-1.jpg') }}" alt="">
@@ -1106,7 +1108,7 @@
 
                         <div class="about-block style-two col-lg-6 col-md-6 col-sm-6 wow fadeInRight">
                             <div class="inner-box">
-                                <span class="info-text">Best degree program</span>
+                                <span class="info-text">Muy buenos docentes</span>
                                 <div class="info-box">
                                     <div class="thumb">
                                         <img src="{{ asset('themes/webpage/images/resource/avatar-2.jpg') }}" alt="">
@@ -1265,7 +1267,7 @@
                                     <img src="{{ asset('themes/webpage/images/logo-2.png') }}" alt="" >
                                 </a>
                             </div>
-							<div class="text">Get 26,000+ best online courses from us</div>
+							<div class="text">Presentación corta de educap</div>
 							<ul class="social-icon-two">
 								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fab fa-facebook"></i></a></li>
@@ -1278,14 +1280,12 @@
 					<!--Footer Column-->
 					<div class="footer-column col-xl-2 col-lg-4 col-md-6 col-sm-12">
 						<div class="footer-widget">
-							<h4 class="widget-title">Explore</h4>
+							<h4 class="widget-title">Navegar</h4>
 							<ul class="user-links">
-								<li><a href="#">Gallery</a></li>
-								<li><a href="#">News & Articles</a></li>
-								<li><a href="#">FAQ's</a></li>
-								<li><a href="#">Sign In/Registration</a></li>
-								<li><a href="#">Coming Soon</a></li>
-								<li><a href="#">Contacts</a></li>
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Nosotros</a></li>
+								<li><a href="#">Cursos</a></li>
+								<li><a href="#">Contacto</a></li>
 							</ul>
 						</div>
 					</div>
