@@ -1268,12 +1268,6 @@
                                 </a>
                             </div>
 							<div class="text">Presentación corta de educap</div>
-							<ul class="social-icon-two">
-								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fab fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-							</ul>
 						</div>
 					</div>
 
@@ -1293,13 +1287,11 @@
 					<!--Footer Column-->
 					<div class="footer-column col-xl-2 col-lg-4 col-md-6 col-sm-12">
 						<div class="footer-widget">
-							<h4 class="widget-title">Links</h4>
+							<h4 class="widget-title">Politicas</h4>
 							<ul class="user-links">
-								<li><a href="#">About</a></li>
-								<li><a href="#">Courses</a></li>
-								<li><a href="#">Instructor</a></li>
-								<li><a href="#">Events</a></li>
-								<li><a href="#">Instructor Profile</a></li>
+								<li><a href="#">Calidad</a></li>
+								<li><a href="#">Privacidad</a></li>
+								<li><a href="#">Libro de reclamaciones</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1307,31 +1299,37 @@
 					<!--Footer Column-->
 					<div class="footer-column col-xl-5 col-lg-4 col-md-6 col-sm-12">
 						<div class="footer-widget contact-widget">
-							<h4 class="widget-title">Contact</h4>
+							<h4 class="widget-title">Contacto</h4>
 							<div class="widget-content">
 								<ul class="contact-info">
 									<li>
                                         <i class="fa fa-phone-square"></i> 
-                                        <a href="tel:+926668880000">+92 (0088) 6823</a>
+                                        <a href="tel:+51977627207">+51 977627207</a>
                                     </li>
 									<li>
                                         <i class="fa fa-envelope"></i> 
-                                        <a href="/cdn-cgi/l/email-protection#b3ddd6d6d7dbd6dfc3f3c3dcc7dac0d6dd9dd0dcde">
-                                            <span class="__cf_email__" data-cfemail="533d3636373b363f2313303c3e23323d2a7d303c3e">[email&#160;protected]</span>
+                                        <a href="">
+                                            correo@dominio.com
                                         </a>
                                     </li>
 									<li>
-                                        <i class="fa fa-map-marker-alt"></i> 80 Broklyn Golden Street. New York. USA
+                                        <i class="fa fa-map-marker-alt"></i> Dirección de la oficina principal
                                     </li>
 								</ul>
-								<div class="subscribe-form">
+                                <ul class="social-icon-two">
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                </ul>
+								{{-- <div class="subscribe-form">
 									<form method="post" action="#">
 										<div class="form-group">
 											<input type="email" name="email" class="email" value="" placeholder="Email Address" required="">
 											<button type="button" class="theme-btn btn-style-one"><i class="fa fa-long-arrow-alt-right"></i></button>
 										</div>
 									</form>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
