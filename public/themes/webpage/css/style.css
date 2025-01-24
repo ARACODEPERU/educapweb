@@ -9,7 +9,7 @@ License: copyright commercial
 2. Reset
 3. Global Settings
 4. Main Header / TWO
-5. Sticky Header 
+5. Sticky Header
 6. Mobile Menu
 7. Section Title
 8. Page Title
@@ -47,8 +47,10 @@ License: copyright commercial
 @import url("tm-utility-classes.css");
 :root {
   --theme-color1: #191e24;
-  --theme-color2: #00c7c4;
-  --theme-color3: #7054e6;
+  /* --theme-color2: #00c7c4; */
+  --theme-color2: #44afcf;
+  /* --theme-color3: #7054e6; */
+  --theme-color3: #184085;
   --theme-color4: #f89321;
   --theme-color5: #ef5c72;
   --bg-theme-color1: var(--theme-color1);
@@ -612,7 +614,7 @@ textarea.form-control {
   font-style: normal;
   font-display: swap;
 }
-/*** 
+/***
 
 ====================================================================
 Reset
@@ -627,7 +629,7 @@ Reset
   font-size: 100%;
 }
 
-/*** 
+/***
 
 ====================================================================
 Global Settings
@@ -929,7 +931,7 @@ Scroll To Top style
 }
 
 /*======================
-    List Style One 
+    List Style One
 ======================*/
 .list-style-one {
   position: relative;
@@ -1068,7 +1070,7 @@ Scroll To Top style
 }
 
 /*======================
-    Media Play Button 
+    Media Play Button
 ======================*/
 .play-now {
   position: relative;
@@ -1449,7 +1451,7 @@ Scroll To Top style
   font-size: 12px;
 }
 
-/*** 
+/***
 
 ====================================================================
   Anim Icons
@@ -1870,7 +1872,7 @@ Scroll To Top style
   transition: all 400ms linear;
 }
 
-/*** 
+/***
 
 ====================================================================
   Search Popup
@@ -2009,7 +2011,7 @@ Scroll To Top style
           transition-delay: 500ms;
 }
 
-/*** 
+/***
 ====================================================================
 Main Header
 ====================================================================
@@ -2480,7 +2482,7 @@ Main Header
   color: var(--bg-theme-color2);
 }
 
-/*** 
+/***
 ====================================================================
 Header Style One
 ====================================================================
@@ -2504,7 +2506,7 @@ Header Style One
   position: relative;
 }
 
-/*** 
+/***
 ====================================================================
   Header Style Two
 ====================================================================
@@ -2624,7 +2626,7 @@ Header Style One
   line-height: 20px;
 }
 
-/*** 
+/***
 ====================================================================
   Sticky Header
 ====================================================================
@@ -2650,10 +2652,10 @@ Header Style One
 }
 
 .sticky-header .logo {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .sticky-header .logo img {
-  max-height: 40px;
+  max-height: 60px;
 }
 .sticky-header .nav-outer {
   position: relative;
@@ -2700,7 +2702,7 @@ Header Style One
   color: var(--theme-color1);
 }
 
-/*** 
+/***
 
 ====================================================================
       Mobile Menu
@@ -2980,7 +2982,7 @@ Header Style One
   color: var(--theme-color2);
 }
 
-/*** 
+/***
 
 ====================================================================
     Banner Section
@@ -3292,7 +3294,7 @@ Header Style One
   opacity: 1;
 }
 
-/*** 
+/***
 
 ====================================================================
 Section Title
@@ -3352,7 +3354,7 @@ Section Title
   margin-top: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
   Main Slider
@@ -3427,7 +3429,7 @@ Section Title
   display: none;
 }
 
-/*** 
+/***
 
 ====================================================================
 		About Section
@@ -3535,7 +3537,7 @@ Section Title
   display: block;
 }
 
-/*** 
+/***
 
 ====================================================================
 		About Section Two
@@ -3638,7 +3640,7 @@ Section Title
   border-top-color: var(--border-theme-color3);
 }
 
-/*** 
+/***
 
 ====================================================================
 		About Section Three
@@ -3969,7 +3971,7 @@ Section Title
   font-weight: 400;
 }
 
-/*** 
+/***
 
 ====================================================================
     Courses Section
@@ -4089,7 +4091,7 @@ Section Title
   top: 20px;
   height: 30px;
   width: 80px;
-  background: var(--bg-theme-color5);
+  background: var(--bg-theme-color2);
   color: #ffffff;
   font-size: 14px;
   text-align: center;
@@ -4188,7 +4190,7 @@ Section Title
   font-size: 14px;
 }
 
-/*** 
+/***
 
 ====================================================================
     Courses Section Two
@@ -4393,7 +4395,7 @@ Section Title
   font-size: 14px;
 }
 
-/*** 
+/***
 
 ====================================================================
     Features Section
@@ -4479,7 +4481,7 @@ Section Title
   position: relative;
 }
 
-/*** 
+/***
 
 ====================================================================
     Features Section Two
@@ -4542,7 +4544,7 @@ Section Title
   margin: 0 auto;
 }
 
-/*** 
+/***
 
 ====================================================================
     Categories Current
@@ -4674,7 +4676,7 @@ Section Title
   background-color: #41c2fa;
 }
 
-/*** 
+/***
 
 ====================================================================
     Categories Section Two
@@ -4791,7 +4793,7 @@ Section Title
   color: var(--theme-color4);
 }
 
-/*** 
+/***
 
 ====================================================================
     Fun Fact Section
@@ -4871,7 +4873,7 @@ Section Title
   color: var(--theme-color5);
 }
 
-/*** 
+/***
 
 ====================================================================
     Fun Fact Section Two
@@ -5015,7 +5017,7 @@ Section Title
   margin-bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 		FAQ's Sectiom
@@ -5239,7 +5241,7 @@ Section Title
   resize: none;
 }
 
-/*** 
+/***
 
 ====================================================================
 		SignUp Sectiom
@@ -5347,7 +5349,7 @@ Section Title
   text-transform: uppercase;
 }
 
-/*** 
+/***
 
 ====================================================================
 	SignUp Sectiom Two
@@ -5675,7 +5677,7 @@ Section Title
   transition: all 400ms ease;
 }
 
-/*** 
+/***
 
 ====================================================================
     Video Section
@@ -5919,7 +5921,7 @@ Section Title
   color: #7c4bc0;
 }
 
-/*** 
+/***
 
 ====================================================================
 	Gallery Section
@@ -6134,7 +6136,7 @@ Section Title
   font-weight: 700;
 }
 
-/*** 
+/***
 
 ====================================================================
 		Call To Action
@@ -6188,7 +6190,7 @@ Section Title
   margin-bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
     Testimonial Section
@@ -6338,7 +6340,7 @@ Section Title
   letter-spacing: 0.1em;
 }
 
-/*** 
+/***
 
 ====================================================================
  	Countdown Section
@@ -6491,7 +6493,7 @@ Section Title
   background-color: #00c7c4;
 }
 
-/*** 
+/***
 
 ====================================================================
     News Section
@@ -6662,7 +6664,7 @@ Section Title
   color: var(--theme-color4);
 }
 
-/*** 
+/***
 
 ====================================================================
     News Section Two
@@ -6738,7 +6740,7 @@ Section Title
   background-color: #fff;
 }
 
-/*** 
+/***
 
 ====================================================================
     Clients Section
@@ -8555,7 +8557,7 @@ table.tbl-shopping-cart > tfoot > tr > th {
   background-color: var(--theme-color2);
 }
 
-/*** 
+/***
 
 ====================================================================
 Page Title
@@ -10408,7 +10410,7 @@ Page Title
   background-color: var(--theme-color1);
 }
 
-/*** 
+/***
 
 ====================================================================
 Sidebar
@@ -10786,7 +10788,7 @@ Sidebar
   letter-spacing: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
     Comments

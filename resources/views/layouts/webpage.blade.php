@@ -154,7 +154,7 @@
 				<div class="inner-container">
 					<!--Logo-->
 					<div class="logo">
-						<a href="index.php" title="">
+						<a href="" title="">
                             <img src="{{ asset('themes/webpage/images/EDUCAP-LogoFondo.jpg') }}" alt="" title="">
                         </a>
 					</div>
@@ -175,7 +175,8 @@
 					</div>
 				</div>
 			</div>
-		</div><!-- End Sticky Menu -->
+		</div>
+        <!-- End Sticky Menu -->
 	</header>
 	<!--End Main Header -->
 <!--Main Slider-->
@@ -403,7 +404,7 @@
                     data-y="['middle','middle','middle','middle']"
                     data-textalign="['top','top','top','top']"
                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <span class="title">START TO NEW JOURNEY</span>
+                        <span class="title">COMIENZA UN NUEVO VIAJE</span>
                     </div>
 
                     <div class="tp-caption"
@@ -421,7 +422,7 @@
                     data-y="['middle','middle','middle','middle']"
                     data-textalign="['top','top','top','top']"
                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <h1>Best <span class="style-font">online</span> <br>courses from eduLerns</h1>
+                        <h1>Lo <span class="style-font">mejor en</span> <br>cursos online</h1>
                     </div>
 
                     <div class="tp-caption"
@@ -439,7 +440,7 @@
                     data-y="['middle','middle','middle','middle']"
                     data-textalign="['top','top','top','top']"
                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <div class="text">World-class training and development programs <br>developed by top teachers</div>
+                        <div class="text">Programas de formación y desarrollo de clase mundial <br>Desarrollada por las mejores docentes</div>
                     </div>
 
 
@@ -457,7 +458,7 @@
                     data-y="['middle','middle','middle','middle']"
                     data-textalign="['top','top','top','top']"
                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <a href="page-courses.php" class="theme-btn btn-style-one">Find Course</a>
+                        <a href="page-courses.php" class="theme-btn btn-style-one">Ver Cursos</a>
                     </div>
                 </li>
 
@@ -475,20 +476,24 @@
             <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <span class="sub-title">Get to know us</span>
-                        <h2>Grow your skills learn with us from anywhere</h2>
-                        <div class="text">Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod tempor incididunt labore dolore magna aliquaenim ad minim. Sed risus augue, commodo ornare felis non, eleifend molestie metus pharetra eleifend.</div>
+                        <span class="sub-title">Conócenos</span>
+                        <h2>Título corto de sección.</h2>
+                        <div class="text">
+                            Descripción corta de quienes son como empresa, maximo que tenga 3 lineas el parrafo. 
+                        </div>
                     </div>
 
                     <ul class="list-style-one two-column">
-                        <li><i class="icon fa fa-check"></i> Expert trainers</li>
-                        <li><i class="icon fa fa-check"></i> Online learning</li>
-                        <li><i class="icon fa fa-check"></i> Lifetime access</li>
-                        <li><i class="icon fa fa-check"></i> Great results</li>
+                        <li><i class="icon fa fa-check"></i> Beneficio 1</li>
+                        <li><i class="icon fa fa-check"></i> Beneficio 2</li>
+                        <li><i class="icon fa fa-check"></i> Beneficio 3</li>
+                        <li><i class="icon fa fa-check"></i> Beneficio 4</li>
                     </ul>
 
                     <div class="btn-box">
-                        <a href="page-about.php" class="theme-btn btn-style-one"><span class="btn-title">Discover more</span></a>
+                        <a href="" class="theme-btn btn-style-one">
+                            <span class="btn-title">Conocer más</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -519,14 +524,13 @@
         </div>
 
         <div class="sec-title">
-            <span class="sub-title">popular courses</span>
-            <h2>Pick a course to<br> get started your study</h2>
+            <span class="sub-title">Nuevos Cursos</span>
+            <h2>Elige un curso para<br> comenzar tu estudio</h2>
         </div>
 
         <div class="carousel-outer">
-            <!-- Courses Carousel -->
             <div class="courses-carousel owl-carousel owl-theme default-nav">
-                <!-- Course Block -->
+
                 <div class="course-block">
                     <div class="inner-box">
                         <div class="image-box">
@@ -575,7 +579,7 @@
             <div class="feature-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
                 <div class="inner-box ">
                     <i class="icon flaticon-online-learning"></i>
-                    <h5 class="title">Online<br> Certifications</h5>
+                    <h5 class="title">Certificación<br> Online</h5>
                 </div>
             </div>
 
@@ -583,7 +587,7 @@
             <div class="feature-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="400ms">
                 <div class="inner-box ">
                     <i class="icon flaticon-elearning"></i>
-                    <h5 class="title">Top<br> Instructors</h5>
+                    <h5 class="title">Instructores <br>Top</h5>
                 </div>
             </div>
 
@@ -591,7 +595,7 @@
             <div class="feature-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="800ms">
                 <div class="inner-box ">
                     <i class="icon flaticon-web-2"></i>
-                    <h5 class="title">Unlimited <br>Online Courses</h5>
+                    <h5 class="title">Cursos <br>En Online</h5>
                 </div>
             </div>
 
@@ -599,7 +603,7 @@
             <div class="feature-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="1200ms">
                 <div class="inner-box ">
                     <i class="icon flaticon-users"></i>
-                    <h5 class="title">Experienced <br>Members</h5>
+                    <h5 class="title">Comunidad <br>Especializada</h5>
                 </div>
             </div>
         </div>
@@ -615,70 +619,92 @@
         </div>
 
         <div class="sec-title text-center">
-            <span class="sub-title">Checkout our categories</span>
-            <h2>Top categories for popular <br>courses to show</h2>
+            <span class="sub-title">Consulta nuestras categorías</span>
+            <h2>
+                Principales categorías de cursos <br>
+                populares para mostrar
+            </h2>
         </div>
 
         <div class="row justify-content-center">
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-student-2"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Business <br>Management</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Gestión <br> Empresarial
+                        </a>
+                    </h6>
                 </div>
             </div>
 
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-stationary"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Arts and <br>Design</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Artes y <br>Diseño
+                        </a>
+                    </h6>
                 </div>
             </div>
 
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-online-learning"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Computer <br>Science</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Ciencias de <br>la Computación
+                        </a>
+                    </h6>
                 </div>
             </div>
 
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-study"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Personal <br>Development</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Desarrollo <br> Personal
+                        </a>
+                    </h6>
                 </div>
             </div>
 
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-pie-chart"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Business and <br>Finance</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Negocios y <br> Finanzas
+                        </a>
+                    </h6>
                 </div>
             </div>
 
-            <!-- Category Block -->
             <div class="category-block-current col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="inner-box">
                     <div class="icon-box">
                         <i class="icon flaticon-web-2"></i>
                     </div>
-                    <h6 class="title"><a href="page-course-details.php">Video and <br>Photography</a></h6>
+                    <h6 class="title">
+                        <a href="">
+                            Vídeo y <br> Fotografía
+                        </a>
+                    </h6>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -689,7 +715,7 @@
         <div class="anim-icons">
             <span class="icon icon-paper-clip bounce-x"></span>
         </div>
-        <div class="outer-box" style="background-image: url(./images/background/3.jpg)">
+        <div class="outer-box" style="background-image: url({{ asset('themes/webpage/images/background/3.jpg') }})">
             <span class="float-icon icon-pencil-line wow fadeInUp"></span>
             <div class="row">
                 <!-- Title Column -->
@@ -748,7 +774,11 @@
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="page-team-details.php"><img src="images/resource/team-1.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="">
+                                <img src="{{ asset('themes/webpage/images/resource/team-1.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="share-icon fa fa-share-alt"></span>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -758,7 +788,7 @@
                         </div>
                     </div>
                     <div class="info-box">
-                        <h4 class="name"><a href="page-team-details.php">Edward norton</a></h4>
+                        <h4 class="name"><a href="">Edward norton</a></h4>
                         <span class="designation">Musian</span>
                     </div>
                 </div>
@@ -768,7 +798,11 @@
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="page-team-details.php"><img src="images/resource/team-2.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="page-team-details.php">
+                                <img src="{{ asset('themes/webpage/images/resource/team-2.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="share-icon fa fa-share-alt"></span>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -788,7 +822,11 @@
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="page-team-details.php"><img src="images/resource/team-3.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="page-team-details.php">
+                                <img src="{{ asset('themes/webpage/images/resource/team-3.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="share-icon fa fa-share-alt"></span>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -808,7 +846,11 @@
             <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="page-team-details.php"><img src="images/resource/team-4.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="page-team-details.php">
+                                <img src="{{ asset('themes/webpage/images/resource/team-4.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="share-icon fa fa-share-alt"></span>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -827,7 +869,7 @@
     </div>
 </section>
 <!-- End Team Section --><!-- Call To Action Two -->
-<section class="call-to-action" style="background-image: url(./images/background/1.jpg)">
+<section class="call-to-action" style="background-image: url({{ asset('/themes/webpage/images/background/1.jpg') }}">
     <div class="anim-icons">
         <span class="icon icon-calculator zoom-one"></span>
         <span class="icon icon-pin-clip zoom-one"></span>
@@ -841,13 +883,17 @@
                     <div class="sec-title light">
                         <span class="style-font">Get your quality</span>
                         <h1>Skills certificate <br>from the edulerns</h1>
-                        <a href="page-course-details.php" class="theme-btn btn-style-one"><span class="btn-title">Get started now</span></a>
+                        <a href="" class="theme-btn btn-style-one">
+                            <span class="btn-title">Get started now</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
             <div class="image-column col-lg-4 col-md-12">
-                <figure class="image"><img src="images/resource/cta.png" alt=""></figure>
+                <figure class="image">
+                    <img src="{{ asset('themes/webpage/images/resource/cta.png') }}" alt="">
+                </figure>
             </div>
         </div>
     </div>
@@ -880,9 +926,19 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-1.jpg" alt=""></figure>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-1.jpg') }}" alt="">
+                                    </figure>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="text">
+                                        Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.
+                                    </div>
                                     <div class="info-box">
                                         <span class="icon-quote"></span>
                                         <h4 class="name">Jame sickres</h4>
@@ -896,7 +952,61 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-2.jpg" alt=""></figure>
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-2.jpg') }}" alt="">
+                                    </figure>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="text">
+                                        Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.
+                                    </div>
+                                    <div class="info-box">
+                                        <span class="icon-quote"></span>
+                                        <h4 class="name">Aleesha brown</h4>
+                                        <span class="designation">Market Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="content-box">
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-1.jpg') }}" alt="">
+                                    </figure>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="text">
+                                        Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.
+                                    </div>
+                                    <div class="info-box">
+                                        <span class="icon-quote"></span>
+                                        <h4 class="name">Jame sickres</h4>
+                                        <span class="designation">Market Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Block -->
+                        <div class="testimonial-block">
+                            <div class="inner-box">
+                                <div class="content-box">
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-2.jpg') }}" alt="">
+                                    </figure>
                                     <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                                     <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
                                     <div class="info-box">
@@ -912,8 +1022,16 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-1.jpg" alt=""></figure>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-1.jpg') }}" alt="">
+                                    </figure>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                     <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
                                     <div class="info-box">
                                         <span class="icon-quote"></span>
@@ -928,41 +1046,19 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-2.jpg" alt=""></figure>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
-                                    <div class="info-box">
-                                        <span class="icon-quote"></span>
-                                        <h4 class="name">Aleesha brown</h4>
-                                        <span class="designation">Market Manager</span>
+                                    <figure class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/testi-thumb-2.jpg') }}" alt="">
+                                    </figure>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Testimonial Block -->
-                        <div class="testimonial-block">
-                            <div class="inner-box">
-                                <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-1.jpg" alt=""></figure>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
-                                    <div class="info-box">
-                                        <span class="icon-quote"></span>
-                                        <h4 class="name">Jame sickres</h4>
-                                        <span class="designation">Market Manager</span>
+                                    <div class="text">
+                                        Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Testimonial Block -->
-                        <div class="testimonial-block">
-                            <div class="inner-box">
-                                <div class="content-box">
-                                    <figure class="thumb"><img src="images/resource/testi-thumb-2.jpg" alt=""></figure>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    <div class="text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing elit, sed do incididunt ut labore et dolore magna aliqua.</div>
                                     <div class="info-box">
                                         <span class="icon-quote"></span>
                                         <h4 class="name">Aleesha brown</h4>
@@ -999,7 +1095,9 @@
                             <div class="inner-box">
                                 <span class="info-text">Best off canvas program</span>
                                 <div class="info-box">
-                                    <div class="thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+                                    <div class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/avatar-1.jpg') }}" alt="">
+                                    </div>
                                     <h5 class="name">John Doe</h5>
                                     <span class="designation">Student</span>
                                 </div>
@@ -1010,7 +1108,9 @@
                             <div class="inner-box">
                                 <span class="info-text">Best degree program</span>
                                 <div class="info-box">
-                                    <div class="thumb"><img src="images/resource/avatar-2.jpg" alt=""></div>
+                                    <div class="thumb">
+                                        <img src="{{ asset('themes/webpage/images/resource/avatar-2.jpg') }}" alt="">
+                                    </div>
                                     <h5 class="name">Albart Brown</h5>
                                     <span class="designation">TEACHER</span>
                                 </div>
@@ -1028,7 +1128,8 @@
                         <span class="icon icon-dotted-line"></span>
                         <span class="icon icon-papper-plan"></span>
                     </div>
-                    <figure class="image overlay-anim wow fadeInUp"><img src="images/resource/about-3.jpg" alt="">
+                    <figure class="image overlay-anim wow fadeInUp">
+                        <img src="{{ asset('themes/webpage/images/resource/about-3.jpg') }}" alt="">
                     </figure>
                 </div>
             </div>
@@ -1037,8 +1138,8 @@
 </section>
 <!--Emd About Section Two-->
 <!-- Countdown Section -->
-<section class="countdown-section">
-    <div class="bg-image zoom-two" style="background-image: url(./images/background/2.jpg)"></div>
+{{-- <section class="countdown-section">
+    <div class="bg-image zoom-two" style="background-image: url({{ asset('themes/webpage/images/background/2.jpg') }})"></div>
     <div class="auto-container">
         <div class="content-box">
             <div class="sec-title light text-center">
@@ -1050,10 +1151,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- End Deal Section --><!-- News Section -->
-<section class="news-section" id="news">
-
+{{-- <section class="news-section" id="news">
     <div class="auto-container">
         <div class="sec-title text-center">
             <span class="sub-title">directly from blog</span>
@@ -1061,11 +1161,14 @@
         </div>
 
         <div class="row">
-            <!-- News Block -->
             <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="news-details.php"><img src="images/resource/news-1.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="">
+                                <img src="{{ asset('themes/webpage/images/resource/news-1.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="date"><b>20</b> SEP</span>
                     </div>
                     <div class="content-box">
@@ -1074,18 +1177,21 @@
                                 <li><i class="fa fa-user"></i> by Admin</li>
                                 <li><i class="fa fa-comments"></i> 2 Comments</li>
                             </ul>
-                            <h4 class="title"><a href="news-details.php">The quality role of the elementary teacher in education</a></h4>
-                            <a href="news-details.php" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                            <h4 class="title"><a href="">The quality role of the elementary teacher in education</a></h4>
+                            <a href="" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- News Block -->
             <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="news-details.php"><img src="images/resource/news-2.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="">
+                                <img src="{{ asset('themes/webpage/images/resource/news-2.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="date"><b>20</b> SEP</span>
                     </div>
                     <div class="content-box">
@@ -1094,18 +1200,21 @@
                                 <li><i class="fa fa-user"></i> by Admin</li>
                                 <li><i class="fa fa-comments"></i> 2 Comments</li>
                             </ul>
-                            <h4 class="title"><a href="news-details.php">The quality role of the elementary teacher in education</a></h4>
-                            <a href="news-details.php" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                            <h4 class="title"><a href="">The quality role of the elementary teacher in education</a></h4>
+                            <a href="" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- News Block -->
             <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
                 <div class="inner-box">
                     <div class="image-box">
-                        <figure class="image"><a href="news-details.php"><img src="images/resource/news-3.jpg" alt=""></a></figure>
+                        <figure class="image">
+                            <a href="">
+                                <img src="{{ asset('themes/webpage/images/resource/news-3.jpg') }}" alt="">
+                            </a>
+                        </figure>
                         <span class="date"><b>20</b> SEP</span>
                     </div>
                     <div class="content-box">
@@ -1114,35 +1223,35 @@
                                 <li><i class="fa fa-user"></i> by Admin</li>
                                 <li><i class="fa fa-comments"></i> 2 Comments</li>
                             </ul>
-                            <h4 class="title"><a href="news-details.php">The quality role of the elementary teacher in education</a></h4>
-                            <a href="news-details.php" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                            <h4 class="title"><a href="">The quality role of the elementary teacher in education</a></h4>
+                            <a href="" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--End News Section --><!-- Clients Section   -->
-<section class="clients-section">
+{{-- <section class="clients-section">
     <div class="auto-container">
         <!-- Sponsors Outer -->
         <div class="sponsors-outer">
             <!--clients carousel-->
             <ul class="clients-carousel owl-carousel owl-theme">
-                <li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
+                <li class="slide-item"> <a href="#"><img src="{{ asset('themes/webpage/images/resource/client.png') }}" alt=""></a> </li>
+                <li class="slide-item"> <a href="#"><img src="{{ asset('themes/webpage/images/resource/client.png') }}" alt=""></a> </li>
+                <li class="slide-item"> <a href="#"><img src="{{ asset('themes/webpage/images/resource/client.png') }}" alt=""></a> </li>
+                <li class="slide-item"> <a href="#"><img src="{{ asset('themes/webpage/images/resource/client.png') }}" alt=""></a> </li>
+                <li class="slide-item"> <a href="#"><img src="{{ asset('themes/webpage/images/resource/client.png') }}" alt=""></a> </li>
             </ul>
         </div>
     </div>
-</section>
+</section> --}}
 <!--End Clients Section -->
 	<!-- Main Footer -->
 	<footer class="main-footer">
-		<div class="bg-image zoom-two"  style="background-image: url(./images/background/4.jpg)"></div>
+		<div class="bg-image zoom-two" style="background-image: url({{ asset('themes/webpage/images/background/4.jpg') }})"></div>
 
 		<!--Widgets Section-->
 		<div class="widgets-section">
@@ -1151,7 +1260,11 @@
 					<!--Footer Column-->
 					<div class="footer-column col-xl-3 col-lg-12 col-md-6 col-sm-12">
 						<div class="footer-widget about-widget">
-							<div class="logo"><a href="index.php"><img src="images/logo-2.png" alt="" ></a></div>
+							<div class="logo">
+                                <a href="">
+                                    <img src="{{ asset('themes/webpage/images/logo-2.png') }}" alt="" >
+                                </a>
+                            </div>
 							<div class="text">Get 26,000+ best online courses from us</div>
 							<ul class="social-icon-two">
 								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -1197,12 +1310,21 @@
 							<h4 class="widget-title">Contact</h4>
 							<div class="widget-content">
 								<ul class="contact-info">
-									<li><i class="fa fa-phone-square"></i> <a href="tel:+926668880000">+92 (0088) 6823</a></li>
-									<li><i class="fa fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#b3ddd6d6d7dbd6dfc3f3c3dcc7dac0d6dd9dd0dcde"><span class="__cf_email__" data-cfemail="533d3636373b363f2313303c3e23323d2a7d303c3e">[email&#160;protected]</span></a></li>
-									<li><i class="fa fa-map-marker-alt"></i> 80 Broklyn Golden Street. New York. USA</li>
+									<li>
+                                        <i class="fa fa-phone-square"></i> 
+                                        <a href="tel:+926668880000">+92 (0088) 6823</a>
+                                    </li>
+									<li>
+                                        <i class="fa fa-envelope"></i> 
+                                        <a href="/cdn-cgi/l/email-protection#b3ddd6d6d7dbd6dfc3f3c3dcc7dac0d6dd9dd0dcde">
+                                            <span class="__cf_email__" data-cfemail="533d3636373b363f2313303c3e23323d2a7d303c3e">[email&#160;protected]</span>
+                                        </a>
+                                    </li>
+									<li>
+                                        <i class="fa fa-map-marker-alt"></i> 80 Broklyn Golden Street. New York. USA
+                                    </li>
 								</ul>
 								<div class="subscribe-form">
-
 									<form method="post" action="#">
 										<div class="form-group">
 											<input type="email" name="email" class="email" value="" placeholder="Email Address" required="">
@@ -1221,7 +1343,7 @@
 		<div class="footer-bottom">
 			<div class="auto-container">
 				<div class="inner-container">
-					<div class="copyright-text">&copy; Copyright reserved by <a href="index.php">kodesolution.com</a></div>
+					<div class="copyright-text">&copy; Copyright reservados a Educap | Desarrollado por <a href="https://www.aracodeperu.com/">Aracode Smart Solutión</a></div>
 				</div>
 			</div>
 		</div>
