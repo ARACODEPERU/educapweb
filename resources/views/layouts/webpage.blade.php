@@ -167,12 +167,15 @@
 								<ul class="navigation clearfix">
 									<!--Keep This Empty / Menu will come through Javascript-->
 								</ul>
-							</div>
-						</nav><!-- Main Menu End-->
+							</div> 
+						</nav>
+                        <!-- Main Menu End-->
+                        
 
 						<!--Mobile Navigation Toggler-->
 						<div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
 					</div>
+                
 				</div>
 			</div>
 		</div>
