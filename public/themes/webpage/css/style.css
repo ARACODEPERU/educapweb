@@ -11143,7 +11143,7 @@ Sidebar
   transition: all 500ms ease;
 }
 .contact-details__info li:hover .icon {
-  background-color: var(--theme-color5);
+  background-color: var(--theme-color2);
 }
 .contact-details__info li:hover .icon span {
   color: var(--text-color-bg-theme-color5);

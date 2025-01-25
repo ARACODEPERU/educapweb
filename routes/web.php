@@ -30,6 +30,9 @@ Route::get('/home', [WebPageController::class, 'index'])->name('index_main');
 
 // Route::get('/', [WebPageController::class, 'construction'])->name('construction');
 Route::get('/', [WebPageController::class, 'index'])->name('index_main');
+Route::get('/nosotros', [WebPageController::class, 'about'])->name('web_about');
+Route::get('/cursos', [WebPageController::class, 'courses'])->name('web_courses');
+Route::get('/contactanos', [WebPageController::class, 'contact'])->name('web_contact_us');
 
 //////mensajes de whatsapp///////
 Route::get('/ask/product/{id}', [LandingController::class, 'redirectToWhatsApp'])->name('whatsapp_send');
