@@ -11,6 +11,10 @@ use Illuminate\Http\Response;
 use DataTables;
 use Inertia\Inertia;
 use Modules\Academic\Entities\AcaCourse;
+use Modules\Academic\Entities\AcaStudent;
+use Illuminate\Support\Facades\Mail;
+use Modules\CRM\Emails\MailwithUserAccount;
+use Modules\CRM\Emails\PersonalizedEmailStudent;
 
 class CrmContactsController extends Controller
 {
@@ -55,7 +59,6 @@ class CrmContactsController extends Controller
     public function massMailing()
     {
         $courses = [];
-
         if ($this->P000009 == '1' || $this->P000009 == '99') {
             $courses = AcaCourse::where('status', true)->get();
         }
@@ -63,6 +66,89 @@ class CrmContactsController extends Controller
         return Inertia::render('CRM::Contacts/MassMailing', [
             'P000009' => $this->P000009,
             'courses' => $courses
+        ]);
+    }
+
+    public function getContactsPagination(Request $request)
+    {
+        $search = $request->get('search');
+
+
+
+        $model = Person::query();
+        $selectFields = ['people.*']; // Siempre incluir 'people.*'
+
+        if ($this->P000009 == '1' || $this->P000009 == '99') {
+            $model = $model->join('aca_students', 'aca_students.person_id', 'people.id');
+
+            if (is_array($search['type'])) {
+                $ty = $search['type'][0];
+
+                if ($ty == 'new') {
+                    $model = $model->where('aca_students.new_student', true);
+                } elseif ($ty == 'cur') {
+
+                    $cu = $search['type'][1];
+
+                    $model = $model->join('aca_cap_registrations', 'aca_students.id', 'aca_cap_registrations.student_id');
+
+                    $model = $model->where('aca_cap_registrations.course_id', $cu);
+                }
+            }
+
+
+            $selectFields[] = 'aca_students.new_student'; // Agregar 'new_student' dinámicamente
+        }
+        // Puedes agregar más condiciones similares aquí con otros joins y campos
+        $model = $model->select($selectFields); // Aplicar el select con todos los campos acumulados
+        $model = $model->where('people.id', '<>', 1);
+
+        return $model->paginate(10);
+    }
+
+    public function sendMassMessage(Request $request)
+    {
+        $correo = $request->get('correo');
+
+        $P000013 = Parameter::where('parameter_code', 'P000013')->value('value_default');
+
+        $type = $correo['type'];
+        $message = $correo['message'];
+
+        $correosEnviados = 0;
+        $correosFallidos = [];
+
+        $data = [
+            'from_mail' => $P000013 ?? env('MAIL_FROM_ADDRESS'),
+            'from_name' => env('MAIL_FROM_NAME'),
+            'title' => $correo['title'],
+            'contact' => $correo['contact'],
+            'message' => null
+        ];
+
+        try {
+            if ($type == 'ccu') {
+                Mail::to(trim($correo['contact']['email']))->send(new MailwithUserAccount($data));
+            } elseif ($type == 'cdb') {
+            } elseif ($type == 'ccc') {
+            } elseif ($type == 'cmp') {
+                $data['message'] =  $message;
+                Mail::to(trim($correo['contact']['email']))->send(new PersonalizedEmailStudent($data));
+            }
+            $correosEnviados = 1;
+        } catch (\Exception $e) {
+
+            $correosFallidos = [
+                'email' => $correo['contact']['email'],
+                'error' => $e->getMessage() // Guarda el mensaje de error
+            ];
+        }
+
+        // Devuelve la respuesta con totales y detalles de errores
+        return response()->json([
+            'success' => count($correosFallidos) === 0,
+            'enviados' => $correosEnviados,
+            'fallidos' => $correosFallidos
         ]);
     }
 }
