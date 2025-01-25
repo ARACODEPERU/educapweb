@@ -329,6 +329,11 @@ class WebPageController extends Controller
             'latest_courses' => $latest_courses
         ]);
     }
+    
+    public function coursedetails()
+    {
+        return view('pages.course-details');
+    }
 
     public function contact()
     {

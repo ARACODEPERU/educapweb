@@ -1332,7 +1332,7 @@ Scroll To Top style
 /*Btn Style One*/
 .btn-style-one {
   position: relative;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   padding: 15px 60px;
   font-weight: 700;
@@ -1342,7 +1342,7 @@ Scroll To Top style
   color: #ffffff;
   border-radius: 50px;
   z-index: 1;
-  background: var(--bg-theme-color1);
+  background: var(--bg-theme-color2);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
@@ -1353,7 +1353,7 @@ Scroll To Top style
   bottom: 0;
   left: 0;
   content: "";
-  background-color: var(--bg-theme-color2);
+  background-color: var(--bg-theme-color3);
   clip-path: polygon(50% 0, 50% 0, 50% 50%, 50% 100%, 50% 100%, 50% 50%);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -1402,7 +1402,7 @@ Scroll To Top style
 /*Btn Style One*/
 .btn-style-two {
   position: relative;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   padding: 15px 60px;
   font-weight: 700;
@@ -1412,7 +1412,7 @@ Scroll To Top style
   color: #ffffff;
   border-radius: 0px;
   z-index: 1;
-  background: var(--bg-theme-color4);
+  background: var(--bg-theme-color2);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
@@ -1423,7 +1423,7 @@ Scroll To Top style
   bottom: 0;
   left: 0;
   content: "";
-  background-color: var(--bg-theme-color2);
+  background-color: var(--bg-theme-color3);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   z-index: -1;
@@ -9280,8 +9280,8 @@ Page Title
 
 .course-details-price-amount {
   margin: 0;
-  color: var(--theme-color5);
-  font-size: 30px;
+  color: var(--theme-color3);
+  font-size: 40px;
   font-weight: 600;
   line-height: 1em;
   margin-top: 10px;

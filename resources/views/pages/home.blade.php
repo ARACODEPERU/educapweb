@@ -293,15 +293,15 @@
     <!-- End Main Slider-->
 
     <!-- About Section -->
-    <x-about_section />
+    <x-about-section />
     <!--Emd About Section -->
 
     <!-- Courses Section -->
-    <x-courses_carousel_section />
+    <x-courses-carousel-section />
     <!-- End Courses Section-->
 
     <!-- Features Section -->
-    <x-features_section />
+    <x-features-section />
     <!-- End Features Section-->
 
     <!-- Categories Section -->
@@ -459,7 +459,7 @@
     <!--End FAQ Section -->
 
     <!-- Team Section -->
-    <x-team_section />
+    <x-team-section />
     <!-- End Team Section -->
 
     <!-- Call To Action Two -->
