@@ -416,8 +416,10 @@
                     <!-- Title Column -->
                     <div class="title-column col-lg-6 col-md-12 col-sm-12">
                         <div class="sec-title light">
-                            <h2>Sign up for a<br> free trial lesson<br> by zoom</h2>
-                            <div class="text">Quisque commodo, magna nec accu man euismod <br> tellus mi ornare enim, quis congue elit.</div>
+                            <h2>Ponte en contacto con nosotros</h2>
+                            <div class="text">
+                                Texto corto que invite a comunicarse con la institución
+                            </div>
                         </div>
                     </div>
 
@@ -429,23 +431,21 @@
                                 <!--Contact Form-->
                                 <form method="post" action="get" id="contact-form">
                                     <div class="form-group">
-                                        <input type="text" name="full_name" placeholder="Your name" required>
+                                        <input type="text" name="full_name" placeholder="Nombre completo" required>
                                     </div>
-
+                                    <div class="form-group">
+                                        <input type="text" name="phone" placeholder="Teléfono" required>
+                                    </div>
                                     <div class="form-group">
                                         <input type="text" name="Email" placeholder="Email address" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <select class="custom-select">
-                                            <option value="">Select course</option>
-                                            <option value="UI/UX Designing">UI/UX Designing</option>
-                                            <option value="Digital Marketing">Digital Marketing</option>
-                                        </select>
+                                        <textarea name="form_message" class="form-control required" rows="9" placeholder="Mensaje"></textarea>
                                     </div>
 
                                     <div class="form-group">
-                                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">Send Request</button>
+                                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">Enviar Mensaje</button>
                                     </div>
                                 </form>
                             </div>
@@ -673,10 +673,10 @@
 
     <!-- About Section Two-->
     <section class="about-section-two">
-        <div class="anim-icons">
+        {{-- <div class="anim-icons">
             <span class="icon icon-e wow zoomIn"></span>
             <span class="icon icon-dots-2 bounce-x"></span>
-        </div>
+        </div> --}}
         <div class="auto-container">
             <div class="row">
                 <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">

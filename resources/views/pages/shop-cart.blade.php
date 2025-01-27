@@ -95,6 +95,13 @@
                 </tbody>
               </table>
             </div>
+            <div class="sidebar__single sidebar__post wow fadeInUp animated animated" 
+                data-wow-delay="0.2s" 
+                style="padding: 15px 25px; visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <h2 class="sidebar__title" style="margin-top: 10px;">
+                  <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; TOTAL : &nbsp; <div id="totalid">S/ 0.00</div>
+              </h2>
+            </div>
           </div>
           <div class="col-md-4">
             <h4>Datos del comprador</h4>
