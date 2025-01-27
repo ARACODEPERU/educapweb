@@ -485,8 +485,9 @@
                 </div>
 
                 <div class="image-column col-lg-4 col-md-12">
-                    <figure class="image">
-                        <img src="{{ asset('themes/webpage/images/resource/cta.png') }}" alt="">
+                    <figure class="image" style="margin-top: 5px;">
+                        {{-- <img src="{{ asset('themes/webpage/images/resource/cta.png') }}" alt=""> --}}
+                        <img src="https://netzun.com/_nuxt/img/certificado-netzun-siu.01abb78.jpg" alt="Modelo de certificado opcional de nuestro curso">
                     </figure>
                 </div>
             </div>
