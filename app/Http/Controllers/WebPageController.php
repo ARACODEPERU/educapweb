@@ -335,6 +335,12 @@ class WebPageController extends Controller
         return view('pages.course-details');
     }
 
+    
+    public function shopcart()
+    {
+        return view('pages.shop-cart');
+    }
+
     public function contact()
     {
         // $banner = CmsSection::where('component_id', 'nosotros_banner_area_11')  //siempre cambiar el id del componente

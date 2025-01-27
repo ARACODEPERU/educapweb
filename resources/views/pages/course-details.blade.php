@@ -121,7 +121,9 @@
                         <div class="course-details-price">
                             <p class="course-details-price-text">Precio del curso</p>
                             <p class="course-details-price-amount">S/ 50.00</p>
-                            <a href="#" class="theme-btn btn-style-two course-details-price-btn">Agregar al carrito</a>
+                            <a href="#" class="theme-btn btn-style-two course-details-price-btn">
+                                <i class="lnr-icon-shopping-cart" style="font-size: 20px;"></i>&nbsp; Agregar al carrito
+                            </a>
                         </div>
 
                         <div class="latest-course mb-30">
