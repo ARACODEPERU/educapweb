@@ -83,7 +83,7 @@
                           </a>
                         </td>
                         <td class="product-name">
-                          <a href="" style="font-size: 0.7rem;">Título del curso</a>
+                          <a href="">Título del curso</a>
                           <ul class="variation">
                               <li class="variation-size">Categoria</li>
                           </ul>
