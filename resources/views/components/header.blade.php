@@ -35,7 +35,7 @@
                     <a href="shop-cart.php" class="ui-btn"><i class="lnr-icon-shopping-cart"></i></a>
                 </div>
 
-                <a href="https://educap.aracodeperu.com/login" class="theme-btn btn-style-one"><span class="btn-title">Campus Virtual</span></a>
+                <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="btn-title">Campus Virtual</span></a>
 
                 <!-- Mobile Nav toggler -->
                 <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
