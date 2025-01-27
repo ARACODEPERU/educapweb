@@ -4,7 +4,7 @@
     import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
     import { Cascader, Input, Textarea, Select, SelectOption, notification } from 'ant-design-vue';
     import { ref, computed, onMounted, watch, nextTick  } from 'vue';
-    import { useForm, Link } from '@inertiajs/vue3';
+    import { useForm, Link, usePage } from '@inertiajs/vue3';
     import Keypad from '@/Components/Keypad.vue';
     import { Pagination } from 'flowbite-vue';
     import Swal from 'sweetalert2';
@@ -16,6 +16,8 @@
         },
     });
 
+    const appCodeUnique = import.meta.env.VITE_APP_CODE ?? 'ARACODE';
+    const channelListen = "email-status-" + appCodeUnique + '-' + usePage().props.auth.user.id;
     const loadingPrev = ref(false);
     const loadingNext = ref(false);
 
@@ -47,6 +49,7 @@
         correoDefault: null,
         csrfToken: null,
         urlBacken: route('crm_contacts_send_mail_post'),
+        channelListen: channelListen,
         para: []
     });
 
@@ -108,24 +111,11 @@
             }
         });
         
-        // if (selectAll.value) {
-        //     // Agrega los estudiantes a emailForm.para si no están ya incluidos
-        //     students.value.forEach((student) => {
-        //         if (!emailForm.para.some((item) => item.id === student.id)) {
-        //             emailForm.para.push(student);
-        //         }
-        //     });
-        // } else {
-        //     // Elimina los estudiantes del array si se desactiva "selectAll"
-        //     emailForm.para = emailForm.para.filter(
-        //         (item) => !students.value.some((student) => student.id === item.id)
-        //     );
-        // }
     };
 
     onMounted(() => { 
         getContactsPagination();
-        window.socketIo.on("email-status", (status) => {
+        window.socketIo.on(channelListen, (status) => {
             emailStatus.value.push(status);
             progressSend.value = parseFloat(progressSend.value) + parseFloat(porsentaje.value)
             nextTick(() => {
@@ -276,11 +266,12 @@
                                     id="txtbuscarpor" 
                                     placeholder="Seleccionar"
                                     @change="getContactsPagination"
+                                    style="width: 100%"
                                  />
                             </div>
                             <div>
                                 <label for="txtbuscar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buscar por descripcion o dni</label>
-                                <Input v-model:value="formSearch.search" id="txtbuscar" required />
+                                <Input v-model:value="formSearch.search" @keyup.enter="getContactsPagination"  id="txtbuscar" />
                             </div>
                             <div class="flex items-center justify-between col-span-2 pr-6">
                                 <div class="flex items-center space-x-2">
@@ -397,8 +388,8 @@
                                 @change="selectEmailDeafult"
                             >
                                 <SelectOption value="ccu">Correo con cuenta de usuario</SelectOption>
-                                <SelectOption value="cdb">Correo de bienvenida</SelectOption>
-                                <SelectOption value="ccc">Correo con certificados</SelectOption>
+                                <!-- <SelectOption value="cdb">Correo de bienvenida</SelectOption>
+                                <SelectOption value="ccc">Correo con certificados</SelectOption> -->
                                 <SelectOption value="cmp">Correo con mensaje personalizado</SelectOption>
                             </Select>
                         </div>
