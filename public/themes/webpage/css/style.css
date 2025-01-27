@@ -8227,7 +8227,7 @@ table.tbl-shopping-cart .product-name a, table.cart-total .product-name a {
   color: var(--headings-color);
 }
 table.tbl-shopping-cart .product-name .variation, table.cart-total .product-name .variation {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   list-style: none;
 }
 table.tbl-shopping-cart .product-remove a, table.cart-total .product-remove a {
@@ -9281,7 +9281,7 @@ Page Title
 .course-details-price-amount {
   margin: 0;
   color: var(--theme-color3);
-  font-size: 40px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1em;
   margin-top: 10px;
