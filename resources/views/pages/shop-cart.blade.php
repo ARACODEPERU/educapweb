@@ -7,7 +7,9 @@
   <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
     <div class="auto-container">
       <div class="title-outer">
-        <h1 class="title">Mi Carrito</h1>
+        <h1 class="title">
+          Mi Carrito
+        </h1>
         <ul class="page-breadcrumb">
             <li>
                 <a href="">Home</a>
