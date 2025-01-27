@@ -99,36 +99,38 @@
           <div class="col-md-4">
             <h4>Datos del comprador</h4>
             <form class="form" action="#">
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="Nombres" value="">
-              </div>
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="Apellido Paterno" value="">
-              </div>
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="Apellido Materno" value="">
-              </div>
-              <div class="mb-10">
-                <select class="form-control">
-                  <option>Tipo de documento</option>
-                  <option>DNI</option>
-                  <option>RUC</option>
-                  <option>Doc.trib.no.dom.sin.ruc</option>
-                </select>
-              </div>
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="N° Documento" value="">
-              </div>
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="Teléfono" value="">
-              </div>
-              <div class="mb-10">
-                <input type="text" class="form-control" placeholder="Correo electrónico" value="">
-              </div>
-              <div class="mb-30">
-                <button type="button" class="theme-btn btn-style-one">
-                  <span class="btn-title">Crear cuenta</span>
-                </button>
+              <div class="row">
+                <div class="col-md-12 mb-10">
+                  <input type="text" class="form-control" placeholder="Nombres" value="">
+                </div>
+                <div class="col-md-6 mb-10">
+                  <input type="text" class="form-control" placeholder="Apellido Paterno" value="">
+                </div>
+                <div class="mb-10">
+                  <input type="text" class="form-control" placeholder="Apellido Materno" value="">
+                </div>
+                <div class="mb-10">
+                  <select class="form-control">
+                    <option>Tipo de documento</option>
+                    <option>DNI</option>
+                    <option>RUC</option>
+                    <option>Doc.trib.no.dom.sin.ruc</option>
+                  </select>
+                </div>
+                <div class="mb-10">
+                  <input type="text" class="form-control" placeholder="N° Documento" value="">
+                </div>
+                <div class="mb-10">
+                  <input type="text" class="form-control" placeholder="Teléfono" value="">
+                </div>
+                <div class="mb-10">
+                  <input type="text" class="form-control" placeholder="Correo electrónico" value="">
+                </div>
+                <div class="mb-30">
+                  <button type="button" class="theme-btn btn-style-one">
+                    <span class="btn-title">Crear cuenta</span>
+                  </button>
+                </div>
               </div>
             </form>
           </div>
