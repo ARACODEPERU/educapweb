@@ -20,34 +20,42 @@
     <section class="">
         <div class="container pb-100">
             <div class="row">
-                <div class="course-block-two col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image">
-                                <a href="page-course-details.php">
-                                    <img src="{{ asset('themes/webpage/images/resource/course-5.jpg') }}" alt="">
+                @foreach ( $courses as $course)
+                    <div class="course-block-two col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <a href="page-course-details.php">
+                                        <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
+                                    </a>
+                                </figure>
+                                <span class="price">S/ {{ $course->price }}</span>
+                                <div class="value">{{ $course->category_description }}</div>
+                            </div>
+                            <div class="content-box">
+                                {{-- <ul class="course-info">
+                                    <li><i class="fa fa-book"></i> 8 Lessons</li>
+                                    <li><i class="fa fa-users"></i> 16 Students</li>
+                                    <li><i class="fa fa-clock"></i> 3 Weeks</li>
+                                </ul> --}}
+                                <h5 class="title">
+                                    <a href="page-course-details.php">
+                                        {{ $course->name }}
+                                    </a>
+                                </h5>
+                                <a href="" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                    Más Información
                                 </a>
-                            </figure>
-                            <span class="price">S/ 50.00</span>
-                            <div class="value">Categoria</div>
-                        </div>
-                        <div class="content-box">
-                            {{-- <ul class="course-info">
-                                <li><i class="fa fa-book"></i> 8 Lessons</li>
-                                <li><i class="fa fa-users"></i> 16 Students</li>
-                                <li><i class="fa fa-clock"></i> 3 Weeks</li>
-                            </ul> --}}
-                            <h5 class="title">
-                                <a href="page-course-details.php">
-                                    Título del curso
+                                <a href="" class="theme-btn btn-style-cart small" 
+                                            onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })" 
+                                            style="width: 100%;">
+                                    <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i> 
+                                    &nbsp;Agregar al carrito
                                 </a>
-                            </h5>
-                            <div class="other-info">
-                                <a href="" class="theme-btn btn-style-one small">Más Información</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
