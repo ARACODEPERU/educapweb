@@ -20,7 +20,7 @@
     </div>
   </section>
   <!-- end main-content -->
-   
+
   <!--cart Start-->
   <section>
     <div class="container pb-100">
@@ -97,8 +97,8 @@
                 </tbody>
               </table>
             </div>
-            <div class="sidebar__single sidebar__post wow fadeInUp animated animated" 
-                data-wow-delay="0.2s" 
+            <div class="sidebar__single sidebar__post wow fadeInUp animated animated"
+                data-wow-delay="0.2s"
                 style="padding: 15px 25px; visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <h2 class="sidebar__title" style="margin-top: 10px;">
                   <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; TOTAL : &nbsp; <div id="totalid">S/ 0.00</div>
@@ -147,6 +147,58 @@
       </div>
     </div>
   </section>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function quantity(index, masmen, price) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if (masmen == 1) {
+                carrito[index].quantity = parseInt(carrito[index].quantity) + 1;
+            }
+            if (masmen == 0) {
+                if (carrito[index].quantity > 1) {
+                    carrito[index].quantity = parseInt(carrito[index].quantity) - 1;
+                }
+            }
+            document.getElementById("p_q_" + carrito[index].id).value = carrito[index]
+                .quantity; //cambiar valor en el los inputHidden del form pay
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            console.log(carrito[index].quantity);
+            console.log(carrito[index].quantity * price);
+            document.getElementById(index + "qty").value = carrito[index].quantity;
+            let tempSubTotal = carrito[index].quantity * price;
+            document.getElementById(index + "subTotal").innerHTML = "S/ " + formatearNumero(tempSubTotal);
+            getTotal();
+        }
+    </script>
+    <script>
+        function confirmSubmit(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+            carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            console.log(carrito);
+            if (carrito.length > 0) {
+                console.log(event);
+                event.target.form.submit();
+            } else
+                alert("No has elegido ningún curso");
+
+        }
+        function formatearNumero(numero) {
+    // Convertir el número a un string con dos decimales
+    let numeroConDecimales = Number(numero).toFixed(2);
+    // Formatear el número con separadores de miles y decimales
+    return numeroConDecimales.toLocaleString('es-PE');
+
+    }
+    </script>
+
+
+    <script>
+        function onSubmit(token) {
+            document.getElementById("CartForm").submit();
+        }
+    </script>
   <!--cart Start-->
 
 @stop
