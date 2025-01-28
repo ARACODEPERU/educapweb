@@ -20,7 +20,30 @@
     </div>
   </section>
   <!-- end main-content -->
+ {{-- codigo de recapcha --}}
+ <script type="text/javascript">
+    function callbackThen(response) {
 
+        // read HTTP status
+
+        console.log(response.status);
+
+        // read Promise object
+
+        response.json().then(function(data) {
+
+            console.log(data);
+
+        });
+
+    }
+
+    function callbackCatch(error) {
+
+        console.error('Error:', error)
+
+    }
+</script>
   <!--cart Start-->
   <section>
     <div class="container pb-100">
@@ -107,8 +130,8 @@
           </div>
           <div class="col-md-4">
             <h4>Datos del comprador</h4>
-            <form class="form" action="#">
-                @csrf
+            <form class="form" method="POST" action="{{ route('onlineshop_client_account_store') }}" id ="CartForm">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div id="divCartHidden" style="display: none">
                 </div>
               <div class="row">
@@ -139,7 +162,7 @@
                   <input type="text" class="form-control" placeholder="Correo electrónico" value="">
                 </div>
                 <div class="mb-30">
-                  <button type="button" class="theme-btn btn-style-one" id="btn-crear-cuenta"
+                  <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
                   data-sitekey="reCAPTCHA_site_key"
                   data-callback='onSubmit'
                   data-action='submit'
@@ -298,6 +321,11 @@ alert("No has elegido ningún curso");
     document.getElementById("CartForm").submit();
   }
 </script>
+{!! htmlScriptTagJsApi([
+    'callback_then' => 'callbackThen',
+
+    'callback_catch' => 'callbackCatch',
+]) !!}
   <!--cart Start-->
 
 @stop
