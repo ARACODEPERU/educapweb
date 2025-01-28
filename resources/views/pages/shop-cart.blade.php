@@ -144,7 +144,7 @@
                   data-callback='onSubmit'
                   data-action='submit'
                   disabled>
-                    <span class="btn-title">Crear cuenta</span>
+                    <span class="btn-title">Crear cuenta para Pagar</span>
                   </button>
                 </div>
               </div>
