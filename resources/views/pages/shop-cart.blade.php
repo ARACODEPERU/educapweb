@@ -12,7 +12,7 @@
         </h1>
         <ul class="page-breadcrumb">
             <li>
-                <a href="">Home</a>
+                <a href="{{ route('index_main') }}">Home</a>
             </li>
             <li>Mi Carrito</li>
         </ul>
