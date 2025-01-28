@@ -35,8 +35,8 @@
                             <a href="" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
                                 Más Información
                             </a>
-                            <a href="" class="theme-btn btn-style-cart small" style="width: 100%;">
-                                <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i> 
+                            <a class="theme-btn btn-style-cart small" style="width: 100%;">
+                                <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
                                 &nbsp;Agregar al carrito
                             </a>
                             {{-- <div class="other-info">

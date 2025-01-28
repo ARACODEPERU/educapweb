@@ -40,12 +40,12 @@
 
     @yield('content')
 
-    
+
 	<!-- Main Footer -->
     <x-footer />
 	<!--End Main Footer -->
 
-    
+
 
 </div>
 <!-- End Page Wrapper -->
@@ -119,8 +119,11 @@
 </style>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="themes/webpage/js/jquery.js"></script> 
+<script src="themes/webpage/js/jquery.js"></script>
 <script src="themes/webpage/js/popper.min.js"></script>
+
+<!-- Carrito JS -->
+<script src="{{ asset('themes/educap/educap-carrito.js') }}"></script>
 
 <!--Revolution Slider-->
 <script src="themes/webpage/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>

@@ -15,7 +15,7 @@
         </div>
     </section>
     <!-- end main-content -->
-    
+
     <!-- Courses Section -->
     <section class="">
         <div class="container pb-100">
@@ -46,10 +46,10 @@
                                 <a href="" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
                                     Más Información
                                 </a>
-                                <a href="" class="theme-btn btn-style-cart small" 
-                                            onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })" 
+                                <a class="theme-btn btn-style-cart small"
+                                            onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })"
                                             style="width: 100%;">
-                                    <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i> 
+                                    <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
                                     &nbsp;Agregar al carrito
                                 </a>
                             </div>

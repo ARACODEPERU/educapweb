@@ -1,5 +1,6 @@
 
 <header class="main-header header-style-one" id="home">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Main box -->
     <div class="main-box">
         <div class="logo-box">
@@ -17,7 +18,7 @@
                     <li><a href="{{ route('web_about') }}">Nosotros</a></li>
                     <li><a href="{{ route('web_courses') }}">Cursos</a></li>
                     <li><a href="{{ route('web_contact_us') }}">Contacto</a></li>
-                </ul>				
+                </ul>
             </nav>
             <!-- Main Menu End-->
 
@@ -32,7 +33,11 @@
                     <button class="ui-btn ui-btn search-btn">
                         <span class="icon lnr lnr-icon-search"></span>
                     </button>
-                    <a href="shop-cart.php" class="ui-btn"><i class="lnr-icon-shopping-cart"></i></a>
+                    <a href="{{ route('web_carrito') }}" class="ui-btn cart-icon">
+                        <i class="lnr-icon-shopping-cart"></i>
+                        <span class="cart-count contador" id="contadorCarritoWeb">0</span>
+                        <span id="contadorCarritoMovil" hidden style="color: white;"></span>
+                    </a>
                 </div>
 
                 <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="btn-title">Campus Virtual</span></a>
@@ -135,17 +140,37 @@
                             <ul class="navigation clearfix">
                                 <!--Keep This Empty / Menu will come through Javascript-->
                             </ul>
-                        </div> 
+                        </div>
                     </nav>
                     <!-- Main Menu End-->
-                    
+
 
                     <!--Mobile Navigation Toggler-->
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
                 </div>
-            
+
             </div>
         </div>
+        <style>
+            .cart-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #5bc0de; /* Color celeste */
+    color: #000; /* Color negro */
+    border-radius: 50%; /* Para hacer un círculo */
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+        </style>
     </div>
     <!-- End Sticky Menu -->
 </header>

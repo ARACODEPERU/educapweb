@@ -15,7 +15,7 @@
         </div>
     </section>
     <!-- end main-content -->
-    
+
     <!--Start courses Details-->
     <section class="course-details">
         <div class="container">
@@ -25,11 +25,11 @@
                         <img src="{{ asset('themes/webpage/images/resource/course-details.jpg') }}" alt="" />
                         <h2 class="mt-4">Presentación del curso</h2>
                         <p>Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Aelltes port lacus quis enim var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy text of the printing.</p>
-                        
+
                         <div class=" mt-25">
                             <ul class="accordion-box wow fadeInRight">
                                 <li class="accordion block active-block">
-                                    <div class="acc-btn active">Malla Curricular 
+                                    <div class="acc-btn active">Malla Curricular
                                         <div class="icon fa fa-plus"></div>
                                     </div>
                                     <div class="acc-content current">
@@ -121,7 +121,7 @@
                         <div class="course-details-price">
                             <p class="course-details-price-text">Precio del curso</p>
                             <p class="course-details-price-amount">S/ 50.00</p>
-                            <a href="#" class="theme-btn btn-style-two course-details-price-btn">
+                            <a class="theme-btn btn-style-two course-details-price-btn">
                                 <i class="lnr-icon-shopping-cart" style="font-size: 20px;"></i>&nbsp; Agregar al carrito
                             </a>
                         </div>
