@@ -134,49 +134,50 @@
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div id="divCartHidden" style="display: none">
                 </div>
-              <div class="row">
-                <div class="col-md-12 mb-10">
-                  <input type="text" class="form-control" placeholder="Nombres" value="">
+                <div class="row">
+                  <div class="col-md-12 mb-10">
+                    <input type="text" class="form-control" placeholder="Nombres" value="">
+                  </div>
+                  <div class="col-md-6 mb-10">
+                    <input type="text" class="form-control" placeholder="Apellido Paterno" value="">
+                  </div>
+                  <div class="col-md-6 mb-10">
+                    <input type="text" class="form-control" placeholder="Apellido Materno" value="">
+                  </div>
+                  <div class="col-md-6 mb-10">
+                    <select class="form-control">
+                      <option>Tipo de documento</option>
+                      <option>DNI</option>
+                      <option>RUC</option>
+                      <option>Doc.trib.no.dom.sin.ruc</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-10">
+                    <input type="text" class="form-control" placeholder="N° Documento" value="">
+                  </div>
+                  <div class="mb-10">
+                    <input type="text" class="form-control" placeholder="Teléfono" value="">
+                  </div>
+                  <div class="mb-10">
+                    <input type="text" class="form-control" placeholder="Correo electrónico" value="">
+                  </div>
+                  <div class="mb-30">
+                    <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
+                    data-sitekey="reCAPTCHA_site_key"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                    disabled>
+                      <span class="btn-title">Crear cuenta para Pagar</span>
+                    </button>
+                  </div>
                 </div>
-                <div class="col-md-6 mb-10">
-                  <input type="text" class="form-control" placeholder="Apellido Paterno" value="">
-                </div>
-                <div class="col-md-6 mb-10">
-                  <input type="text" class="form-control" placeholder="Apellido Materno" value="">
-                </div>
-                <div class="col-md-6 mb-10">
-                  <select class="form-control">
-                    <option>Tipo de documento</option>
-                    <option>DNI</option>
-                    <option>RUC</option>
-                    <option>Doc.trib.no.dom.sin.ruc</option>
-                  </select>
-                </div>
-                <div class="col-md-6 mb-10">
-                  <input type="text" class="form-control" placeholder="N° Documento" value="">
-                </div>
-                <div class="mb-10">
-                  <input type="text" class="form-control" placeholder="Teléfono" value="">
-                </div>
-                <div class="mb-10">
-                  <input type="text" class="form-control" placeholder="Correo electrónico" value="">
-                </div>
-                <div class="mb-30">
-                  <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
-                  data-sitekey="reCAPTCHA_site_key"
-                  data-callback='onSubmit'
-                  data-action='submit'
-                  disabled>
-                    <span class="btn-title">Crear cuenta para Pagar</span>
-                  </button>
-                </div>
-              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
       cargarItemsCarritoBD();
