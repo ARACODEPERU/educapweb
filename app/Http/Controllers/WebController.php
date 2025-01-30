@@ -129,26 +129,27 @@ class WebController extends Controller
 
     }
 
-    public function wrapText($text, $maxWidth) {
+    public function wrapText($text, $maxWidth, $lineSpacing = 1) {
         // Envolver el texto
         $wrappedText = wordwrap($text, $maxWidth, PHP_EOL, true);
-
+    
         // Dividir el texto envuelto en líneas
         $lines = explode(PHP_EOL, $wrappedText);
-
+    
         // Calcular la longitud máxima de las líneas envueltas
         $maxLineLength = max(array_map('strlen', $lines));
-
+    
         // Centrar horizontalmente las líneas
         $centeredLines = array_map(function($line) use ($maxLineLength) {
             $spacesToAdd = max(0, ($maxLineLength - strlen($line)) / 2);
             $centeredLine = str_repeat(' ', $spacesToAdd) . $line;
             return $centeredLine;
         }, $lines);
-
-        // Unir las líneas centradas de nuevo en un solo texto
-        $centeredText = implode(PHP_EOL, $centeredLines);
-
+    
+        // Agregar espacio entre líneas
+        $spacing = str_repeat(PHP_EOL, $lineSpacing); // Crear el espacio entre líneas
+        $centeredText = implode($spacing, $centeredLines); // Unir las líneas con el espacio
+    
         return $centeredText;
     }
 }
