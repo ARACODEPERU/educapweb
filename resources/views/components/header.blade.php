@@ -29,16 +29,109 @@
                     <small>Llamanos al:</small><br> +51 977627207
                 </a>
 
+                
                 <div class="ui-btn-outer">
                     <button class="ui-btn ui-btn search-btn">
                         <span class="icon lnr lnr-icon-search"></span>
                     </button>
-                    <a href="{{ route('web_carrito') }}" class="ui-btn cart-icon">
-                        <i class="lnr-icon-shopping-cart"></i>
-                        <span class="cart-count contador" id="contadorCarritoWeb">0</span>
-                        <span id="contadorCarritoMovil" hidden style="color: white;"></span>
-                    </a>
                 </div>
+                <a href="{{ route('web_carrito') }}" class="ui-btn cart-icon">
+                    <i class="lnr-icon-shopping-cart"></i>
+                    <span class="cart-count contador" id="contadorCarritoWeb">0</span>
+                    <span id="contadorCarritoMovil" hidden style="color: white; display: none;"></span>
+                    <div class="modal">
+                        <h5>Tu Carrito</h5>
+                        <div id="cartItems">
+                            <div class="product">
+                                <span style="font-size: 15px;">Producto 1 - $10</span>
+                                <button class="remove-btn">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                            <div class="product">
+                                <span style="font-size: 15px;">Producto 2 - $15</span>
+                                <button class="remove-btn">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Total:</strong> S/ <span id="totalPrice"> 25</span>
+                        </p>
+                        
+                    </div>
+                </a>
+
+                <style>
+                    .cart-icon {
+                        cursor: pointer;
+                        font-size: 24px;
+                        position: relative;
+                    }
+                    .modal {
+                        display: none; /* Oculto por defecto */
+                        position: absolute;
+                        top: 55px;
+                        left: -60px;
+                        height: auto;
+                        background: white;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                        padding: 20px;
+                        width: 280px;
+                    }
+                    .cart-icon:hover .modal {
+                        display: block; /* Mostrar el modal al pasar el mouse */
+                    }
+                    .product {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 10px 0;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .remove-btn {
+                        background: #dc3545;
+                        color: white;
+                        border: none;
+                        padding: 3px 10px;
+                        cursor: pointer;
+                        border-radius: 5px;
+                        font-size: 12px;
+                    }
+                    .remove-btn:hover {
+                        background: #c82333;
+                    }
+                    .products {
+                        margin-top: 20px;
+                    }
+                    .product-list {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .product-item {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 10px;
+                        background: white;
+                        border-radius: 5px;
+                        margin-bottom: 10px;
+                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                    }
+                    @media (max-width: 600px) {
+                        .header {
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
+                        .cart-icon {
+                            margin-top: 10px;
+                        }
+                        .modal {
+                            width: 100%; /* Aumentar el ancho del modal en pantallas pequeñas */
+                        }
+                    }
+                </style>
 
                 <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="btn-title">Campus Virtual</span></a>
 
