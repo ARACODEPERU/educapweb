@@ -8,6 +8,7 @@ use App\Http\Controllers\KardexController;
 use App\Http\Controllers\LocalSaleController;
 use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -202,5 +203,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('meta/whatsapp/message/send', [MetaController::class, 'sendMessageWhatsapp'])->name('meta_whatsapp_message_send');
 });
+
+//CERTIFICADOS AUTOMATIZACIÓN Y PRUEBAS
+Route::get('/test-image/{student_id}/{certificate_id}', [WebController::class, 'testimage'])->name('test-image');
+
 
 require __DIR__ . '/auth.php';
