@@ -129,7 +129,7 @@ class WebController extends Controller
 
     }
 
-    public function wrapText($text, $maxWidth, $lineSpacing = 1.5) {
+    public function wrapText($text, $maxWidth, $lineSpacing = 3) {
         // Envolver el texto
         $wrappedText = wordwrap($text, $maxWidth, PHP_EOL, true);
     
