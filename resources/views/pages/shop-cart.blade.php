@@ -131,7 +131,7 @@
           <div class="col-md-4">
             <h4>Datos del comprador</h4>
             <form class="form" method="POST" action="{{ route('onlineshop_client_account_store') }}" id ="CartForm">
-                <meta name="csrf-token" content="{{ csrf_token() }}">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div id="divCartHidden" style="display: none">
                 </div>
                 <div class="row">
