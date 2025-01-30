@@ -14,6 +14,7 @@ use App\Helpers\Invoice\QrCodeGenerator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
+
 class WebController extends Controller
 {
 
@@ -73,7 +74,7 @@ class WebController extends Controller
                 
                 //descripcion del certificado 
                 $max_width = $this->certificates_param->max_width_description;
-                $img->text($this->wrapText($this->certificates_param->Course->certificate_description, $max_width), $this->certificates_param->position_description_x, $this->certificates_param->position_description_y, function ($font) {
+                $img->text($this->wrapText($this->certificates_param->Course->certificate_description, $max_width, $this->certificates_param->interspace_description), $this->certificates_param->position_description_x, $this->certificates_param->position_description_y, function ($font) {
                     $font->file($this->certificates_param->fontfamily_description);
                     $font->size($this->certificates_param->font_size_description);
                     $font->color('#0d0603');
