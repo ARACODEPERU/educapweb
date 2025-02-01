@@ -35,6 +35,8 @@ Route::get('/nosotros', [WebPageController::class, 'about'])->name('web_about');
 Route::get('/cursos', [WebPageController::class, 'courses'])->name('web_courses');
 Route::get('/curso-descripcion', [WebPageController::class, 'coursedetails'])->name('web_course_details');
 Route::get('/carrito', [WebPageController::class, 'shopcart'])->name('web_carrito');
+Route::get('/pagar', [WebPageController::class, 'pay'])->name('web_pay');
+Route::get('/gracias', [WebPageController::class, 'thanks'])->name('web_thanks');
 Route::get('/contactanos', [WebPageController::class, 'contact'])->name('web_contact_us');
 
 //////mensajes de whatsapp///////

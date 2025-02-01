@@ -378,6 +378,11 @@ class WebPageController extends Controller
         return view('pages.carrito');
     }
 
+    public function pay()
+    {
+        return view('pages.pay');
+    }
+
     public function pagar(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -522,9 +527,38 @@ class WebPageController extends Controller
 
     }
 
-    public function gracias()
+    public function thanks()
     {
-        return view('pages.gracias');
+        return view('pages.thanks');
+    }
+
+    public function graciasCompra($id)
+    {
+        $sale = OnliSale::where('id', $id)->with('details.item')->first();
+        $person = Person::where('id', $sale->person_id)->first();
+        $details = $sale->details;
+        $itemIds = $details->pluck('item_id')->toArray();
+        $products = OnliItem::whereIn('item_id', $itemIds)->get();
+        //$student = AcaStudent::where('person_id', $person->id)->first();
+
+        $courses = [];
+        foreach ($details as $k => $detail) {
+            $item = OnliItem::find($detail->onli_item_id);
+            $courses[$k] = [
+                'image'       => $item->image,
+                'name'        => $item->name,
+                'description' => $item->description,
+                'type'        => $item->additional,
+                'modality'    => $item->additional1,
+                'price'      => $item->price
+            ];
+        }
+
+        return view('pages.gracias', [
+            'products' => $products,
+            'sale' => $sale,
+            'person' => $person,
+        ]);
     }
 
 
@@ -617,35 +651,6 @@ class WebPageController extends Controller
                 return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
             }
         }
-    }
-
-    public function graciasCompra($id)
-    {
-        $sale = OnliSale::where('id', $id)->with('details.item')->first();
-        $person = Person::where('id', $sale->person_id)->first();
-        $details = $sale->details;
-        $itemIds = $details->pluck('item_id')->toArray();
-        $products = OnliItem::whereIn('item_id', $itemIds)->get();
-        //$student = AcaStudent::where('person_id', $person->id)->first();
-
-        $courses = [];
-        foreach ($details as $k => $detail) {
-            $item = OnliItem::find($detail->onli_item_id);
-            $courses[$k] = [
-                'image'       => $item->image,
-                'name'        => $item->name,
-                'description' => $item->description,
-                'type'        => $item->additional,
-                'modality'    => $item->additional1,
-                'price'      => $item->price
-            ];
-        }
-
-        return view('pages.gracias', [
-            'products' => $products,
-            'sale' => $sale,
-            'person' => $person,
-        ]);
     }
 
     private function enviar_correo_con_cursos($sale_id)

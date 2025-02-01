@@ -246,23 +246,23 @@
         </div>
         <style>
             .cart-icon {
-    position: relative;
-    display: inline-block;
-}
+                position: relative;
+                display: inline-block;
+            }
 
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #5bc0de; /* Color celeste */
-    color: #000; /* Color negro */
-    border-radius: 50%; /* Para hacer un círculo */
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    font-size: 12px;
-}
+            .cart-count {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background-color: #5bc0de; /* Color celeste */
+                color: #000; /* Color negro */
+                border-radius: 50%; /* Para hacer un círculo */
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                font-size: 12px;
+            }
         </style>
     </div>
     <!-- End Sticky Menu -->
