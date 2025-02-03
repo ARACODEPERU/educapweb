@@ -1,6 +1,6 @@
 <script setup>
     import AppLayout from "@/Layouts/Vristo/AppLayout.vue";
-    import CreateForm from './Partials/CreateForm.vue';
+    import EditForm from './Partials/EditForm.vue';
     import { Link, useForm } from '@inertiajs/vue3';
     import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
     import IconPlus from '@/Components/vristo/icon/icon-plus.vue';
@@ -10,7 +10,7 @@
     import Pagination from '@/Components/Pagination.vue';
 
     defineProps({
-        courses:{
+        certificate:{
             type: Object,
             default : () => ({})
         }
@@ -25,11 +25,14 @@
                 <Link :href="route('aca_certificate_list')" class="text-primary hover:underline">Certificados</Link>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Nuevo</span>
+                <span>{{ certificate.name_certificate }}</span>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Editar</span>
             </li>
         </Navigation>
         <div class="pt-5">
-            <CreateForm :courses="courses" />
+            <EditForm :certificate="certificate" />
         </div>
     </AppLayout>
 </template>

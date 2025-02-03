@@ -44,6 +44,8 @@ class AcaCertificateParameter extends Model
         'font_size_description',
         'max_width_description',
         'interspace_description',
+        'name_certificate',
+        'state'
     ];
 
     public function course()
@@ -51,5 +53,3 @@ class AcaCertificateParameter extends Model
         return $this->belongsTo(AcaCourse::class, 'course_id');
     }
 }
-
-
