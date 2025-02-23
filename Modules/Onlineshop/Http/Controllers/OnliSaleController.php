@@ -185,12 +185,12 @@ class OnliSaleController extends Controller
                 'is_client'             => true,
                 'names'                 => $request->get('names'),
                 'father_lastname'       => $request->get('app'),
-                'mother_lastname'       => $request->get('apm')
-
+                'mother_lastname'       => $request->get('apm'),
+                'gender' => 'M'
             ]
         );
 
-        $student = AcaStudent::create([
+        $student = AcaStudent::firstOrCreate([
             'student_code'  => $request->get('number'),
             'person_id'     => $person->id
         ]);
@@ -243,33 +243,88 @@ class OnliSaleController extends Controller
         ]);
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function getPreference($id)
+    public function formMercadopagoBlade(Request $request)
     {
-        //dd(env('MERCADOPAGO_TOKEN'));
-        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
-        try {
-            $client = new PreferenceClient();
-            $preference = $client->get($id);
+        $validator = Validator::make($request->all(), [
+            'names' => 'required',
+            'app' => 'required',
+            'apm' => 'required',
+            'phone' => 'required',
+            'email' => 'required|unique:users,email',
+            'document_type' => 'required',
+            'number' => 'required',
+        ], [
+            'names.required' => 'El nombre es requerido',
+            'app.required' => 'El apellido paterno requerido',
+            'apm.required' => 'El apellido materno requerido',
+            'phone.required' => 'El teléfono es requerido',
+            'email.required' => 'El email es requerido',
+            'document_type.required' => 'El tipo de documento es requerido',
+            'number.required' => 'El numero de documento es requerido'
+        ]);
 
-            dd($preference);
-        } catch (MPApiException $e) {
-
-            $response = $e->getApiResponse();
-            $content  = $response->getContent();
-
-            $message = $content['message'];
-            $status = $content['status'];
-            $error = $content['error'];
-
-            // Mostrar o manejar los valores obtenidos
-            echo "Mensaje: " . $message . PHP_EOL;
-            echo "Estado: " . $status . PHP_EOL;
-            echo "Error: " . $error . PHP_EOL;
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator);
         }
+
+        $person = Person::firstOrCreate(
+            [
+                'document_type_id' => $request->get('document_type'),
+                'number' => $request->get('number')
+            ],
+            [
+                'description'           => 'Estudiante',
+                'email'                 => $request->get('email'),
+                'short_name'            => $request->get('names'),
+                'full_name'             => $request->get('names') . ' ' . $request->get('app') . ' ' . $request->get('apm'),
+                'telephone'             => $request->get('phone'),
+                'is_client'             => true,
+                'names'                 => $request->get('names'),
+                'father_lastname'       => $request->get('app'),
+                'mother_lastname'       => $request->get('apm'),
+                'gender' => 'M'
+            ]
+        );
+
+        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
+        $client = new PreferenceClient();
+        $items = [];
+        $msg = null;
+        $success = true;
+        $preference_id = null;
+        $products = $request->get('item_id');
+
+        if (count($products) > 0) {
+            foreach ($products as $id) {
+
+                $item = OnliItem::find($id);
+                //$xpro = AcaCourse::find($product['id']);
+                array_push($items, [
+                    'id' => $item->id,
+                    'title' => trim($item->name),
+                    'quantity'      => floatval(1),
+                    'currency_id'   => 'PEN',
+                    'unit_price'    => floatval($item->price)
+                ]);
+            }
+
+            $preference = $client->create([
+                "items" => $items,
+            ]);
+
+            $success = true;
+            $preference_id =  $preference->id;
+        } else {
+            $success = false;
+        }
+
+        return view('pages.pay', [
+            'items'     => $items,
+            'success' => $success,
+            'preference_id' => $preference_id,
+            'person' => $person
+        ]);
     }
 }

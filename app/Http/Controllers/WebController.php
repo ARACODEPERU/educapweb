@@ -23,20 +23,20 @@ class WebController extends Controller
     {
         $register = AcaCapRegistration::where('student_id', $student_id)->where('course_id', $course_id)->first();
 
-        if($register){
-            if($register->certificate_date != null){
+        if ($register) {
+            if ($register->certificate_date != null) {
 
                 $student = AcaStudent::with('person')->find($student_id);
                 //dd($student->person->full_name);
-                $this->certificates_param = AcaCertificateParameter::where('course_id' , $course_id)->first();
+                $this->certificates_param = AcaCertificateParameter::where('course_id', $course_id)->first();
 
                 // Verificar si se obtuvieron resultados en la consulta si no se obtiene se crea certificado por defecto con ID 1
-                if (!$this->certificates_param)$this->certificates_param = AcaCertificateParameter::find(1);
+                if (!$this->certificates_param) $this->certificates_param = AcaCertificateParameter::find(1);
                 $this->certificates_param->Course = AcaCourse::find($course_id);
 
 
                 //dd($this->certificates_param);
-                        // create Image from file
+                // create Image from file
                 $img = Image::make($this->certificates_param->certificate_img);
                 $fecha = $register->certificate_date; //Esta fecha debe obtenerse del registro de la matricula del estudiante al curso respectivo donde se obtiene la fecha de entrega del certificado si es null entonces no tiene certificado
 
@@ -54,7 +54,7 @@ class WebController extends Controller
 
 
 
-                $img->text("Entregado el: " . $fecha,$this->certificates_param->position_date_x, $this->certificates_param->position_date_y , function ($font) {
+                $img->text("Entregado el: " . $fecha, $this->certificates_param->position_date_x, $this->certificates_param->position_date_y, function ($font) {
                     $font->file($this->certificates_param->fontfamily_date);
                     $font->size($this->certificates_param->font_size_date);
                     $font->color('#0d0603');
@@ -71,7 +71,7 @@ class WebController extends Controller
                     $font->valign($this->certificates_param->font_vertical_align_title);
                     $font->angle(0);
                 });
-                
+
                 //descripcion del certificado 
                 $max_width = $this->certificates_param->max_width_description;
                 $img->text($this->wrapText($this->certificates_param->Course->certificate_description, $max_width, $this->certificates_param->interspace_description), $this->certificates_param->position_description_x, $this->certificates_param->position_description_y, function ($font) {
@@ -121,36 +121,41 @@ class WebController extends Controller
 
                 //Retornar la respuesta
                 return $response;
-            }else{
-                echo 'El estudiante fue registrado en el '. $register->Course->description .'pero no se le ha entregado el certificado aún';
+            } else {
+                echo 'El estudiante fue registrado en el ' . $register->Course->description . 'pero no se le ha entregado el certificado aún';
             }
-        }else{
+        } else {
             echo "No se encontraron registros";
         }
-
     }
 
-    public function wrapText($text, $maxWidth, $lineSpacing = 2.3) {
+    public function wrapText($text, $maxWidth, $lineSpacing = 2.3)
+    {
         // Envolver el texto
         $wrappedText = wordwrap($text, $maxWidth, PHP_EOL, true);
-    
+
         // Dividir el texto envuelto en líneas
         $lines = explode(PHP_EOL, $wrappedText);
-    
+
         // Calcular la longitud máxima de las líneas envueltas
         $maxLineLength = max(array_map('strlen', $lines));
-    
+
         // Centrar horizontalmente las líneas
-        $centeredLines = array_map(function($line) use ($maxLineLength) {
+        $centeredLines = array_map(function ($line) use ($maxLineLength) {
             $spacesToAdd = max(0, ($maxLineLength - strlen($line)) / 2);
             $centeredLine = str_repeat(' ', $spacesToAdd) . $line;
             return $centeredLine;
         }, $lines);
-    
+
         // Agregar espacio entre líneas
         $spacing = str_repeat(PHP_EOL, $lineSpacing); // Crear el espacio entre líneas
         $centeredText = implode($spacing, $centeredLines); // Unir las líneas con el espacio
-    
+
         return $centeredText;
+    }
+
+    public function createClient()
+    {
+        dd('acalle');
     }
 }
