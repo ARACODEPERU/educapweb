@@ -209,5 +209,7 @@ Route::middleware('auth')->group(function () {
 //CERTIFICADOS AUTOMATIZACIÓN Y PRUEBAS
 Route::get('/test-image/{student_id}/{certificate_id}', [WebController::class, 'testimage'])->name('test-image');
 
-
+Route::post('online/client/pay/form', [WebPageController::class, 'formMercadopagoBlade'])->name('web_client_account_store');
+Route::post('online/client/pay/process', [WebPageController::class, 'processPaymentMercadopago'])->name('web_client_account_process');
+Route::get('online/client/pay/{id}/congratulations', [WebPageController::class, 'graciasCompra'])->name('web_felicitaciones_compra');
 require __DIR__ . '/auth.php';

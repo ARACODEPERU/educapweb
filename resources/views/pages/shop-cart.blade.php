@@ -134,8 +134,7 @@
                     </div>
                     <div class="col-md-4">
                         <h4>Datos del alumno</h4>
-                        <form class="form" method="POST" action="{{ route('onlineshop_client_account_store') }}"
-                            id ="CartForm">
+                        <form class="form" method="POST" action="{{ route('web_client_account_store') }}" id ="CartForm">
                             @csrf
                             <div id="divCartHidden" style="display: none">
                             </div>

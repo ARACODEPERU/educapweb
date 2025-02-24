@@ -30,6 +30,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    @yield('heades')
+
 </head>
 
 <body>
@@ -121,6 +123,8 @@
             }
         }
     </style>
+
+    @yield('javaScripts')
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ asset('themes/webpage/js/jquery.js') }}"></script>

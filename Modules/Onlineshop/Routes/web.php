@@ -30,5 +30,5 @@ Route::middleware(['auth', 'verified'])->prefix('onlineshop')->group(function ()
 });
 
 Route::get('mercadopago/preference/{id}', 'OnliSaleController@getPreference')->name('onlineshop_mercadopago_preference');
-Route::post('online/client/pay/form', 'OnliSaleController@formMercadopagoBlade')->name('onlineshop_client_account_store');
+Route::post('client/account/store', 'OnliSaleController@store')->name('onlineshop_client_account_store');
 Route::post('get/item', 'OnliItemController@getItemCarrito')->name('onlineshop_get_item_carrito');
