@@ -16,6 +16,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -24,6 +25,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+
         h1 {
             text-align: center;
             color: #333;
@@ -31,40 +33,48 @@
             align-items: center;
             justify-content: center;
         }
+
         h1 i {
             margin-right: 10px;
         }
 
-        p{
+        p {
             line-height: 22px;
             text-align: justify;
         }
+
         .card-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             margin-top: 20px;
         }
+
         .card {
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin: 10px;
             padding: 20px;
-            flex: 1 1 calc(33% - 40px); /* Tres tarjetas por fila en pantallas grandes */
+            flex: 1 1 calc(33% - 40px);
+            /* Tres tarjetas por fila en pantallas grandes */
             box-sizing: border-box;
             transition: transform 0.2s;
         }
+
         .card:hover {
             transform: translateY(-5px);
         }
+
         .card h4 {
             margin-top: 0;
             color: #333;
         }
+
         .card p {
             color: #555;
         }
+
         .card button {
             background-color: #007BFF;
             color: white;
@@ -73,6 +83,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .card button:hover {
             background-color: #0056b3;
         }
@@ -99,12 +110,15 @@
 
         @media (max-width: 768px) {
             .card {
-                flex: 1 1 calc(50% - 40px); /* Dos tarjetas por fila en pantallas medianas */
+                flex: 1 1 calc(50% - 40px);
+                /* Dos tarjetas por fila en pantallas medianas */
             }
         }
+
         @media (max-width: 480px) {
             .card {
-                flex: 1 1 100%; /* Una tarjeta por fila en pantallas pequeñas */
+                flex: 1 1 100%;
+                /* Una tarjeta por fila en pantallas pequeñas */
             }
         }
 
@@ -140,7 +154,6 @@
             text-decoration: none;
             color: orange;
         }
-
     </style>
 </head>
 
@@ -155,30 +168,31 @@
         <h1>
             <img style="width: 25px;" data-emoji="🎉" class="an1" alt="🎉" aria-label="🎉" draggable="false"
                 src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f389/32.png" loading="lazy">
-                &nbsp; ¡Bienvenido(a) a EDUCAP! &nbsp;
+            &nbsp; ¡Bienvenido(a) a EDUCAP! &nbsp;
             <img style="width: 25px;" data-emoji="🎉" class="an1" alt="🎉" aria-label="🎉" draggable="false"
                 src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f389/32.png" loading="lazy">
         </h1>
         {{-- <p> {{ $data->clie_full_name }}  --}}
         <p>
-            Nombre del Cliente,
-            Has tomado una decisión valiosa al invertir en tu crecimiento profesional, y estamos aquí para acompañarte en este
-            camino de aprendizaje y desarrollo.  ¡Felicidades por dar este importante paso hacia tus metas!
+            {{ $data['names'] }},
+            Has tomado una decisión valiosa al invertir en tu crecimiento profesional, y estamos aquí para acompañarte
+            en este
+            camino de aprendizaje y desarrollo. ¡Felicidades por dar este importante paso hacia tus metas!
         </p>
         <p>
             Para comenzar, aquí tienes tus datos de acceso a nuestra plataforma
         </p>
         <div class="card-container">
-            {{-- @foreach ($data->details as $product)
-            <div class="card">
-                <img width="100%" src="{{ $product->item->image }}" alt="product" />
-                <h4 style="margin-top: 5px;">{{ $product->item->name }}</h4>
-                <p style="color: #184085; font-size: 16px; font-weight: 700; margin-top: -10px;">
-                    S/. {{ $product->item->price }}
-                </p>
-            </div>
-            @endforeach --}}
-            <div class="card">
+            @foreach ($data['courses'] as $product)
+                <div class="card">
+                    <img width="100%" src="{{ $product['image'] }}" alt="product" />
+                    <h4 style="margin-top: 5px;">{{ $product['name'] }}</h4>
+                    <p style="color: #184085; font-size: 16px; font-weight: 700; margin-top: -10px;">
+                        S/. {{ $product['price'] }}
+                    </p>
+                </div>
+            @endforeach
+            {{-- <div class="card">
                 <img width="100%" src="{{ asset('img/curso.jpeg') }}" alt="product" />
                 <h4 style="margin-top: 5px;">Título del curso y/o programa educativo</h4>
                 <p style="color: #184085; font-size: 16px; font-weight: 700; margin-top: -10px;">
@@ -191,7 +205,7 @@
                 <p style="color: #184085; font-size: 16px; font-weight: 700; margin-top: -10px;">
                     S/. 395.00
                 </p>
-            </div>
+            </div> --}}
         </div>
         <div class="card-container">
             {{-- <p>
@@ -203,9 +217,9 @@
                 <button class="boton-degradado-campus">Ingresar a la plataforma</button>
             </a> --}}
             <p>
-                👤 Usuario:  Correo@dominio.com
+                👤 Usuario: {{ $data['email'] }}
                 <br>
-                🔑 Clave: 
+                🔑 Clave: {{ $data['password'] }}
             </p>
             <a href="" style="margin-top: 20px;">
                 <button class="boton-degradado-campus">Ingresar a la plataforma</button>
@@ -213,7 +227,8 @@
         </div>
         <br>
         <p>
-            En nuestra plataforma encontrarás todo lo necesario para aprovechar al máximo esta experiencia: material de estudio,
+            En nuestra plataforma encontrarás todo lo necesario para aprovechar al máximo esta experiencia: material de
+            estudio,
             foros de interacción y acceso directo a nuestros instructores. Te invitamos a iniciar sesión cuanto antes y
             familiarizarte con las herramientas que hemos preparado para ti.
         </p>

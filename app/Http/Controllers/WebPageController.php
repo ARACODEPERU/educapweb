@@ -531,7 +531,7 @@ class WebPageController extends Controller
     {
         return view('pages.thanks');
     }
-    
+
     public function email()
     {
         return view('layouts.email_gratitude');
@@ -712,7 +712,7 @@ class WebPageController extends Controller
             'app' => 'required',
             'apm' => 'required',
             'phone' => 'required',
-            'email' => 'required|unique:users,email',
+            //'email' => 'required|unique:users,email',
             'document_type' => 'required',
             'number' => 'required',
         ], [

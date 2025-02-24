@@ -38,7 +38,7 @@ class StudentRegistrationMailable extends Mailable
 
     public function build()
     {
-        return $this->view('capperu.email.gratitude', [
+        return $this->view('emails.email_gratitude', [
             'data' => $this->data
         ]);
     }
