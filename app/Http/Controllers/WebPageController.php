@@ -626,7 +626,7 @@ class WebPageController extends Controller
                         ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
 
                     $sale->save();
-                    $this->enviar_correo_con_cursos($id);
+                    $this->enviarCorreoConCursos($id);
 
                     return response()->json([
                         'status' => $payment->status,
@@ -654,7 +654,7 @@ class WebPageController extends Controller
         }
     }
 
-    private function enviar_correo_con_cursos($sale_id)
+    private function enviarCorreoConCursos($sale_id)
     {
         $sale = OnliSale::find($sale_id)->with('details.item')->first();
         $person = Person::where('id', $sale->person_id)->first();
@@ -846,7 +846,7 @@ class WebPageController extends Controller
 
                 $sale->save();
 
-                $this->enviar_correo_con_cursos($sale->id);
+                $this->enviarCorreoConCursos($sale->id);
 
                 return response()->json([
                     'status' => $payment->status,
