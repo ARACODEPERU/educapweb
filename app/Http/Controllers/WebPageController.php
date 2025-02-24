@@ -815,7 +815,7 @@ class WebPageController extends Controller
         $client = new PaymentClient();
 
         $sale = OnliSale::find($request->get('sale_id'));
-
+        $person = Person::find($sale->person_id);
         try {
 
             $payment = $client->create([
@@ -844,7 +844,38 @@ class WebPageController extends Controller
                 $sale->mercado_payment = json_encode($payment);
 
 
+                ///dando permisos de estudiante
+
+                $student = AcaStudent::firstOrCreate([
+                    'student_code'  => $person->number,
+                    'person_id'     => $person->id
+                ]);
+
+                $user = User::firstOrCreate(
+                    [
+                        'email' => $person->email
+                    ],
+                    [
+                        'name'          => $person->names,
+                        'password'      => Hash::make($person->number),
+                        'local_id'      => 1,
+                        'person_id'     => $person->id
+                    ]
+                );
+
+                $user->assignRole('Alumno');
+
                 $sale->save();
+
+                $details = OnliSaleDetail::where('sale_id', $sale->id)->get();
+
+                foreach ($details as $detail) {
+                    AcaCapRegistration::create([
+                        'student_id'        => $student->id,
+                        'course_id'         => $detail->item_id,
+                        'status'            => false
+                    ]);
+                }
 
                 $this->enviarCorreoConCursos($sale->id);
 
