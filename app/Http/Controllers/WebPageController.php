@@ -531,6 +531,11 @@ class WebPageController extends Controller
     {
         return view('pages.thanks');
     }
+    
+    public function email()
+    {
+        return view('layouts.email_gratitude');
+    }
 
     public function graciasCompra($id)
     {
