@@ -875,11 +875,15 @@ class WebPageController extends Controller
                 $details = OnliSaleDetail::where('sale_id', $sale->id)->get();
 
                 foreach ($details as $detail) {
-                    AcaCapRegistration::create([
-                        'student_id'        => $student->id,
-                        'course_id'         => $detail->item_id,
-                        'status'            => false
-                    ]);
+                    AcaCapRegistration::firstOrCreate(
+                        [
+                            'student_id'        => $student->id,
+                            'course_id'         => $detail->item_id,
+                        ],
+                        [
+                            'status'            => true
+                        ]
+                    );
                 }
 
                 $this->enviarCorreoConCursos($sale->id);
