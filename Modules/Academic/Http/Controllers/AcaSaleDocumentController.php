@@ -22,6 +22,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Academic\Entities\AcaCapRegistration;
 use Modules\Academic\Entities\AcaStudent;
+use Modules\Onlineshop\Entities\OnliSale;
+use Modules\Onlineshop\Entities\OnliSaleDetail;
+use Illuminate\Support\Facades\Mail;
+use Modules\Academic\Emails\StudentElectronicTicket;
+use App\Helpers\Invoice\Documents\Boleta;
+use Modules\Academic\Entities\AcaCourse;
+use Modules\Academic\Entities\AcaSubscriptionType;
 
 class AcaSaleDocumentController extends Controller
 {
@@ -41,19 +48,26 @@ class AcaSaleDocumentController extends Controller
 
     public function generateBoleta(Request $request)
     {
-        $venta = $request->get('venta');
-        $localId = $request->get('local');
-        $serieid = $request->get('serie');
-        $dtype = $request->get('documenttype_id');
-        $enline = $request->get('enline');
+
+        $pedido = $request->get('pedido');
 
         try {
-            $res = DB::transaction(function () use ($venta, $serieid, $dtype, $localId) {
+            $res = DB::transaction(function () use ($pedido) {
+
+                $venta = $pedido['venta'];
+                $localId = $pedido['local'];
+                $serieid = $pedido['serie'];
+                $dtype = $pedido['documenttypeId'];
+                $userId = $pedido['userId'];
+                $enline = $pedido['enline'];
+                $onlisale_id = $venta['id'];
+
                 $saleId = $venta['nota_sale_id'];
+
                 $sale = Sale::find($saleId);
 
                 $person = Person::find($sale->client_id);
-
+                $student = AcaStudent::where('person_id', $person->id)->first();
                 ///obtenemos la serie elejida para hacer la venta
                 ///para traer tambien su numero correlativo
                 $serie = null;
@@ -63,6 +77,7 @@ class AcaSaleDocumentController extends Controller
                     $serie = Serie::where('local_id', $localId)
                         ->where('document_type_id', $dtype)
                         ->first();
+                    $serieid = $serie->id;
                 }
 
                 if (!$serie) {
@@ -97,14 +112,14 @@ class AcaSaleDocumentController extends Controller
                     'invoice_legend_code'           => '1000',
                     'invoice_legend_description'    => $numberletters->convertToLetter($sale->total),
                     'invoice_status'                => 'registrado',
-                    'user_id'                       => Auth::id(),
+                    'user_id'                       => $userId,
                     'additional_description'        => null,
                     'overall_total'                 => $sale->total
                 ]);
 
                 ///obtenemos los productos o servicios para insertar en los 
                 ///detalles de la venta y el documento
-                $products = SaleProduct::where('sale_id', $serie->id)->get();
+                $products = SaleProduct::where('sale_id', $sale->id)->get();
 
                 ///totales de la cabecera
                 $mto_oper_taxed = 0;
@@ -115,8 +130,39 @@ class AcaSaleDocumentController extends Controller
                 $total = 0;
 
                 foreach ($products as $product) {
+                    $curPro = null;
+                    $des = null;
 
-                    /// imiciamos las variables para hacer los calculos por item;
+
+                    if ($product->entity_name_product == AcaCourse::class) {
+                        $curPro  = AcaCourse::where('id', $product->product_id)
+                            ->first();
+                        $origin = 'ACA';
+                        $des = $curPro->description;
+
+                        //actualizamos a la matricula para saber que ya le enviaron su boleta
+                        $registration = AcaCapRegistration::where('student_id', $student->id)
+                            ->where('course_id', $curPro->id)
+                            ->first();
+
+                        $registration->update([
+                            'document_id' => $document->id
+                        ]);
+                        ////fin de actualizacion a la matricula
+
+                    } else if ($product->entity_name_product == AcaSubscriptionType::class) {
+                        $curPro  = AcaSubscriptionType::where('id', $product->product_id)
+                            ->first();
+                        $origin = 'ACA';
+                        $des =  $curPro->title . ' - ' . $curPro->description;
+                    } else {
+                        $curPro  = Product::where('id', $product->product_id)
+                            ->first();
+                        $origin = 'PRO';
+                        $des = $product->description;
+                    }
+
+
                     $percentage_igv = $this->igv;
                     $mto_base_igv = 0;
                     $price_sale = $product->price;
@@ -192,12 +238,13 @@ class AcaSaleDocumentController extends Controller
                     }
                     $total_tax = $igv + $icbper;
 
+
                     //se inserta los datos al detalle del documento 
                     SaleDocumentItem::create([
                         'document_id'           => $document->id,
-                        'product_id'            => $product->product_id,
-                        'cod_product'           => 'ACA' . $product->product_id,
-                        'decription_product'    => json_decode($product->product)['description'],
+                        'product_id'            => $curPro->id,
+                        'cod_product'           => $origin == 'ACA' ? 'ACA' . $curPro->id : $curPro->interne,
+                        'decription_product'    => $des,
                         'unit_type'             => 'ZZ',
                         'quantity'              => $product->quantity,
                         'mto_base_igv'          => $mto_base_igv,
@@ -213,13 +260,11 @@ class AcaSaleDocumentController extends Controller
                         'price_sale'            => $price_sale,
                         'mto_total'             => round($total_item, 2),
                         'mto_discount'          => $mto_discount ?? 0,
-                        'json_discounts'        => json_encode($array_discounts)
-
+                        'json_discounts'        => json_encode($array_discounts),
+                        'entity_name_product'   => $product->entity_name_product
                     ]);
 
-                    $registration->update([
-                        'document_id' => $document->id
-                    ]);
+
 
                     $mto_igv = $mto_igv + $igv; //total del igv
                     $total_icbper = $total_icbper + $icbper; //total del impuesto a la bolsa plastica
@@ -248,13 +293,104 @@ class AcaSaleDocumentController extends Controller
 
                 $serie->increment('number', 1);
 
-                return $document;
+                return ['document' => $document, 'onlisale_id' => $onlisale_id];
             });
 
-            return response()->json($res);
+            return response()->json([
+                'success' => true,
+                'document' => $res['document'],
+                'onlisaleId' => $res['onlisale_id'],
+                'message' => 'Boleta generada correctamente'
+            ]);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
             // Devuelve una respuesta de error
+        }
+    }
+
+    public function sendEmailBoleta(Request $request)
+    {
+
+
+        $P000013 = Parameter::where('parameter_code', 'P000013')->value('value_default');
+
+        $person_email = $request->get('person_email');
+        $person_name = $request->get('person_name');
+        $document_id = $request->get('document_id');
+        $onlisale_id = $request->get('onlisaleId');
+
+        $success = false;
+        $correosMessage = [];
+
+        $dataFile = $this->generateBoletaPDF($document_id);
+
+        $data = [
+            'from_mail' => $P000013 ?? env('MAIL_FROM_ADDRESS'),
+            'from_name' => env('MAIL_FROM_NAME'),
+            'title' => 'Hola! Llegó tu comprobante electrónico',
+            'for_mail' => $person_email,
+            'for_name' => $person_name,
+            'file_path' => $dataFile['filePath'],
+            'file_name' => $dataFile['fileName']
+        ];
+
+        try {
+
+
+            Mail::to(trim($person_email))->send(new StudentElectronicTicket($data));
+
+            $success = true;
+            $onlisale = OnliSale::findOrFail($onlisale_id);
+            if ($onlisale) {
+                $onlisale->update([
+                    'email_sent' => true
+                ]);
+            }
+            $correosMessage = [
+                'email' => $person_email,
+                'message' => 'Correo enviado correctamente'
+            ];
+        } catch (\Exception $e) {
+            $success = false;
+            $correosMessage = [
+                'email' => $person_email,
+                'message' => $e->getMessage() // Guarda el mensaje de error
+            ];
+        }
+
+        // Devuelve la respuesta con totales y detalles de errores
+        return response()->json([
+            'success' => $success,
+            'correosMessage' => $correosMessage
+        ]);
+    }
+
+    public function generateBoletaPDF($id)
+    {
+        // Validar que el ID no esté vacío o sea nulo
+        if (empty($id)) {
+            throw new \InvalidArgumentException("El ID no puede estar vacío.");
+        }
+
+        try {
+            $format = 'A4';
+            $boleta = new Boleta();
+
+            // Intentar obtener la boleta
+            $res = $boleta->getBoletatDomPdf($id, $format);
+
+            // Verificar si se obtuvo un resultado válido
+            if (!$res) {
+                throw new \Exception("No se pudo generar la boleta.");
+            }
+
+            return $res;
+        } catch (\Exception $e) {
+            // Lanzar una excepción con un mensaje descriptivo
+            throw new \Exception("Error al generar la boleta: " . $e->getMessage());
         }
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,8 @@ class OnliSaleController extends Controller
                                     (SELECT JSON_OBJECT(
                                         'id', aca_courses.id,
                                         'description', aca_courses.description,
-                                        'title', NULL
+                                        'title', NULL,
+                                        'origin', 'ACA'
                                     )
                                     FROM aca_courses 
                                     WHERE aca_courses.id = osd.item_id)
@@ -58,7 +60,8 @@ class OnliSaleController extends Controller
                                     (SELECT JSON_OBJECT(
                                         'id', aca_subscription_types.id,
                                         'description', aca_subscription_types.description,
-                                        'title', aca_subscription_types.title
+                                        'title', aca_subscription_types.title,
+                                        'origin', 'ACA'
                                     )
                                     FROM aca_subscription_types 
                                     WHERE aca_subscription_types.id = osd.item_id)
@@ -66,7 +69,8 @@ class OnliSaleController extends Controller
                                     (SELECT JSON_OBJECT(
                                         'id', products.id,
                                         'description', products.description,
-                                        'title', products.interne
+                                        'title', products.interne,
+                                        'origin', 'PRO'
                                     )
                                     FROM products 
                                     WHERE products.id = osd.item_id)
@@ -86,7 +90,7 @@ class OnliSaleController extends Controller
 
         return Inertia::render('Onlineshop::Sales/List', [
             'sales' => $sales,
-            'filters' => request()->all('search')
+            'filters' => request()->all('search'),
         ]);
     }
 
@@ -185,12 +189,12 @@ class OnliSaleController extends Controller
                 'is_client'             => true,
                 'names'                 => $request->get('names'),
                 'father_lastname'       => $request->get('app'),
-                'mother_lastname'       => $request->get('apm'),
-                'gender' => 'M'
+                'mother_lastname'       => $request->get('apm')
+
             ]
         );
 
-        $student = AcaStudent::firstOrCreate([
+        $student = AcaStudent::create([
             'student_code'  => $request->get('number'),
             'person_id'     => $person->id
         ]);
@@ -241,5 +245,35 @@ class OnliSaleController extends Controller
         return to_route('web_pagar', [
             'sale'     => $sale->id
         ]);
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function getPreference($id)
+    {
+        //dd(env('MERCADOPAGO_TOKEN'));
+        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
+        try {
+            $client = new PreferenceClient();
+            $preference = $client->get($id);
+
+            dd($preference);
+        } catch (MPApiException $e) {
+
+            $response = $e->getApiResponse();
+            $content  = $response->getContent();
+
+            $message = $content['message'];
+            $status = $content['status'];
+            $error = $content['error'];
+
+            // Mostrar o manejar los valores obtenidos
+            echo "Mensaje: " . $message . PHP_EOL;
+            echo "Estado: " . $status . PHP_EOL;
+            echo "Error: " . $error . PHP_EOL;
+        }
     }
 }
