@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('aca_certificates_parameters', function (Blueprint $table) {
-        // Verificar y agregar 'status'
-        if (!Schema::hasColumn('aca_certificates_parameters', 'status')) {
-            $table->boolean('status')->default(true)
+        // Verificar y agregar 'state'
+        if (!Schema::hasColumn('aca_certificates_parameters', 'state')) {
+            $table->boolean('state')->default(true)
                 ->comment('estado del certificado (activo/inactivo)');
         }
 
