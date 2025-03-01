@@ -821,6 +821,7 @@ class WebPageController extends Controller
 
         $sale = OnliSale::find($request->get('sale_id'));
         $person = Person::find($sale->person_id);
+        dd($request->all());
         try {
 
             $payment = $client->create([
@@ -831,7 +832,7 @@ class WebPageController extends Controller
                 "installments" => $request->get('installments'),
                 "payer" => $request->get('payer')
             ]);
-dd($payment);
+
             if ($payment->status == 'approved') {
 
                 $sale->email = $request->get('payer')['email'];
