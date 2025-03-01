@@ -821,7 +821,8 @@ class WebPageController extends Controller
 
         $sale = OnliSale::find($request->get('sale_id'));
         $person = Person::find($sale->person_id);
-        try {
+
+        // try {
 
             $payment = $client->create([
                 "token" => $request->get('token'),
@@ -833,8 +834,6 @@ class WebPageController extends Controller
             ]);
 
             if ($payment->status == 'approved') {
-
-
 
                 $sale->email = $request->get('payer')['email'];
                 $sale->total = $request->get('transaction_amount');
@@ -903,13 +902,13 @@ class WebPageController extends Controller
 
                 $sale->delete();
             }
-        } catch (\MercadoPago\Exceptions\MPApiException $e) {
-            // Manejar la excepción
+        // } catch (\MercadoPago\Exceptions\MPApiException $e) {
+        //     // Manejar la excepción
             $response = $e->getApiResponse();
             $content  = $response->getContent();
 
             $message = $content['message'];
             return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
-        }
+        // }
     }
 }
