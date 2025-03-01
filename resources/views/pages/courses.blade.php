@@ -25,7 +25,7 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="">
+                                    <a href="{{ route('web_course_description', $course->course->id) }}">
                                         <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
                                     </a>
                                 </figure>
@@ -39,7 +39,7 @@
                                     <li><i class="fa fa-clock"></i> 3 Weeks</li>
                                 </ul> --}}
                                 <h5 class="title">
-                                    <a href="">
+                                    <a href="{{ route('web_course_description', $course->course->id) }}">
                                         {{ $course->name }}
                                     </a>
                                 </h5>
