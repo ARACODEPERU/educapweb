@@ -909,7 +909,7 @@ class WebPageController extends Controller
             $content  = $response->getContent();
 
             $message = $content['message'];
-            return response()->json(['error' => 'Error al procesar el pago: ' . $response], 412);
+            return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
         }
     }
 }
