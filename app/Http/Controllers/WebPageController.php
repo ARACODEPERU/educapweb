@@ -834,7 +834,7 @@ class WebPageController extends Controller
 
             if ($payment->status == 'approved') {
 
-
+                dd($sale);
 
                 $sale->email = $request->get('payer')['email'];
                 $sale->total = $request->get('transaction_amount');
