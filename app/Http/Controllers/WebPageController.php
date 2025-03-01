@@ -323,7 +323,7 @@ class WebPageController extends Controller
             ->shuffle()
             ->take(3);
 
-        return view('pages.curso-descripcion', [
+        return view('pages.course-details', [
             'course' => $course,
             'item' => $item,
             'latest_courses' => $latest_courses
