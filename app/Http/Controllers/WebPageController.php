@@ -302,7 +302,7 @@ class WebPageController extends Controller
         ]);
     }
 
-    public function cursodescripcion($id)
+    public function coursedescription($id)
     {
         $item = OnliItem::find($id);
 
@@ -323,18 +323,12 @@ class WebPageController extends Controller
             ->shuffle()
             ->take(3);
 
-        return view('pages.course-details', [
+        return view('pages.course-description', [
             'course' => $course,
             'item' => $item,
             'latest_courses' => $latest_courses
         ]);
     }
-
-    public function coursedetails()
-    {
-        return view('pages.course-details');
-    }
-
 
     public function shopcart()
     {
