@@ -12,6 +12,12 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('aca_certificates_parameters', function (Blueprint $table) {
+        // Verificar y agregar 'status'
+        if (!Schema::hasColumn('aca_certificates_parameters', 'status')) {
+            $table->boolean('status')->default(true)
+                ->comment('estado del certificado (activo/inactivo)');
+        }
+
         // Verificar y agregar 'color_date'
         if (!Schema::hasColumn('aca_certificates_parameters', 'color_date')) {
             $table->string('color_date', 20)->default('#0d0603')->nullable()
