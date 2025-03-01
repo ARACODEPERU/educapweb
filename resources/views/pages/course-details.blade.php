@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(images/background/page-title.jpg);">
+    <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
             <div class="title-outer">
                 <h1 class="title">Titulo del Curso</h1>
@@ -24,8 +24,9 @@
                     <div class="courses-details__content">
                         <img src="{{ asset('themes/webpage/images/resource/course-details.jpg') }}" alt="" />
                         <h2 class="mt-4">Presentación del curso</h2>
-                        <p>Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Aelltes port lacus quis enim var sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy text of the printing.</p>
-
+                        <p>
+                            Info aqui
+                        </p>
                         <div class=" mt-25">
                             <ul class="accordion-box wow fadeInRight">
                                 <li class="accordion block active-block">
@@ -35,25 +36,7 @@
                                     <div class="acc-content current">
                                         <div class="content">
                                             <div class="text">
-                                                1. MÓDULO I: LA CONTRATACION LABORAL EN EL SECTOR PRIVADO.
-                                                <br>
-                                                2. MÓDULO II: BENEFICIOS SOCIALES EN EL RÉGIMEN LABORAL DE LA ACTIVIDAD PRIVADA (CTS, GRATIFICACIONES, VACACIONES, UTILIDADS Y ASIGNACIÓN FAMILIAR) - TALLER PARTE I.
-                                                <br>
-                                                3. MÓDULO III: BENEFICIOS SOCIALES EN EL RÉGIMEN LABORAL DE LA ACTIVIDAD PRIVADA (CTS, GRATIFICACIONES, VACACIONES, UTILIDADS Y ASIGNACIÓN FAMILIAR) - TALLER PARTE II.
-                                                <br>
-                                                4. MÓDULO IV: ANALISIS DE LOS PRINCIPALES DERECHOS LABORALES LEY DE IGUALDAD SALARIAL Y ACOSO SEXUAL
-                                                <br>
-                                                5. MÓDULO V: INVESTIGACIÓN DE ACCIDENTES, INCIDENTES Y ENFERMEDADES OCUPACIONALES REGISTROS OBLIGATORIOS DE UN SISTEMA EN SEGURIDAD Y SALUD EN EL TRABAJO.
-                                                <br>
-                                                6. MÓDULO VI: SISTEMA DE SEGURIDAD Y SALUD EN LE TRABAJO (IPERC) Y SU ADECUACIÓN CONFORME A LOS REGLAMENTOS Y PROCEDIMIENTOS EN SEGURIDAD.
-                                                <br>
-                                                7. MÓDULO VII: SISTEMA DE INSPECCIÓN EN EL TRABAJO / FISCALIZACIÓN LABORAL EN EL PERÚ: ASPECTOS GENERALES Y REGULACIÓN ACTUAL.
-                                                <br>
-                                                8. MÓDULO VIII: EL PROCEDIMIENTO ADMINISTRATIVO SANCIONADOR DEL SISTEMA DE INSPECCIÓN DEL TRABAJO: AUTORIDAD INSTRUTORA, AUTORIDAD SANCIONADORA Y TRÁMITE.
-                                                <br>
-                                                9. MÓDULO IX: TECNICAS DE FISCALIZACION DE LA SUNAFIL EN MATERIA DE DERECHOS LABORALES.
-                                                <br>
-                                                10. MÓDULO X: TECNICAS DE INSPECCION DE LA SUNAFIL EN MATERIA DE SEGURIDAD Y SALUD EN EL TRABAJO.
+                                                Info aqui
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +47,9 @@
                                     </div>
                                     <div class="acc-content">
                                         <div class="content">
-                                            <div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable.</div>
+                                            <div class="text">
+                                                Info aqui
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -74,7 +59,13 @@
                                     </div>
                                     <div class="acc-content">
                                         <div class="content">
-                                            <div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable.</div>
+                                            <div class="text">
+                                                <img src="" alt="">
+                                                <h5>Nombre del docente</h5>
+                                                <p>
+                                                    presentacion del docente
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -84,7 +75,9 @@
                                     </div>
                                     <div class="acc-content">
                                         <div class="content">
-                                            <div class="text">There are many variations of passages the majority have suffered alteration in some fo injected humour, or randomised words believable.</div>
+                                            <div class="text">
+                                                sdsd
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
