@@ -6,9 +6,9 @@
     <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
             <div class="title-outer">
-                <h1 class="title">Titulo del Curso</h1>
+                <h1 class="title">{{$item->name}}</h1>
                 <ul class="page-breadcrumb">
-                    <li><a href="">Home</a></li>
+                    <li><a href="">{{route('index_main')}}</a></li>
                     <li>Descripción del Curso</li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
                         <img src="{{ asset('themes/webpage/images/resource/course-details.jpg') }}" alt="" />
                         <h2 class="mt-4">Presentación del curso</h2>
                         <p>
-                            Info aqui
+                            {{$item->description}}
                         </p>
                         <div class=" mt-25">
                             <ul class="accordion-box wow fadeInRight">
