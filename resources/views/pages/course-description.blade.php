@@ -22,10 +22,10 @@
             <div class="row flex-xl-row-reverse">
                 <div class="col-xl-8 col-lg-8">
                     <div class="courses-details__content">
-                        <img src="{{ asset('themes/webpage/images/resource/course-details.jpg') }}" alt="" />
+                        <img src="{{ $item->image }}" alt="" />
                         <h2 class="mt-4">Presentación del curso</h2>
                         <p>
-                            {{$item->description}}
+                            {!! $course->brochure->presentation !!}
                         </p>
                         <div class=" mt-25">
                             <ul class="accordion-box wow fadeInRight">
@@ -36,7 +36,7 @@
                                     <div class="acc-content current">
                                         <div class="content">
                                             <div class="text">
-                                                Info aqui
+                                                {!! $course->brochure->curriculum_plan !!}
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                                     <div class="acc-content">
                                         <div class="content">
                                             <div class="text">
-                                                Info aqui
+                                                {!! $course->brochure->resolution !!}
                                             </div>
                                         </div>
                                     </div>
@@ -60,11 +60,33 @@
                                     <div class="acc-content">
                                         <div class="content">
                                             <div class="text">
-                                                <img src="" alt="">
-                                                <h5>Nombre del docente</h5>
-                                                <p>
-                                                    presentacion del docente
-                                                </p>
+                                                @if (count($course->teachers) > 0)
+                                        @foreach ($course->teachers as $teach)
+                                            <div class="row" style="margin-bottom: 20px;">
+                                                <div class="col-md-2">
+                                                    <a href="">
+                                                        <img style="width: 150px; margin-bottom: 10px; margin-left: 10px;"
+                                                            src="{{ asset('storage/'. $teach->teacher->person->image) }}" alt="img">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <h2 style="font-size: 18px;">
+                                                        <b>
+                                                            {{ $teach->teacher->person->names . ' ' . $teach->teacher->person->father_lastname . ' ' . $teach->teacher->person->mother_lastname }}
+                                                        </b>
+                                                    </h2>
+                                                    @if (count($teach->teacher->person->resumes))
+                                                        @foreach ($teach->teacher->person->resumes as $resume)
+                                                        <div class="list-item-aracode" style="font-size: 17px;">
+                                                            <span class="list-icon-aracode">•</span>
+                                                            {{ $resume->description }}
+                                                        </div>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                             </div>
                                         </div>
                                     </div>
