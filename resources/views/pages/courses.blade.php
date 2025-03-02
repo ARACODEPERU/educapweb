@@ -39,12 +39,12 @@
                                     <li><i class="fa fa-clock"></i> 3 Weeks</li>
                                 </ul> --}}
                                 <h5 class="title">
-                                    <a href="{{ route('web_course_description', $course->course->id) }}">
+                                    <a href="{{route(web_course_description, ['id' => $course->id])}}">
                                         {{ $course->name }}
                                     </a>
                                 </h5>
-                                <a href="{{route(web_course_description, ['id' => $course->id])}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
-                                    Más Información
+                                <a href="" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                    {{route(web_course_description, ['id' => $course->id])}}
                                 </a>
                                 <a class="theme-btn btn-style-cart small"
                                             onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })"
