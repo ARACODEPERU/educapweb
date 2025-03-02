@@ -43,7 +43,7 @@
                                         {{ $course->name }}
                                     </a>
                                 </h5>
-                                <a href="{{route(web_course_description, $course->id)}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                <a href="{{route(web_course_description, ['id' => $course->id])}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
                                     Más Información
                                 </a>
                                 <a class="theme-btn btn-style-cart small"
