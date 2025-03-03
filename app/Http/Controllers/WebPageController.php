@@ -302,11 +302,12 @@ class WebPageController extends Controller
         ]);
     }
 
-    public function cursodescripcion($id)
+    public function coursedescription($id)
     {
         $item = OnliItem::find($id);
 
-        $course = AcaCourse::with('category')
+        $course = AcaCourse::
+            with('category')
             ->with('modality')
             ->with('modules')
             ->with('teachers.teacher.person.resumes')
@@ -323,18 +324,12 @@ class WebPageController extends Controller
             ->shuffle()
             ->take(3);
 
-        return view('pages.curso-descripcion', [
+        return view('pages.course-description', [
             'course' => $course,
             'item' => $item,
             'latest_courses' => $latest_courses
         ]);
     }
-
-    public function coursedetails()
-    {
-        return view('pages.course-details');
-    }
-
 
     public function shopcart()
     {
@@ -821,7 +816,8 @@ class WebPageController extends Controller
 
         $sale = OnliSale::find($request->get('sale_id'));
         $person = Person::find($sale->person_id);
-        try {
+
+        // try {
 
             $payment = $client->create([
                 "token" => $request->get('token'),
@@ -833,8 +829,6 @@ class WebPageController extends Controller
             ]);
 
             if ($payment->status == 'approved') {
-
-
 
                 $sale->email = $request->get('payer')['email'];
                 $sale->total = $request->get('transaction_amount');
@@ -903,13 +897,13 @@ class WebPageController extends Controller
 
                 $sale->delete();
             }
-        } catch (\MercadoPago\Exceptions\MPApiException $e) {
-            // Manejar la excepción
+        // } catch (\MercadoPago\Exceptions\MPApiException $e) {
+        //     // Manejar la excepción
             $response = $e->getApiResponse();
             $content  = $response->getContent();
 
             $message = $content['message'];
             return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
-        }
+        // }
     }
 }

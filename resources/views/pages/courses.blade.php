@@ -3,12 +3,12 @@
 @section('content')
 
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(images/background/page-title.jpg);">
+    <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
             <div class="title-outer">
                 <h1 class="title">Courses</h1>
                 <ul class="page-breadcrumb">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="{{ asset('index_main') }}">Home</a></li>
                     <li>Courses</li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="page-course-details.php">
+                                    <a href="{{ route('web_course_description', $course->course->id) }}">
                                         <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
                                     </a>
                                 </figure>
@@ -39,11 +39,11 @@
                                     <li><i class="fa fa-clock"></i> 3 Weeks</li>
                                 </ul> --}}
                                 <h5 class="title">
-                                    <a href="page-course-details.php">
+                                    <a href="{{ route('web_course_description', $course->id) }}">
                                         {{ $course->name }}
                                     </a>
                                 </h5>
-                                <a href="" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                <a href="{{route('web_course_description', ['id' => $course->id])}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
                                     Más Información
                                 </a>
                                 <a class="theme-btn btn-style-cart small"

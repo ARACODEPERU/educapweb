@@ -33,7 +33,7 @@ Route::get('/home', [WebPageController::class, 'index'])->name('index_main');
 Route::get('/', [WebPageController::class, 'index'])->name('index_main');
 Route::get('/nosotros', [WebPageController::class, 'about'])->name('web_about');
 Route::get('/cursos', [WebPageController::class, 'courses'])->name('web_courses');
-Route::get('/curso-descripcion', [WebPageController::class, 'coursedetails'])->name('web_course_details');
+Route::get('/curso-descripcion/{id}', [WebPageController::class, 'coursedescription'])->name('web_course_description');
 Route::get('/carrito', [WebPageController::class, 'shopcart'])->name('web_carrito');
 Route::get('/pagar', [WebPageController::class, 'pay'])->name('web_pay');
 Route::get('/gracias', [WebPageController::class, 'thanks'])->name('web_thanks');
@@ -206,6 +206,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('meta/whatsapp/message/send', [MetaController::class, 'sendMessageWhatsapp'])->name('meta_whatsapp_message_send');
 });
+
 
 //CERTIFICADOS AUTOMATIZACIÓN Y PRUEBAS
 Route::get('/test-image/{student_id}/{certificate_id}', [WebController::class, 'testimage'])->name('test-image');
