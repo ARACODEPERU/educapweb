@@ -8,7 +8,7 @@
 
     import IconCaretDown from '@/Components/vristo/icon/icon-caret-down.vue';
 
-    
+
     import { Link } from '@inertiajs/vue3';
     import menuData from './MenuData.js'
 
@@ -46,7 +46,10 @@
         <nav class="sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300">
             <div class="bg-white dark:bg-[#0e1726] h-full">
                 <div class="flex justify-between items-center px-4 py-3">
-                    <Link :href="route('dashboard')" class="main-logo flex items-center shrink-0">
+                    <Link :href="route('dashboard')"
+                        :preserve-state="true"
+                        :preserve-scroll="true"
+                        class="main-logo flex items-center shrink-0">
                         <template v-if="store.theme === 'light'">
                             <img v-if="$page.props.company.isotipo == '/img/isotipo.png'" class="w-8 ml-[5px] flex-none" :src="xasset+$page.props.company.isotipo" alt="" />
                             <img v-else class="w-8 ml-[5px] flex-none" :src="xasset+'storage/'+$page.props.company.isotipo" alt="" />
@@ -87,7 +90,7 @@
                                         <div class="flex items-center">
                                             <font-awesome-icon :icon="item.icom" class="group-hover:!text-primary shrink-0" />
                                             <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-                                                {{ item.text }} 
+                                                {{ item.text }}
                                             </span>
                                         </div>
                                         <div :class="{ 'rtl:rotate-90 -rotate-90': activeDropdown !== item.text }">
@@ -98,18 +101,25 @@
                                         <template v-if="item.items && item.items.length > 0" >
                                             <ul class="sub-menu text-gray-500">
                                                 <li v-for="(subItem, subIndex) in item.items" :key="subIndex">
-                                                    <Link :href="subItem.route" @click="toggleMobileMenu">{{ subItem.text }}</Link>
+                                                    <Link
+                                                        :preserve-state="true"
+                                                        :preserve-scroll="true"
+                                                        :href="subItem.route"
+                                                        @click="toggleMobileMenu"
+                                                    >
+                                                        {{ subItem.text }}
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </template>
                                     </HeightTransition>
                                 </li>
-                                
+
                             </template>
                             <template v-else-if="item.route == 'module'">
                                 <h2 v-can="item.permissions" class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                     <icon-minus class="w-4 h-5 flex-none hidden" />
-                                    <span>{{ item.text }}</span> 
+                                    <span>{{ item.text }}</span>
                                 </h2>
                                 <template v-if="item.items && item.items.length > 0" >
                                     <template v-for="(subItem, subIndex) in item.items" :key="subIndex">
@@ -135,7 +145,15 @@
                                                     <ul v-if="subItem.items && subItem.items.length > 0" class="sub-menu text-gray-500">
                                                         <template v-for="(subSubItem, subSubIndex) in subItem.items" :key="subSubIndex">
                                                             <li v-can="subSubItem.permissions">
-                                                                <Link v-bind="{ id: subSubItem.id }"  :href="subSubItem.route" @click="toggleMobileMenu">{{ subSubItem.text }}</Link>
+                                                                <Link
+                                                                    :preserve-state="true"
+                                                                    :preserve-scroll="true"
+                                                                    v-bind="{ id: subSubItem.id }"
+                                                                    :href="subSubItem.route"
+                                                                    @click="toggleMobileMenu"
+                                                                >
+                                                                    {{ subSubItem.text }}
+                                                                </Link>
                                                             </li>
                                                         </template>
                                                     </ul>
@@ -144,8 +162,10 @@
                                         </template>
                                         <template v-else>
                                             <li v-can="subItem.permissions" class="menu nav-item">
-                                                <Link 
+                                                <Link
                                                     v-bind="{ id: subItem.id }"
+                                                    :preserve-state="true"
+                                                    :preserve-scroll="true"
                                                     :href="subItem.route" class="nav-link group" @click="toggleMobileMenu">
                                                     <div class="flex items-center">
                                                         <font-awesome-icon :icon="subItem.icom" class="group-hover:!text-primary shrink-0" />
@@ -162,7 +182,10 @@
                             </template>
                             <template v-else>
                                 <li v-can="item.permissions" class="menu nav-item">
-                                    <Link :href="item.route" class="nav-link group" @click="toggleMobileMenu">
+                                    <Link
+                                        :preserve-state="true"
+                                        :preserve-scroll="true"
+                                        :href="item.route" class="nav-link group" @click="toggleMobileMenu">
                                         <div class="flex items-center">
                                             <!-- <icon-menu-font-icons class="group-hover:!text-primary shrink-0" /> -->
                                             <font-awesome-icon :icon="item.icom" class="group-hover:!text-primary shrink-0" />
@@ -173,16 +196,16 @@
                                     </Link>
                                 </li>
                             </template>
-                            
+
                         </template>
                     </ul>
-                    
+
                 </perfect-scrollbar>
-                <h1>HOLA ACA</h1>
+
             </div>
-            
+
         </nav>
-        
+
     </div>
 </template>
 
