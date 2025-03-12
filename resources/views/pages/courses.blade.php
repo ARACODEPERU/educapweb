@@ -25,7 +25,7 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="{{ route('web_course_description', $course->course->id) }}">
+                                    <a href="{{ route('web_course_description', $course->id) }}">
                                         <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
                                     </a>
                                 </figure>
