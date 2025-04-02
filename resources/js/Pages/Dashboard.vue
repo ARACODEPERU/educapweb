@@ -49,12 +49,12 @@ const props = defineProps({
                         <MinimumStockNotice v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador'" />
                         <StatusProducts v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador'" />
                         <div class="space-y-6">
-                            <TotalBalance v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador'" />
-                            <SalesSummary v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador'" />
+                            <TotalBalance v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador' || role.name == 'Contabilidad'" />
+                            <SalesSummary v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador' || role.name == 'Contabilidad'" />
                         </div>
                     </template>
                    <!--modulo academico -->
-                    <div v-if="role.name == 'admin' || role.name == 'webAdmin'" class="col-span-3 sm:col-span-2 space-y-6">
+                    <div v-if="role.name == 'admin' || role.name == 'webAdmin' || role.name == 'Administrador'" class="col-span-3 sm:col-span-2 space-y-6">
                         <template v-if="P000009 == 1">
                             <StudentsEnrolledMonth />
                             <CoursesTotalStudents />

@@ -47,59 +47,59 @@ class WebPageController extends Controller
 
     public function index()
     {
-        return view('pages.home');
+        return view('pages.home', [
+            'listcard' => $this->listcard
+        ]);
     }
 
-    public function about()
+    public function nosotros()
     {
 
-        //     $banner = CmsSection::where('component_id', 'nosotros_banner_area_11')  //siempre cambiar el id del componente
-        //         ->join('cms_section_items', 'section_id', 'cms_sections.id')
-        //         ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
-        //         ->select(
-        //             'cms_items.content',
-        //             'cms_section_items.position'
-        //         )
-        //         ->orderBy('cms_section_items.position')
-        //         ->first();
+        $banner = CmsSection::where('component_id', 'nosotros_banner_area_11')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->first();
 
 
-        //     $visions = CmsSection::where('component_id', 'nosotros_vision_area_12')  //siempre cambiar el id del componente
-        //         ->join('cms_section_items', 'section_id', 'cms_sections.id')
-        //         ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
-        //         ->select(
-        //             'cms_items.content',
-        //             'cms_section_items.position'
-        //         )
-        //         ->orderBy('cms_section_items.position')
-        //         ->get();
+        $visions = CmsSection::where('component_id', 'nosotros_vision_area_12')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
 
-        //     $lider = CmsSection::where('component_id', 'nosotros_lider_area_13')  //siempre cambiar el id del componente
-        //         ->join('cms_section_items', 'section_id', 'cms_sections.id')
-        //         ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
-        //         ->select(
-        //             'cms_items.content',
-        //             'cms_section_items.position'
-        //         )
-        //         ->orderBy('cms_section_items.position')
-        //         ->get();
+        $lider = CmsSection::where('component_id', 'nosotros_lider_area_13')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
 
-        //     return view('pages.nosotros', [
-        //         'banner' => $banner,
-        //         'visions' => $visions,
-        //         'lider' => $lider
-        //     ]);
-
-        return view('pages.about');
+        return view('pages.nosotros', [
+            'banner' => $banner,
+            'visions' => $visions,
+            'lider' => $lider
+        ]);
     }
 
-    public function courses()
+    public function cursos()
     {
         $courses = OnliItem::with('course')->get();
         $courses = $courses->shuffle();
         $categories = AcaCategoryCourse::all();
 
-        $banner = CmsSection::where('component_id', 'cursos_banner_area_2')  //siempre cambiar el id del componente
+        $banner = CmsSection::where('component_id', 'cursos_banner_area_14')  //siempre cambiar el id del componente
             ->join('cms_section_items', 'section_id', 'cms_sections.id')
             ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
             ->select(
@@ -119,13 +119,12 @@ class WebPageController extends Controller
             ->orderBy('cms_section_items.position')
             ->get();
 
-        return view('pages.courses', [
+        return view('pages.cursos', [
             'courses' => $courses,
             'categories' => $categories,
             'banner' => $banner,
             'title' => $title
         ]);
-        // return view('pages.courses');
     }
 
     public function servicios()
@@ -302,12 +301,11 @@ class WebPageController extends Controller
         ]);
     }
 
-    public function coursedescription($id)
+    public function cursodescripcion($id)
     {
         $item = OnliItem::find($id);
 
-        $course = AcaCourse::
-            with('category')
+        $course = AcaCourse::with('category')
             ->with('modality')
             ->with('modules')
             ->with('teachers.teacher.person.resumes')
@@ -324,58 +322,46 @@ class WebPageController extends Controller
             ->shuffle()
             ->take(3);
 
-        return view('pages.course-description', [
+        return view('pages.curso-descripcion', [
             'course' => $course,
             'item' => $item,
             'latest_courses' => $latest_courses
         ]);
     }
 
-    public function shopcart()
+    public function contacto()
     {
-        return view('pages.shop-cart');
-    }
+        $banner = CmsSection::where('component_id', 'nosotros_banner_area_11')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->first();
 
-    public function contact()
-    {
-        // $banner = CmsSection::where('component_id', 'nosotros_banner_area_11')  //siempre cambiar el id del componente
-        //     ->join('cms_section_items', 'section_id', 'cms_sections.id')
-        //     ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
-        //     ->select(
-        //         'cms_items.content',
-        //         'cms_section_items.position'
-        //     )
-        //     ->orderBy('cms_section_items.position')
-        //     ->first();
-
-        // $title = CmsSection::where('component_id', 'header_area_1')  //siempre cambiar el id del componente
-        //     ->join('cms_section_items', 'section_id', 'cms_sections.id')
-        //     ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
-        //     ->select(
-        //         'cms_items.content',
-        //         'cms_section_items.position'
-        //     )
-        //     ->orderBy('cms_section_items.position')
-        //     ->get();
+        $title = CmsSection::where('component_id', 'header_area_1')  //siempre cambiar el id del componente
+            ->join('cms_section_items', 'section_id', 'cms_sections.id')
+            ->join('cms_items', 'cms_section_items.item_id', 'cms_items.id')
+            ->select(
+                'cms_items.content',
+                'cms_section_items.position'
+            )
+            ->orderBy('cms_section_items.position')
+            ->get();
 
 
-        // return view('pages.contacto', [
-        //     'banner' => $banner,
-        //     'title' => $title
-        // ]);
-
-        return view('pages.contact');
+        return view('pages.contacto', [
+            'banner' => $banner,
+            'title' => $title
+        ]);
     }
 
     public function carrito()
     {
 
         return view('pages.carrito');
-    }
-
-    public function pay()
-    {
-        return view('pages.pay');
     }
 
     public function pagar(Request $request)
@@ -522,44 +508,9 @@ class WebPageController extends Controller
 
     }
 
-    public function thanks()
+    public function gracias()
     {
-        return view('pages.thanks');
-    }
-
-    public function email()
-    {
-        return view('layouts.email_gratitude');
-    }
-
-    public function graciasCompra($id)
-    {
-        $sale = OnliSale::where('id', $id)->with('details.item')->first();
-        $person = Person::where('id', $sale->person_id)->first();
-        $details = $sale->details;
-        $itemIds = $details->pluck('item_id')->toArray();
-        $products = OnliItem::whereIn('item_id', $itemIds)->get();
-        //$student = AcaStudent::where('person_id', $person->id)->first();
-
-        $courses = [];
-        foreach ($details as $k => $detail) {
-            $item = OnliItem::find($detail->onli_item_id);
-            $courses[$k] = [
-                'image'       => $item->image,
-                'name'        => $item->name,
-                'description' => $item->description,
-                'type'        => $item->additional,
-                'modality'    => $item->additional1,
-                'price'      => $item->price
-            ];
-        }
-
-        //jesus aca crear la vista de agradecimiento
-        return view('pages.gracias', [
-            'products' => $products,
-            'sale' => $sale,
-            'person' => $person,
-        ]);
+        return view('pages.gracias');
     }
 
 
@@ -626,7 +577,7 @@ class WebPageController extends Controller
                         ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
 
                     $sale->save();
-                    $this->enviarCorreoConCursos($id);
+                    $this->enviar_correo_con_cursos($id);
 
                     return response()->json([
                         'status' => $payment->status,
@@ -654,9 +605,38 @@ class WebPageController extends Controller
         }
     }
 
-    private function enviarCorreoConCursos($sale_id)
+    public function graciasCompra($id)
     {
-        $sale = OnliSale::find($sale_id)->with('details.item')->first();
+        $sale = OnliSale::where('id', $id)->with('details.item')->first();
+        $person = Person::where('id', $sale->person_id)->first();
+        $details = $sale->details;
+        $itemIds = $details->pluck('item_id')->toArray();
+        $products = OnliItem::whereIn('item_id', $itemIds)->get();
+        //$student = AcaStudent::where('person_id', $person->id)->first();
+
+        $courses = [];
+        foreach ($details as $k => $detail) {
+            $item = OnliItem::find($detail->onli_item_id);
+            $courses[$k] = [
+                'image'       => $item->image,
+                'name'        => $item->name,
+                'description' => $item->description,
+                'type'        => $item->additional,
+                'modality'    => $item->additional1,
+                'price'      => $item->price
+            ];
+        }
+
+        return view('pages.gracias', [
+            'products' => $products,
+            'sale' => $sale,
+            'person' => $person,
+        ]);
+    }
+
+    private function enviar_correo_con_cursos($sale_id)
+    {
+        $sale = OnliSale::where('id', $sale_id)->with('details.item')->first();
         $person = Person::where('id', $sale->person_id)->first();
         $details = $sale->details;
         //$itemIds = $details->pluck('item_id')->toArray();
@@ -698,212 +678,5 @@ class WebPageController extends Controller
             'modality_id' => 3,
             'unlimited' => true
         ]);
-    }
-
-    public function formMercadopagoBlade(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'names' => 'required',
-            'app' => 'required',
-            'apm' => 'required',
-            'phone' => 'required',
-            //'email' => 'required|unique:users,email',
-            'document_type' => 'required',
-            'number' => 'required',
-        ], [
-            'names.required' => 'El nombre es requerido',
-            'app.required' => 'El apellido paterno requerido',
-            'apm.required' => 'El apellido materno requerido',
-            'phone.required' => 'El teléfono es requerido',
-            'email.required' => 'El email es requerido',
-            'document_type.required' => 'El tipo de documento es requerido',
-            'number.required' => 'El numero de documento es requerido'
-        ]);
-
-        if ($validator->fails()) {
-            return back()
-                ->withInput()
-                ->withErrors($validator);
-        }
-
-        $person = Person::firstOrCreate(
-            [
-                'document_type_id' => $request->get('document_type'),
-                'number' => $request->get('number')
-            ],
-            [
-                'description'           => 'Estudiante',
-                'email'                 => $request->get('email'),
-                'short_name'            => $request->get('names'),
-                'full_name'             => $request->get('names') . ' ' . $request->get('app') . ' ' . $request->get('apm'),
-                'telephone'             => $request->get('phone'),
-                'is_client'             => true,
-                'names'                 => $request->get('names'),
-                'father_lastname'       => $request->get('app'),
-                'mother_lastname'       => $request->get('apm'),
-                'gender' => 'M'
-            ]
-        );
-
-        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
-        $client = new PreferenceClient();
-        $items = [];
-        $msg = null;
-        $success = true;
-        $preference_id = null;
-        $products = $request->get('item_id');
-        $price = 0;
-
-        $sale = OnliSale::create([
-            'module_name'                   => 'Onlineshop',
-            'person_id'                     => $person->id,
-            'clie_full_name'                => $person->full_name,
-            'phone'                         => $person->telephone,
-            'email'                         => $person->email,
-            'response_status'               => 'pendiente',
-        ]);
-
-        if (count($products) > 0) {
-            foreach ($products as $id) {
-
-                $item = OnliItem::find($id);
-                //$xpro = AcaCourse::find($product['id']);
-                array_push($items, [
-                    'id' => $item->id,
-                    'title' => trim($item->name),
-                    'quantity'      => floatval(1),
-                    'currency_id'   => 'PEN',
-                    'unit_price'    => floatval($item->price)
-                ]);
-
-                $price = $price + floatval($item->price);
-
-                OnliSaleDetail::create([
-                    'sale_id'       => $sale->id,
-                    'item_id'       => $item->item_id,
-                    'entitie'       => $item->entitie,
-                    'price'         => $item->price,
-                    'quantity'      => floatval(1),
-                    'onli_item_id'  => $item->id
-                ]);
-            }
-
-            $preference = $client->create([
-                "items" => $items,
-            ]);
-
-            $success = true;
-            $preference_id =  $preference->id;
-        } else {
-            $success = false;
-        }
-
-        return view('pages.pay', [
-            'items'     => $items,
-            'success' => $success,
-            'preference_id' => $preference_id,
-            'person' => $person,
-            'price' => $price,
-            'sale_id' => $sale->id
-        ]);
-    }
-
-    public function processPaymentMercadopago(Request $request)
-    {
-        MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
-
-        $client = new PaymentClient();
-
-        $sale = OnliSale::find($request->get('sale_id'));
-        $person = Person::find($sale->person_id);
-
-        // try {
-
-            $payment = $client->create([
-                "token" => $request->get('token'),
-                "issuer_id" => $request->get('issuer_id'),
-                "payment_method_id" => $request->get('payment_method_id'),
-                "transaction_amount" => (float) $request->get('transaction_amount'),
-                "installments" => $request->get('installments'),
-                "payer" => $request->get('payer')
-            ]);
-
-            if ($payment->status == 'approved') {
-
-                $sale->email = $request->get('payer')['email'];
-                $sale->total = $request->get('transaction_amount');
-                $sale->identification_type = $request->get('payer')['identification']['type'];
-                $sale->identification_number = $request->get('payer')['identification']['number'];
-                $sale->response_status = $payment->status;
-                $sale->response_id = $request->get('collection_id');
-                $sale->response_date_approved = Carbon::now()->format('Y-m-d');
-                $sale->response_payer = json_encode($request->all());
-                $sale->response_payment_method_id = $request->get('payment_type');
-                $sale->mercado_payment_id = $payment->id;
-                $sale->mercado_payment = json_encode($payment);
-
-
-                ///dando permisos de estudiante
-
-                $student = AcaStudent::firstOrCreate([
-                    'student_code'  => $person->number,
-                    'person_id'     => $person->id
-                ]);
-
-                $user = User::firstOrCreate(
-                    [
-                        'email' => $person->email
-                    ],
-                    [
-                        'name'          => $person->names,
-                        'password'      => Hash::make($person->number),
-                        'local_id'      => 1,
-                        'person_id'     => $person->id
-                    ]
-                );
-
-                $user->assignRole('Alumno');
-
-                $sale->save();
-
-                $details = OnliSaleDetail::where('sale_id', $sale->id)->get();
-
-                foreach ($details as $detail) {
-                    AcaCapRegistration::firstOrCreate(
-                        [
-                            'student_id'        => $student->id,
-                            'course_id'         => $detail->item_id,
-                        ],
-                        [
-                            'status'            => true
-                        ]
-                    );
-                }
-
-                $this->enviarCorreoConCursos($sale->id);
-
-                return response()->json([
-                    'status' => $payment->status,
-                    'message' => $payment->status_detail,
-                    'url' => route('web_felicitaciones_compra', $sale->id) // AQUI solo la ruta q muestre datos de la compra
-                ]);
-            } else {
-
-                return response()->json([
-                    'status' => $payment->status,
-                    'message' => $payment->status_detail,
-                    'url' => route('web_carrito')
-                ]);
-
-                $sale->delete();
-            }
-        // } catch (\MercadoPago\Exceptions\MPApiException $e) {
-        //     // Manejar la excepción
-            $response = $e->getApiResponse();
-            $content  = $response->getContent();
-
-            $message = $content['message'];
-            return response()->json(['error' => 'Error al procesar el pago: ' . $message], 412);
-        // }
     }
 }

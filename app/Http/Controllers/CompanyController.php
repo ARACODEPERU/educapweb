@@ -34,12 +34,12 @@ class CompanyController extends Controller
             'email'  => 'required|max:150',
             'mode'  => 'required'
         ]);
-
+        //dd($request->all());
         //dd($request->get('mode'));
 
-        Company::updateOrCreate(
-            ['ruc' =>  $request->get('ruc')],
+        Company::find($request->get('id'))->update(
             [
+                'ruc' =>  $request->get('ruc'),
                 'name'              => $request->get('name'),
                 'business_name'     => $request->get('business_name'),
                 'tradename'         => $request->get('tradename'),
@@ -48,11 +48,12 @@ class CompanyController extends Controller
                 'representative'    => $request->get('representative'),
                 'email'             => $request->get('email'),
                 'mode'              => $request->get('mode'),
-                'ubigeo'            => $request->get('ubigeo')
+                'ubigeo'            => $request->get('ubigeo'),
+                'withdrawal_account_number' => $request->get('withdrawal_account_number')
             ]
         );
 
-        Company::where('ruc', '<>', $request->get('ruc'))->delete();
+        //Company::where('ruc', '<>', $request->get('ruc'))->delete();
 
         return redirect()->route('company_show');
     }
@@ -156,6 +157,7 @@ class CompanyController extends Controller
         $isotipoDark = $request->get('isotipo_dark');
 
         if ($isotipoNegative) {
+
             $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $isotipoNegative));
 
             if (PHP_OS == 'WINNT') {

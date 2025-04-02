@@ -19,7 +19,7 @@
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
         if (selector) {
             selector.classList.add('active');
-            const ul = selector.closest('ul.sub-menu');
+            const ul = selector.closest('ul.sub-menu-before');
             if (ul) {
                 let ele  = ul.closest('li.menu').querySelectorAll('.nav-link') || [];
                 if (ele.length) {
@@ -48,12 +48,14 @@
 
         // Verifica si el usuario tiene el rol "Alumno"
         if (roles.includes('Alumno')) {
+            //console.log('aca llega');
             axios({
                 method: 'post',
                 url: route('aca_certificate_by_student')
             }).then((response) => {
+                //console.log('resouesta',response)
                 studentSCertificates.value = response.data.certificates
-                console.log(studentSCertificates.value)
+                //console.log('ser ',studentSCertificates.value)
             });
         }
 
@@ -76,7 +78,7 @@
             <div class="bg-white dark:bg-[#0e1726] h-full">
                 <div class="flex justify-between items-center px-4 py-3">
                     <Link :href="route('dashboard')" class="main-logo flex items-center shrink-0">
-                        <template v-if="store.theme === 'light'">
+                        <template v-if="store.theme === 'light' || store.theme === 'system'">
                             <img v-if="$page.props.company.isotipo == '/img/isotipo.png'" class="w-8 ml-[5px] flex-none" :src="xasset+$page.props.company.isotipo" alt="" />
                             <img v-else class="w-8 ml-[5px] flex-none" :src="xasset+'storage/'+$page.props.company.isotipo" alt="" />
                         </template>
@@ -125,7 +127,7 @@
                                     </button>
                                     <HeightTransition v-show="activeDropdown === item.text">
                                         <template v-if="item.items && item.items.length > 0" >
-                                            <ul class="sub-menu text-gray-500">
+                                            <ul class="sub-menu-before text-gray-500">
                                                 <li v-for="(subItem, subIndex) in item.items" :key="subIndex">
                                                     <Link :href="subItem.route" @click="toggleMobileMenu">{{ subItem.text }}</Link>
                                                 </li>
@@ -133,7 +135,6 @@
                                         </template>
                                     </HeightTransition>
                                 </li>
-
                             </template>
                             <template v-else-if="item.route == 'module'">
                                 <h2 v-can="item.permissions" class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
@@ -161,10 +162,25 @@
                                                     </div>
                                                 </button>
                                                 <HeightTransition v-show="activeDropdown === subItem.text">
-                                                    <ul v-if="subItem.items && subItem.items.length > 0" class="sub-menu text-gray-500">
+                                                    <ul v-if="subItem.items && subItem.items.length > 0"
+                                                        class="text-gray-500"
+                                                        :class="subItem.avatar ? 'sub-menu-avatar' : 'sub-menu-before'"
+                                                    >
                                                         <template v-for="(subSubItem, subSubIndex) in subItem.items" :key="subSubIndex">
                                                             <li v-can="subSubItem.permissions">
-                                                                <Link v-bind="{ id: subSubItem.id }"  :href="subSubItem.route" @click="toggleMobileMenu">{{ subSubItem.text }}</Link>
+                                                                <Link v-bind="{ id: subSubItem.id }"  :href="subSubItem.route" @click="toggleMobileMenu">
+                                                                    <template v-if="subSubItem.img">
+                                                                        <div class="ltr:mr-2 rtl:ml-2">
+                                                                            <img :src="`${xasset}storage/${subSubItem.img}`" alt="" class="w-8 h-8 rounded" />
+                                                                        </div>
+                                                                        <div class="flex-1 text-xs">
+                                                                            {{ subSubItem.text }}
+                                                                        </div>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        {{ subSubItem.text }}
+                                                                    </template>
+                                                                </Link>
                                                             </li>
                                                         </template>
                                                     </ul>
@@ -204,7 +220,7 @@
                             </template>
 
                         </template>
-                        <template v-if="studentSCertificates.length > 0">
+                        <template v-if="studentSCertificates && studentSCertificates.length > 0">
                             <li class="menu nav-item">
                                 <button
                                     type="button"
@@ -225,7 +241,7 @@
                                     </div>
                                 </button>
                                 <HeightTransition v-show="activeDropdown === 'logros'">
-                                    <ul class="sub-menu text-gray-500">
+                                    <ul class="sub-menu-before text-gray-500">
                                         <li v-for="(scd, sck) in studentSCertificates" :key="sck">
                                             <a :href="route('aca_image_download', scd.id)" target="_blank">
                                                 <div>
@@ -240,6 +256,7 @@
                                 </HeightTransition>
                             </li>
                         </template>
+
                     </ul>
 
                 </perfect-scrollbar>

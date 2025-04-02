@@ -80,11 +80,12 @@ class CrmMessagesController extends Controller
                 'conversation_id' => $conversationId,
                 'person_id' => $personId,
                 'content' => htmlentities($request->get('text'), ENT_QUOTES, "UTF-8"),
-                'type' => $request->get('type')
+                'type' => $request->get('type'),
+                'answer_ai' => $request->has('answer_ai') ? $request->get('answer_ai') : false
             ]);
 
             // Devolver la conversación con los mensajes
-            broadcast(new SendMessage($participants, $message, ['ofUserId' => $personId]));
+            broadcast(new SendMessage($participants, $message, ['ofUserId' => $personId], $conversationId));
 
             CrmConversation::find($conversationId)->update([
                 'new_message' => true,
