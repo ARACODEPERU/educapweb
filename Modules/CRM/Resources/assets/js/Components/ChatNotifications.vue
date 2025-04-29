@@ -47,7 +47,6 @@
 
     onMounted(() => {
         fetchNotifications()
-        console.log('Conversasiones',notifications.value);
     });
 
     onUnmounted(() => {
