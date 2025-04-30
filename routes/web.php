@@ -220,3 +220,4 @@ Route::post('online/client/pay/form', [WebPageController::class, 'formMercadopag
 Route::post('online/client/pay/process', [WebPageController::class, 'processPaymentMercadopago'])->name('web_client_account_process');
 Route::get('online/client/pay/{id}/congratulations', [WebPageController::class, 'graciasCompra'])->name('web_felicitaciones_compra');
 require __DIR__ . '/auth.php';
+require __DIR__ . '/system.php';
