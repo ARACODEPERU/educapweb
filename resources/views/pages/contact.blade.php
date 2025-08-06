@@ -29,7 +29,7 @@
 						<h2>Siéntete libre de escribir</h2>
 					</div>
 					<!-- Contact Form -->
-					<form id="pageContactForm" name="contact_form" class="" action="{{ route('apisubscriber') }}" method="post">
+					<form id="pageContactForm" name="contact_form" action="{{ route('apisubscriber') }}" method="post">
 						@csrf
                         <div class="row">
 							<div class="col-sm-12">
