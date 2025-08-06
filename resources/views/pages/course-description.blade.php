@@ -2,6 +2,10 @@
 
 @section('content')
 
+
+    <!-- Main Header-->
+    <x-header />
+    <!--End Main Header -->
     <!-- Start main-content -->
     <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
@@ -202,5 +206,8 @@
     </section>
     <!--End courses Details-->
 
+    <!-- Main Footer -->
+    <x-footer />
+    <!--End Main Footer -->
 
 @stop
