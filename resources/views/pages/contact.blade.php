@@ -29,32 +29,33 @@
 						<h2>Siéntete libre de escribir</h2>
 					</div>
 					<!-- Contact Form -->
-					<form id="contact_form" name="contact_form" class="" action="includes/sendmail.php" method="post">
-						<div class="row">
+					<form id="pageContactForm" name="contact_form" class="" action="{{ route('apisubscriber') }}" method="post">
+						@csrf
+                        <div class="row">
 							<div class="col-sm-12">
 								<div class="mb-3">
-									<input name="form_name" class="form-control" type="text" placeholder="Nombre completo">
+									<input name="full_name" class="form-control" type="text" placeholder="Nombre completo">
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="mb-3">
-									<input name="form_email" class="form-control required email" type="email" placeholder="Correo electronico">
+									<input name="email" class="form-control required email" type="email" placeholder="Correo electronico" name="email">
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="mb-3">
-									<input name="form_phone" class="form-control" type="text" placeholder="Teléfono">
+									<input name="phone" class="form-control" type="text" placeholder="Teléfono" name="phone">
 								</div>
 							</div>
 						</div>
 						<div class="mb-3">
-							<textarea name="form_message" class="form-control required" rows="7" placeholder="Mensaje"></textarea>
+							<textarea id="messagePageContact" name="message" class="form-control required" rows="7" placeholder="Mensaje" name="message"></textarea>
 						</div>
 						<div class="mb-3">
-							<input name="form_botcheck" class="form-control" type="hidden" value="" />
-							<button type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span class="btn-title">Enviar mensaje</span></button>
+							{{-- <input name="form_botcheck" class="form-control" type="hidden" value="" /> --}}
+							<button id="submitPageContactButton" type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span class="btn-title">Enviar mensaje</span></button>
 							{{-- <button type="reset" class="theme-btn btn-style-one bg-theme-color5"><span class="btn-title">Reset</span></button> --}}
 						</div>
 					</form>
@@ -105,6 +106,65 @@
 			</div>
 		</div>
 	</section>
+
+    <script>
+        let form = document.getElementById('pageContactForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formulario = document.getElementById('pageContactForm');
+            var formData = new FormData(formulario);
+
+            // Deshabilitar el botón
+            var submitButton = document.getElementById('submitPageContactButton');
+            submitButton.disabled = true;
+            submitButton.style.opacity = 0.25;
+
+            // Crear una nueva solicitud XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+
+            // Configurar la solicitud POST al servidor
+            xhr.open('POST', "{{ route('apisubscriber') }}", true);
+
+            // Configurar la función de callback para manejar la respuesta
+            xhr.onload = function() {
+                // Habilitar nuevamente el botón
+                submitButton.disabled = false;
+                submitButton.style.opacity = 1;
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Enhorabuena',
+                        text: response.message,
+                        customClass: {
+                            container: 'sweet-modal-zindex' // Clase personalizada para controlar el z-index
+                        }
+                    });
+                    formulario.reset();
+                } else if (xhr.status === 422) {
+                    var errorResponse = JSON.parse(xhr.responseText);
+                    // Maneja los errores de validación aquí, por ejemplo, mostrando los mensajes de error en algún lugar de tu página.
+                    var errorMessages = errorResponse.errors;
+                    var errorMessageContainer = document.getElementById('messagePageContact');
+                    errorMessageContainer.innerHTML = 'Errores de validación:<br>';
+                    for (var field in errorMessages) {
+                        if (errorMessages.hasOwnProperty(field)) {
+                            errorMessageContainer.innerHTML += field + ': ' + errorMessages[field].join(', ') +
+                                '<br>';
+                        }
+                    }
+                } else {
+                    console.error('Error en la solicitud: ' + xhr.status);
+                }
+
+
+            };
+
+            // Enviar la solicitud al servidor
+            xhr.send(formData);
+        });
+    </script>
 	<!--Contact Details End-->
 
 	<!-- Divider: Google Map -->
@@ -116,7 +176,7 @@
 			</div>
 		</div>
 	</section> --}}
-	
+
     <!-- Main Footer -->
     <x-footer />
     <!--End Main Footer -->
