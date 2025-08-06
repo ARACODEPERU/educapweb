@@ -26,10 +26,10 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
                         <div class="footer-widget">
                             <h4 class="widget-title">Navegar</h4>
                             <ul class="user-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Nosotros</a></li>
-                                <li><a href="#">Cursos</a></li>
-                                <li><a href="#">Contacto</a></li>
+                                <li><a href="{{ route('index_main') }}">Home</a></li>
+                                <li><a href="{{ route('web_about') }}">Nosotros</a></li>
+                                <li><a href="{{ route('web_courses') }}">Cursos</a></li>
+                                <li><a href="{{ route('web_contact_us') }}">Contacto</a></li>
                             </ul>
                         </div>
                     </div>
