@@ -28,7 +28,7 @@
                         <i class="icon fa fa-phone"></i>
                         <small>Llamanos al:</small><br> (+51) 907 728 496
                     </a>
-                    {{-- <div class="ui-btn-outer">
+                    <div class="ui-btn-outer">
                     <button class="ui-btn ui-btn search-btn">
                         <span class="icon lnr lnr-icon-search"></span>
                     </button>
@@ -37,7 +37,7 @@
                     <i class="lnr-icon-shopping-cart"></i>
                     <span class="cart-count contador" id="contadorCarritoWeb">0</span>
                     <span id="contadorCarritoMovil" hidden style="color: white; display: none;"></span>
-                </a> --}}
+                </a>
                     <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="btn-title">Campus
                             Virtual</span></a>
 
