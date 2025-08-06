@@ -6,7 +6,7 @@
             <div class="logo-box">
                 <div class="logo">
                     <a href="" title="">
-                        <img src="{{ asset('themes/webpage/images/Logo-CPROD.png') }}" alt="" title="">
+                        <img src="{{ asset('themes/webpage/images/Logo-cprod.png') }}" alt="" title="">
                     </a>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     <!--Logo-->
                     <div class="logo">
                         <a href="" title="">
-                            <img src="{{ asset('themes/webpage/images/Logo-CPROD.png') }}" alt=""
+                            <img src="{{ asset('themes/webpage/images/Logo-cprod.png') }}" alt=""
                                 title="">
                         </a>
                     </div>
