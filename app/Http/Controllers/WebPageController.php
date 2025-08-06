@@ -253,10 +253,9 @@ class WebPageController extends Controller
         return view('pages.contact');
     }
 
-    public function carrito()
+    public function shopcart()
     {
-
-        return view('pages.carrito');
+        return view('pages.shop-cart');
     }
 
     public function pagar(Request $request)

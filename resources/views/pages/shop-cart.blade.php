@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <!-- Main Header-->
+    <x-header />
+    <!--End Main Header -->
 
     <!-- Start main-content -->
     <section class="page-title"
@@ -21,6 +24,9 @@
         </div>
     </section>
     <!-- end main-content -->
+
+    
+
     {{-- codigo de recapcha --}}
     <script type="text/javascript">
         function callbackThen(response) {
@@ -46,6 +52,7 @@
         }
     </script>
     <!--cart Start-->
+
     <section>
         <div class="container pb-100">
             <div class="section-content">
@@ -217,6 +224,11 @@
         </div>
     </section>
 
+    
+    <!-- Main Footer -->
+    <x-footer />
+    <!--End Main Footer -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         cargarItemsCarritoBD();
@@ -356,7 +368,6 @@
 
         }
     </script>
-
 
     <script>
         function onSubmit(token) {
