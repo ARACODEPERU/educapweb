@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Educap | </title>
+    <title>CPROD</title>
 
     <!-- Stylesheets -->
     <link href="{{ asset('themes/webpage/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -40,16 +40,10 @@
         <!-- Preloader -->
         {{-- <div class="preloader"></div> --}}
 
-        <!-- Main Header-->
-        <x-header />
-        <!--End Main Header -->
 
         @yield('content')
 
 
-        <!-- Main Footer -->
-        <x-footer />
-        <!--End Main Footer -->
 
 
 
