@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <!-- Main Header-->
+    <x-header />
+    <!--End Main Header -->
     <!-- Start main-content -->
     <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
@@ -33,11 +36,6 @@
                                 <div class="value">{{ $course->category_description }}</div>
                             </div>
                             <div class="content-box">
-                                {{-- <ul class="course-info">
-                                    <li><i class="fa fa-book"></i> 8 Lessons</li>
-                                    <li><i class="fa fa-users"></i> 16 Students</li>
-                                    <li><i class="fa fa-clock"></i> 3 Weeks</li>
-                                </ul> --}}
                                 <h5 class="title">
                                     <a href="{{ route('web_course_description', $course->id) }}">
                                         {{ $course->name }}
@@ -60,6 +58,10 @@
         </div>
     </section>
     <!-- End Courses Section-->
+    
+    <!-- Main Footer -->
+    <x-footer />
+    <!--End Main Footer -->
 
 
 @stop

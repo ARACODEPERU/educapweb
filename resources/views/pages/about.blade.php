@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <!-- Main Header-->
+    <x-header />
+    <!--End Main Header -->
 		<!-- Start main-content -->
         <section class="page-title" style="background-image: url(images/background/page-title.jpg);">
             <div class="auto-container">
@@ -16,17 +19,7 @@
         </section>
         <!-- end main-content -->
 
-        <!-- About Section -->
-        <x-about-section />
-        <!--Emd About Section -->
     
-        <!-- Courses Section -->
-        <x-courses-carousel-section />
-        <!-- End Courses Section-->
-
-        <!-- Features Section -->
-        <x-features-section />
-        <!-- End Features Section-->
 
         <!-- Team Section -->
         <x-team-section />
