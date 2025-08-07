@@ -7,18 +7,7 @@
     <!--End Main Header -->
     
     <!-- Start main-content -->
-    <section class="page-title"
-        style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
-        <div class="auto-container">
-            <div class="title-outer">
-                <h1 class="title">Sobre Nosotros</h1>
-                <ul class="page-breadcrumb">
-                    <li><a href="">Home</a></li>
-                    <li>Sobre Nosotros</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    <x-page-header-about />
     <!-- end main-content -->
 
 
