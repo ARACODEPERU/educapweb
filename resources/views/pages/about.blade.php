@@ -11,6 +11,9 @@
     <!-- end main-content -->
 
 
+    <!-- About Section -->
+    <x-about-company />
+    <!--Emd About Section -->
 
     <!-- Team Section -->
     <x-team />
