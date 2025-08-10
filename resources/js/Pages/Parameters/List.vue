@@ -110,7 +110,7 @@
                                     </td>
                                     <td>
                                         <template v-if="parameter.control_type == 'in'">
-                                            <Input 
+                                            <Input
                                                 v-model:value="parameter.value_default"
                                                 @pressEnter="updateDefaultValue(parameter.id, parameter.value_default)"
                                             />
@@ -136,7 +136,7 @@
                                             <Textarea
                                                 v-model:value="parameter.value_default"
                                                 style="width: 100%"
-                                                show-count 
+                                                show-count
                                                 :maxlength="5000"
                                                 @change="updateDefaultValue(parameter.id, parameter.value_default)"
                                                 >
@@ -146,9 +146,9 @@
                                             <div>
                                                 <template v-for="(rdj, kec) in JSON.parse(parameter.json_query_data)">
                                                     <label class="inline-flex">
-                                                        <input 
+                                                        <input
                                                             v-model="parameter.value_default"
-                                                            type="radio" 
+                                                            type="radio"
                                                             :value="rdj.value"
                                                             :name="`radio-j-${index}`"
                                                             class="form-radio rounded-none"
@@ -159,6 +159,37 @@
                                                 </template>
                                             </div>
                                         </template>
+                                        <template v-else-if="parameter.control_type == 'chj'">
+                                            <div>
+                                                <template v-for="(rdj, kec) in JSON.parse(parameter.json_query_data)">
+                                                    <label class="inline-flex" :for="`checkbox-j-${index}-${kec}`">
+                                                        <input
+                                                            v-model="parameter.value_default"
+                                                            type="checkbox"
+                                                            :value="rdj.value"
+                                                            :name="`checkbox-j-${index}-${kec}`"
+                                                            :id="`checkbox-j-${index}-${kec}`"
+                                                            class="form-checkbox"
+                                                            @change="updateDefaultValue(parameter.id, rdj.value)"
+                                                        />
+                                                        <span>{{ rdj.label }}</span>
+                                                    </label>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template v-else-if="parameter.control_type == 'chx'">
+                                            <label class="w-12 h-6 relative">
+                                                <input
+                                                    v-model="parameter.value_default"
+                                                    type="checkbox"
+                                                    class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
+                                                    :id="`custom_switch_checkbox-${index}`"
+                                                    :value="1"
+                                                    @change="updateDefaultValue(parameter.id, parameter.value_default)"
+                                                />
+                                                <span :for="`custom_switch_checkbox-${index}`" class="bg-[#ebedf2] dark:bg-dark block h-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300 "></span>
+                                            </label>
+                                        </template>
                                     </td>
                                 </tr>
                             </tbody>
@@ -167,6 +198,6 @@
                 </div>
             </div>
         </div>
-        
+
     </AppLayout>
 </template>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('parameter_code')->unique();
             $table->string('description');
-            $table->char('control_type', 3)->nullable()->comment('in=text,sq=select(query),sa=select(json),chq=checkbox(query),chj=checkbox(json),tx=textarea,rgq=range(query),rgj=range(json),fl=file');
+            $table->char('control_type', 3)->nullable()->comment('in=text,sq=select(query),sa=select(json),chq=checkbox(query),chj=checkbox(json),tx=textarea,rgq=range(query),rgj=range(json),fl=file,chx=Checkbox');
             $table->text('json_query_data')->nullable();
             $table->text('value_default')->nullable();
             $table->timestamps();
@@ -97,7 +97,7 @@ return new class extends Migration
         Parameter::create([
             'parameter_code'    => 'P000011',
             'description'       => 'Correo electronico a donde llegaran los mensajes del modulo CRM  Buzón de correo',
-            'control_type'      => 'tx',
+            'control_type'      => 'in',
             'json_query_data'   => null,
             'value_default'     => 'aracode_atencion@gmail.com'
         ]);
@@ -112,8 +112,8 @@ return new class extends Migration
 
         Parameter::create([
             'parameter_code'    => 'P000013',
-            'description'       => 'Correo electronico remitente de mensajes del modulo CRM, correos enviados a estudiantes',
-            'control_type'      => 'tx',
+            'description'       => 'Correo electronico asistente para entencion de mensajes enviado por estudiantes',
+            'control_type'      => 'in',
             'json_query_data'   => null,
             'value_default'     => 'aracode_atencion@gmail.com'
         ]);
@@ -124,6 +124,30 @@ return new class extends Migration
             'control_type'      => 'rdj',
             'json_query_data'   => '[{"value": "1","label":"Lista de niveles (básico)"},{"value": "2","label":"Lista en Cascada (Avanzada)"}]',
             'value_default'     => 1
+        ]);
+
+        Parameter::create([
+            'parameter_code'    => 'P000015',
+            'description'       => 'Proveedor de inteligencia artificial, las configuraciones se realizan en el archivo .env de base-aracodeo server-socket nodejs',
+            'control_type'      => 'sa',
+            'json_query_data'   => '[{"value": "1","label":"OpenAI"},{"value": "2","label":"Gemini AI"}]',
+            'value_default'     => 2
+        ]);
+
+        Parameter::create([
+            'parameter_code'    => 'P000016',
+            'description'       => 'Destino para guardar certificado del estudiante',
+            'control_type'      => 'rdj',
+            'json_query_data'   => '[{"value": "1","label":"Enlace del archivo en repositorios externos"},{"value": "2","label":"Guardar imagen en local o generar certificado automático"}]',
+            'value_default'     => 1
+        ]);
+
+        Parameter::create([
+            'parameter_code'    => 'P000017',
+            'description'       => 'Correo Electronico administrador 1',
+            'control_type'      => 'in',
+            'json_query_data'   => null,
+            'value_default'     => 'aracode_atencion@gmail.com'
         ]);
     }
 

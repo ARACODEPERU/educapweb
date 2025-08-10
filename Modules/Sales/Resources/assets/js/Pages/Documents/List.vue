@@ -38,9 +38,24 @@
         unitTypes:{
             type: Object,
             default: () => ({}),
+        },
+        operationTypes:{
+            type: Object,
+            default: () => ({}),
+        },
+        creditNoteType: {
+            type: Object,
+            default: () => ({}),
+        },
+        debitNoteType: {
+            type: Object,
+            default: () => ({}),
         }
     });
 
+    const findObjectById = (data, id) => {
+        return data.find(item => item.id === id);
+    };
 
     const displayModalDetails = ref(false);
     const displayLoaderDetails = ref(false);
@@ -52,8 +67,8 @@
         }else{
             disabledButtonDetailsSave.value = true
         }
-
-        documentDetails.value = sales.documents[0];
+        console.log(sales)
+        documentDetails.value = sales.document;
         displayModalDetails.value = true;
     }
 
@@ -191,7 +206,8 @@
         client_email: null,
         invoice_broadcast_date: null,
         invoice_due_date: null,
-        invoice_status: null
+        invoice_status: null,
+        type_operation: null
     });
     const closeModalEditDocument = () => {
         displayEditDocument.value = false ;
@@ -210,6 +226,7 @@
         formHead.invoice_broadcast_date = document.invoice_broadcast_date;
         formHead.invoice_due_date = document.invoice_due_date;
         formHead.invoice_status = document.invoice_status;
+        formHead.type_operation = document.invoice_type_operation;
         displayEditDocument.value = true ;
     }
 
@@ -230,92 +247,92 @@
         });
     }
 
-const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
-}
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
+    }
 
-const createFormReason = () => {
+    const createFormReason = () => {
 
-    let formHTML = document.createElement('form');
-    formHTML.classList.add('max-w-sm', 'mx-auto');
+        let formHTML = document.createElement('form');
+        formHTML.classList.add('max-w-sm', 'mx-auto');
 
 
-    let rLabel = document.createElement('label');
-    rLabel.setAttribute('for', 'ctnTextareaReason');
-    rLabel.classList.add('text-left','text-sm','mt-4');
-    rLabel.textContent = 'Ingresar motivo de anulacion';
+        let rLabel = document.createElement('label');
+        rLabel.setAttribute('for', 'ctnTextareaReason');
+        rLabel.classList.add('text-left','text-sm','mt-4');
+        rLabel.textContent = 'Ingresar motivo de anulacion';
 
-    let rInput = document.createElement('textarea');
-    rInput.id = 'ctnTextareaReason';
-    rInput.classList.add(
-        'form-textarea'
-    );
+        let rInput = document.createElement('textarea');
+        rInput.id = 'ctnTextareaReason';
+        rInput.classList.add(
+            'form-textarea'
+        );
 
-    rInput.required = true;
-    rInput.rows = 3;
+        rInput.required = true;
+        rInput.rows = 3;
 
-    formHTML.appendChild(rLabel);
-    formHTML.appendChild(rInput);
+        formHTML.appendChild(rLabel);
+        formHTML.appendChild(rInput);
 
-    return formHTML;
+        return formHTML;
 
-}
+    }
 
-const cancelDocument = (index, item) => {
-    Swal.fire({
-        icon: 'question',
-        title: '¿Estas seguro?',
-        text: "¡No podrás revertir esto!",
-        showCancelButton: true,
-        confirmButtonText: '¡Sí, Anularlo!',
-        cancelButtonText: '¡No, cancelar!',
-        padding: '2em',
-        customClass: 'sweet-alerts',
-    }).then((result) => {
-        if (result.value) {
-            Swal.fire({
-                html: createFormReason(),
-                showCloseButton: true,
-                showCancelButton: true,
-                focusConfirm: false,
-                confirmButtonText: 'Aceptar',
-                cancelButtonText: 'Cancelar',
-                padding: '2em',
-                customClass: 'sweet-alerts',
-                showLoaderOnConfirm: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                preConfirm: async (input) => {
-                    let textarea = document.getElementById("ctnTextareaReason").value;
-                    let resp = null;
-                    if(textarea){
-                        resp = axios.post(route('saledocuments_cancel_document'), {
-                            reason: textarea,
-                            id: item.document_id,
-                            type: item.invoice_type_doc
-                        }).then((res) => {
-                            if (!res.data.success) {
-                                Swal.showValidationMessage(res.data.alert)
-                            }
-                            return res
-                        });
-                    }else{
-                        Swal.showValidationMessage('El motivo es obligatorio')
+    const cancelDocument = (index, item) => {
+        Swal.fire({
+            icon: 'question',
+            title: '¿Estas seguro?',
+            text: "¡No podrás revertir esto!",
+            showCancelButton: true,
+            confirmButtonText: '¡Sí, Anularlo!',
+            cancelButtonText: '¡No, cancelar!',
+            padding: '2em',
+            customClass: 'sweet-alerts',
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    html: createFormReason(),
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: 'Aceptar',
+                    cancelButtonText: 'Cancelar',
+                    padding: '2em',
+                    customClass: 'sweet-alerts',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    preConfirm: async (input) => {
+                        let textarea = document.getElementById("ctnTextareaReason").value;
+                        let resp = null;
+                        if(textarea){
+                            resp = axios.post(route('saledocuments_cancel_document'), {
+                                reason: textarea,
+                                id: item.document_id,
+                                type: item.invoice_type_doc
+                            }).then((res) => {
+                                if (!res.data.success) {
+                                    Swal.showValidationMessage(res.data.alert)
+                                }
+                                return res
+                            });
+                        }else{
+                            Swal.showValidationMessage('El motivo es obligatorio')
+                        }
+                        return resp;
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((res) => {
+                    if (res.isConfirmed) {
+                        showMessage('El documento fue anulado correctamente');
+                        //refreshTable();
                     }
-                    return resp;
-                },
-                allowOutsideClick: () => !Swal.isLoading()
-            }).then((res) => {
-                if (res.isConfirmed) {
-                    showMessage('El documento fue anulado correctamente');
-                    //refreshTable();
-                }
-                refreshTable();
-            });
-        }
-    });
-}
+                    refreshTable();
+                });
+            }
+        });
+    }
 
     const showMessage = (msg = '', type = 'success') => {
         const toast = Swal.mixin({
@@ -344,6 +361,7 @@ const cancelDocument = (index, item) => {
         { data: 'full_name', title: 'Cliente' },
         { data: 'total', title: 'Total' },
         { data: null, render: '#status', title: 'Estado' },
+        { data: null, render: '#forma_pago', title: 'Forma de pago' },
     ];
 
     const options = {
@@ -353,13 +371,16 @@ const cancelDocument = (index, item) => {
     }
 
     const documentTable = ref(null);
+    let instance = null;
+
+    onMounted(() => {
+        instance = documentTable.value?.dt;
+    });
 
     const refreshTable = () => {
-        const dataTableInstance = documentTable.value?.dt; // accede a la instancia del DataTable
-        if (dataTableInstance) {
-            setInterval(function () {
-                dataTableInstance.ajax.reload();
-            }, 30000);
+        // accede a la instancia del DataTable
+        if (instance) {
+            instance.ajax.url(route('saledocuments_table_document')).load();
         }
     };
 
@@ -419,12 +440,14 @@ const cancelDocument = (index, item) => {
                                         <li>
                                             <a @click="downloadDocument(props.rowData.document_id,props.rowData.invoice_type_doc,'PDF','t80')" href="javascript:;">PDF 80x250</a>
                                         </li>
-                                        <li v-if="props.rowData.invoice_status === 'Aceptada'">
-                                            <a @click="downloadDocument(props.rowData.document_id,props.rowData.invoice_type_doc,'XML')" href="javascript:;">Descargar XML</a>
-                                        </li>
-                                        <li v-if="props.rowData.invoice_status === 'Aceptada'">
-                                            <a @click="downloadDocument(props.rowData.document_id,props.rowData.invoice_type_doc,'CDR')" href="javascript:;">Descargar CDR</a>
-                                        </li>
+                                        <template v-if="props.rowData.invoice_type_doc == '01'">
+                                            <li v-if="props.rowData.invoice_status === 'Aceptada'">
+                                                <a @click="downloadDocument(props.rowData.document_id,props.rowData.invoice_type_doc,'XML')" href="javascript:;">Descargar XML</a>
+                                            </li>
+                                            <li v-if="props.rowData.invoice_status === 'Aceptada'">
+                                                <a @click="downloadDocument(props.rowData.document_id,props.rowData.invoice_type_doc,'CDR')" href="javascript:;">Descargar CDR</a>
+                                            </li>
+                                        </template>
                                     </ul>
                                     </template>
                                 </Popper>
@@ -445,7 +468,15 @@ const cancelDocument = (index, item) => {
                                 </code>
                             </span>
                         </div>
-                        <p v-if="props.rowData.status == 3" class="text-xs font-black text-danger">Motivo de anulacion: {{ props.rowData.reason_cancellation }}</p>
+                        <div v-if="props.rowData.status == 3 && props.rowData.document.note">
+                            <h6 class="font-semibold" >
+                                NOTA DE {{ props.rowData.document.note.invoice_type_doc == '07' ? 'CRÉDITO': 'DÉBITO' }}: {{ props.rowData.document.note.invoice_serie }}-{{ props.rowData.document.note.invoice_correlative }}
+                            </h6>
+                            <p  class="text-xs font-black text-danger">
+                                <template v-if="props.rowData.document.note.invoice_type_doc == '07'" class="text-xs font-black text-danger">MOTIVO: {{ findObjectById(creditNoteType,props.rowData.document.note.note_type_operation_id)?.description }}</template>
+                                <template v-if="props.rowData.document.note.invoice_type_doc == '08'" class="text-xs font-black text-danger">MOTIVO: {{ findObjectById(debitNoteType,props.rowData.document.note.note_type_operation_id)?.description }}</template>
+                            </p>
+                        </div>
                     </template>
                     <template #created="props">
                         {{ formatDate(props.rowData.created_at) }}
@@ -459,6 +490,12 @@ const cancelDocument = (index, item) => {
                             <small>Estado Sunat:</small>
                             {{ props.rowData.invoice_status }}
                         </span>
+                    </template>
+                    <template #forma_pago="props">
+                        <span v-if="props.rowData.document.forma_pago == 'Credito'" class="relative inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-500 text-white z-10">
+                            Al crédito
+                        </span>
+                        <span v-else class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">Al contado</span>
                     </template>
                 </DataTable>
 
@@ -638,12 +675,21 @@ const cancelDocument = (index, item) => {
                         <InputError :message="formHead.errors.invoice_due_date" class="mt-2" />
                     </div>
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="invoice_status" value="Esatdo sunat" />
+                        <InputLabel for="invoice_status" value="Estado sunat" />
                         <select v-model="formHead.invoice_status" id="invoice_status" class="form-select">
                             <option :value="'Pendiente'">Pendiente</option>
                             <option :value="'Rechazada'">Rechazada</option>
                         </select>
                         <InputError :message="formHead.errors.invoice_status" class="mt-2" />
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <InputLabel for="type_operation" value="Tipo de operación" />
+                        <select v-model="formHead.type_operation" id="type_operation" class="form-select">
+                            <template v-for="operationType in operationTypes">
+                                <option :value="operationType.id">{{ operationType.description }}</option>
+                            </template>
+                        </select>
+                        <InputError :message="formHead.errors.type_operation" class="mt-2" />
                     </div>
                 </div>
             </template>
@@ -667,25 +713,4 @@ const cancelDocument = (index, item) => {
         </DialogModal>
     </AppLayout>
 </template>
-<style scoped>
-.invoice-select{
-    margin: 0px !important;
-    padding: 1px !important;
-    height: 26px !important;
-    width: 100% !important;
-    font-size: 12px;
-}
-.invoice-imput{
-    margin: 0px !important;
-    padding: 1px !important;
-    height: 26px !important;
-    width: 100% !important;
-    font-size: 12px;
-}
-.invoice-textarea{
-    margin: 0px !important;
-    padding: 1px !important;
-    width: 100% !important;
-    font-size: 12px;
-}
-</style>
+

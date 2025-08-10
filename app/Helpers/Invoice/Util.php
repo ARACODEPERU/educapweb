@@ -163,10 +163,10 @@ final class Util
         return $filePath;
     }
 
-    public function generatePdf(DocumentInterface $document, $seller = null, $qr_path = null, $format = 'A4', $status = 1,)
+    public function generatePdf(DocumentInterface $document, $seller = null, $qr_path = null, $format = 'A4', $status = 1, $forma_pago = 'Contado')
     {
 
-        $params = self::getParametersPdf($this->company, $seller);
+        $params = self::getParametersPdf($this->company, $seller, $forma_pago);
 
         $fileDir = public_path();
 
@@ -178,13 +178,22 @@ final class Util
         $filePath = $fileDir . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'invoice' . DIRECTORY_SEPARATOR . $filename;
 
         if ($format == 'A4') {
-
-            $pdf = Pdf::loadView('sales::sales.invoice_a4', [
-                'document' => $document,
-                'params' => $params,
-                'qr_path' => $qr_path,
-                'status' => $status
-            ]);
+            //dd($document);
+            if($document->getTipoDoc() == '07' || $document->getTipoDoc() == '08'){
+                $pdf = Pdf::loadView('sales::sales.notas_a4', [
+                    'document' => $document,
+                    'params' => $params,
+                    'qr_path' => $qr_path,
+                    'status' => $status
+                ]);
+            }else{
+                $pdf = Pdf::loadView('sales::sales.invoice_a4', [
+                    'document' => $document,
+                    'params' => $params,
+                    'qr_path' => $qr_path,
+                    'status' => $status
+                ]);
+            }
 
             $pdf->setPaper('a4', 'portrait');
         } else if ($format == 't80') {
@@ -194,7 +203,7 @@ final class Util
                 'qr_path' => $qr_path,
                 'status' => $status
             ]);
-            $pdf->setPaper(array(0, 0, 273, 500), 'portrait');
+            $pdf->setPaper(array(0, 0, 273, 1000), 'portrait');
         }
 
 
@@ -324,7 +333,7 @@ final class Util
     /**
      * @return array<string, array<string, array<int, array<string, string>>|bool|string>>
      */
-    private static function getParametersPdf($company, $seller = null): array
+    private static function getParametersPdf($company, $seller = null, $forma_pago = 'Contado'): array
     {
 
         $seller_name = 'ARACODE SELLER';
@@ -344,7 +353,7 @@ final class Util
                 'extras' => [
                     [
                         'name' => 'FORMA DE PAGO',
-                        'value' => 'Contado'
+                        'value' => $forma_pago
                     ],
                     [
                         'name' => 'VENDEDOR',

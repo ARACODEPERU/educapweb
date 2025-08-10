@@ -14,6 +14,8 @@
 use App\Http\Controllers\ApisnetPeController;
 use App\Http\Controllers\LocalSaleController;
 use Illuminate\Support\Facades\Route;
+use Modules\Sales\Http\Controllers\AccountsReceivableController;
+use Modules\Sales\Http\Controllers\InvoiceReportsController;
 use Modules\Sales\Http\Controllers\PettyCashController;
 use Modules\Sales\Http\Controllers\ProductController;
 use Modules\Sales\Http\Controllers\ProviderController;
@@ -22,6 +24,7 @@ use Modules\Sales\Http\Controllers\SaleController;
 use Modules\Sales\Http\Controllers\SaleCreditNotesController;
 use Modules\Sales\Http\Controllers\SaleDocumentController;
 use Modules\Sales\Http\Controllers\SaleLowCommunicationController;
+use Modules\Sales\Http\Controllers\SalePaymentQuotaController;
 use Modules\Sales\Http\Controllers\SalePhysicalDocumentController;
 use Modules\Sales\Http\Controllers\SaleProductBrandController;
 use Modules\Sales\Http\Controllers\SaleProductCategoryController;
@@ -127,6 +130,7 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::post('salesummary/store', [SaleSummaryController::class, 'store'])->name('salesummaries_store_date');
     Route::get('salesummary/check/{id}/{ticket}', [SaleSummaryController::class, 'checkSummary'])->name('salesummaries_store_check');
     Route::get('salesummary/destroy/{id}', [SaleSummaryController::class, 'destroySummary'])->name('salesummaries_destroy');
+    Route::get('salesummary/download/{id}/{type}', [SaleSummaryController::class, 'downloadFile'])->name('salesummaries_download');
 
     ////rutas de comunicacion de baja
     Route::get('lowcommunication/list', [SaleLowCommunicationController::class, 'index'])->name('low_communication_list');
@@ -134,6 +138,7 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::post('lowcommunication/store', [SaleLowCommunicationController::class, 'store'])->name('low_communication_store');
     Route::get('lowcommunication/check/{id}/{ticket}', [SaleLowCommunicationController::class, 'check'])->name('low_communication_check');
     Route::get('lowcommunication/destroy/{id}', [SaleLowCommunicationController::class, 'destroy'])->name('low_communication_destroy');
+    Route::get('lowcommunication/download/{id}/{type}', [SaleLowCommunicationController::class, 'downloadFile'])->name('low_communication_download');
     ////rutas de notas de credito
     Route::get('creditnote/list', [SaleCreditNotesController::class, 'index'])->name('sale_credit_notes_list');
     Route::get('creditnote/table', [SaleCreditNotesController::class, 'tableDocument'])->name('sale_credit_notes_table');
@@ -192,4 +197,13 @@ Route::middleware(['auth', 'verified'])->prefix('sales')->group(function () {
     Route::post('dashboard/total/balance/table', [SalesController::class, 'totalBalanceTables'])->name('sales_dashboard_total_balance');
     Route::post('dashboard/total/summary/document', [SalesController::class, 'getSummaryTotals'])->name('sales_dashboard_total_summary');
     Route::post('netapies/search/person', [ApisnetPeController::class, 'consult'])->name('sales_search_person_apies');
+
+    Route::get('reports/invoice', [InvoiceReportsController::class, 'index'])->name('reports_invoice');
+
+
+    Route::get('accountsreceivable/document/list', [AccountsReceivableController::class, 'index'])->name('acco_document_list');
+    Route::get('accountsreceivable/document/table', [AccountsReceivableController::class, 'tableDocument'])->name('acco_table_document');
+    Route::post('accountsreceivable/document/payments/store', [SalePaymentQuotaController::class, 'store'])->name('acco_table_document_payment_store');
+    Route::delete('accountsreceivable/document/payments/destroy/{id}', [SalePaymentQuotaController::class, 'destroy'])->name('acco_table_document_payment_destroy');
+    Route::post('accountsreceivable/document/paymentsfull/store', [SalePaymentQuotaController::class, 'storePayFull'])->name('acco_table_document_payment_full_store');
 });

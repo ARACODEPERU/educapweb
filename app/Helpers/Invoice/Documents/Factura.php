@@ -17,9 +17,11 @@ use Exception;
 use Greenter\Model\Company\Address;
 use Greenter\Model\Company\Company;
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
+use Greenter\Model\Sale\FormaPagos\FormaPagoCredito;
 use Greenter\Model\Sale\Charge;
 use Greenter\Model\Sale\Detraction;
 use App\Helpers\Invoice\QrCodeGenerator;
+use App\Models\District;
 use App\Models\Kardex;
 use App\Models\KardexSize;
 use App\Models\Product;
@@ -27,7 +29,7 @@ use App\Models\Sale;
 use App\Models\SaleDocumentItem;
 use App\Models\SaleProduct;
 use Illuminate\Support\Facades\DB;
-
+use Greenter\Model\Sale\Cuota;
 class Factura
 {
     protected $see;
@@ -42,7 +44,10 @@ class Factura
     public function create($document_id)
     {
         try {
-            $document = SaleDocument::find($document_id);
+            $document = SaleDocument::with(['quotas' => function ($query) {
+                $query->orderBy('due_date', 'asc'); // Ordena las cuotas por fecha de pago ascendente
+            }])->find($document_id);
+
             $invoice = $this->setDocument($document);
             $see = $this->util->getSee();
             $res = $see->send($invoice);
@@ -96,10 +101,26 @@ class Factura
         $department = $province->department;
         $broadcast_date = new DateTime($document->invoice_broadcast_date . ' ' . Carbon::parse($document->created_at)->format('H:m:s'));
         // Cliente
+        $clientCity = District::with('province.department')->where('id',$document->client_ubigeo_code)->first();
+
         $client = (new Client())
             ->setTipoDoc($document->client_type_doc)
             ->setNumDoc($document->client_number)
             ->setRznSocial($document->client_rzn_social);
+
+        if($clientCity ){
+            $clientAddress = (new Address())
+                ->setUbigueo($document->client_ubigeo_code)
+                ->setDepartamento($clientCity->province->department->name)
+                ->setProvincia($clientCity->province->name)
+                ->setDistrito($clientCity->name)
+                ->setUrbanizacion('-')
+                ->setDireccion($document->client_address);
+
+            $client->setAddress($clientAddress);
+        }
+
+        //dd($client);
         // Emisor
         $address = (new Address())
             ->setUbigueo($establishment->ubigeo)
@@ -120,13 +141,38 @@ class Factura
 
         // Venta
         $invoice = new Invoice();
+
+        if($document->forma_pago == 'Contado'){
+            $invoice->setFormaPago(new FormaPagoContado()); // FormaPago: Contado
+        }else{
+
+            $cuotasGreenter = [];
+            foreach ($document->quotas as $key => $quota) {
+                $dueDateStr = $quota->due_date ?? null;
+                $amount = $quota->amount ?? 0.01;
+                try {
+                    // Paso CRÍTICO: Crea un objeto DateTime a partir de la cadena de fecha
+                    $fechaPago = new DateTime($dueDateStr);
+
+                    $cuotasGreenter[] = (new Cuota())
+                        ->setMonto((float) $amount) // Asegúrate de que el monto sea float
+                        ->setFechaPago($fechaPago);
+
+                } catch (\Exception $e) {
+                    continue;
+                }
+            }
+
+            $invoice->setFormaPago(new FormaPagoCredito($document->overall_total))
+                ->setCuotas($cuotasGreenter); // FormaPago: Credito
+        }
+
         $invoice->setUblVersion($document->invoice_ubl_version)
             ->setTipoOperacion($document->invoice_type_operation)
             ->setTipoDoc($document->invoice_type_doc)
             ->setSerie($document->invoice_serie)
             ->setCorrelativo($document->invoice_correlative)
             ->setFechaEmision($broadcast_date)
-            ->setFormaPago(new FormaPagoContado()) // FormaPago: Contado
             ->setTipoMoneda('PEN')
             ->setCompany($company)
             ->setClient($client)
@@ -237,9 +283,9 @@ class Factura
 
             $qr_path = $generator->generateQR($cadenaqr, $dir, $invoice->getName() . '.png', 8, 2);
 
-
             $seller = User::find($document->user_id);
-            $pdf = $this->util->generatePdf($invoice, $seller, $qr_path, $format, $document->status);
+            $pdf = $this->util->generatePdf($invoice, $seller, $qr_path, $format, $document->status, $document->forma_pago);
+
             $document->invoice_pdf = $pdf;
             $document->save();
 
@@ -377,4 +423,5 @@ class Factura
             return false;
         }
     }
+
 }

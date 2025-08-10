@@ -10,10 +10,12 @@ import {
     faListOl,
     faFileLines,
     faFileArrowDown,
-    faFileFragment
+    faFileFragment,
+    faFileCircleQuestion
 } from "@fortawesome/free-solid-svg-icons";
 
-const menuSales = [{
+const menuSales = [
+    {
         status: true,
         text: "Ventas",
         icom: faCashRegister,
@@ -63,7 +65,7 @@ const menuSales = [{
             {
                 route: route("establishments.index"),
                 status: false,
-                text: "Tiendas",
+                text: "Establecimiento",
                 permissions: "sale_tienda",
                 icom: faLocationDot,
             },
@@ -99,7 +101,7 @@ const menuSales = [{
 
     },
     {
-        status:false,
+        status: true,
         text: 'Facturación Electrónica',
         icom: faBolt,
         route: 'module',
@@ -139,7 +141,30 @@ const menuSales = [{
                 text: 'Comunicacion de Baja',
                 permissions: 'invo_comunicacion_baja',
                 icom: faFileArrowDown,
-            }
+            },
+            // {
+            //     route: route('reports_invoice'),
+            //     status: false,
+            //     text: 'Reportes',
+            //     permissions: 'invo_reportes',
+            //     icom: faChartLine,
+            // }
+        ]
+    },
+    {
+        status: true,
+        text: 'Cuentas por cobrar',
+        icom: faBolt,
+        route: 'module',
+        permissions: 'acco_dashboard',
+        items: [
+            {
+                route: route('acco_document_list'),
+                status: false,
+                text: 'Lista Documento',
+                permissions: 'acco_documento_listado',
+                icom: faFileCircleQuestion,
+            },
         ]
     }
 ];
