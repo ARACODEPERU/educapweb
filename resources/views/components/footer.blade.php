@@ -16,7 +16,7 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
                                 </a>
                             </div>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe modi harum cum perferendis provident dignissimos porro doloribus.
+                                CPROD capacita y certifica a entrenadores y profesionales del fútbol formativo con programas, talleres y diplomados online de alcance internacional.
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
                             <h4 class="widget-title">Politicas</h4>
                             <ul class="user-links">
                                 <li><a href="#">Calidad</a></li>
-                                <li><a href="#">Privacidad</a></li>
+                                <li><a href="{{ route('web_privacy_policies') }}">Privacidad</a></li>
                                 <li><a href="#">Libro de reclamaciones</a></li>
                             </ul>
                         </div>
@@ -54,21 +54,22 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
                                 <ul class="contact-info">
                                     <li>
                                         <i class="fa fa-phone-square"></i>
-                                        <a href="tel:+51977627207">+51 977627207</a>
+                                        <a href="tel:+51907728496">(+51) 907 728 496</a>
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope"></i>
                                         <a href="">
-                                            correo@dominio.com
+                                            admi.cprod@gmail.com
                                         </a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-map-marker-alt"></i> Dirección de la oficina principal
+                                        <i class="fa fa-map-marker-alt"></i> Domus Hogares Sector 6 mz A lote 1
                                     </li>
                                 </ul>
                                 <ul class="social-icon-two">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/cprod.oficial"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a target="_blank" href="https://www.instagram.com/cprod.oficial/"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a target="_blamk" href="https://www.youtube.com/@CPROD-capacitaci%C3%B3n"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>

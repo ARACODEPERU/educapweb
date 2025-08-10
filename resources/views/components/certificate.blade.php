@@ -8,11 +8,9 @@
                     <div style="padding: 60px 0px 40px 0px;">
                         <h2 style="color: #fff;">Certificado de <br>Estudio</h2>
                         <p style="color: #fff;">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, pariatur similique rerum
-                            mollitia neque iste et quis obcaecati velit culpa enim magni incidunt aut error quia sint
-                            quos. Optio, fuga.
+                            Al finalizar el curso recibirás un certificado reconocido que validará tus conocimientos, impulsará tu desarrollo profesional y te abrirá nuevas oportunidades laborales.
                         </p>
-                        <a href="" class="theme-btn btn-style-one">
+                        <a href="{{ route('web_courses') }}" class="theme-btn btn-style-one">
                             <span class="btn-title">Ver Cusos</span>
                         </a>
                     </div>

@@ -75,6 +75,11 @@ class WebPageController extends Controller
         ]);
     }
 
+    public function privacypolicies()
+    {
+        return view('pages.privacy-policies');
+    }
+
     public function capacitacion()
     {
 
