@@ -6,7 +6,7 @@
                     <!-- Slide 1 -->
                     <li data-index="rs-1" data-transition="zoomout">
                         <!-- MAIN IMAGE -->
-                        <img style="width: 100%;" src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}"
+                        <img style="max-width: 100%; height: auto;"  src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}"
                             alt="" class="rev-slidebg">
 
                     </li>
