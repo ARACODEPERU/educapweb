@@ -7,10 +7,9 @@ import {
     faRocket,
     faCertificate,
     faPlay,
-    faUserGroup
+    faMugHot,
+    faChartLine
 } from "@fortawesome/free-solid-svg-icons";
-import { ref } from 'vue';
-import axios from 'axios';
 
 const menuAcademic = {
     status: false,
@@ -91,6 +90,21 @@ const menuAcademic = {
             icom: faBookOpen,
             permissions: "aca_miscursos",
             id: 'btnMenuMycourses'
+        },
+        {
+            route: route("aca_student_exam_review_exams"),
+            status: false,
+            text: "Revisar examenes",
+            icom: faMugHot,
+            permissions: "aca_cursos_revisar_examenes",
+            id: 'btnReviewExams'
+        },
+        {
+            route: route('aca_reports_dashboard'),
+            status: false,
+            text: 'Reportes',
+            permissions: 'aca_reportes',
+            icom: faChartLine,
         }
     ],
 };

@@ -24,8 +24,9 @@ class SaleSummaryController extends Controller
     public function index()
     {
         $summaries = (new SaleSummary())->newQuery();
-        if (request()->has('search')) {
-            $summaries->whereDate('summary_date', '=', '%' . request()->input('search') . '%');
+
+        if (request()->has('search') && request()->get('search')) {
+            $summaries->whereDate('summary_date', '=', request()->input('search'));
         }
         if (request()->query('sort')) {
             $attribute = request()->query('sort');
@@ -38,6 +39,8 @@ class SaleSummaryController extends Controller
         } else {
             $summaries->latest();
         }
+
+        $summaries = $summaries->with('details.document');
 
         $summaries = $summaries->paginate(10)->onEachSide(2);
 
@@ -175,5 +178,19 @@ class SaleSummaryController extends Controller
         } catch (Exception $e) {
             var_dump($e);
         }
+    }
+
+    public function downloadFile($id,$type){
+        $sum = SaleSummary::find($id);
+        if ($type == 'XML'){
+            $content_type =  'application/xml';
+            $fileName = $sum->summary_name. '.xml';
+            return response()->download($sum->xml, $fileName, ['content-type' => $content_type]);
+        }else{
+            $content_type =  'application/zip';
+            $fileName = $sum->summary_name. '.zip';
+            return response()->download($sum->cdr, $fileName, ['content-type' => $content_type]);
+        }
+
     }
 }
