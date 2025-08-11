@@ -4,7 +4,7 @@
 
             <div class="sec-title">
                 <span class="sub-title">Nuevos Cursos</span>
-                <h2>Elige un curso para<br> comenzar tu estudio</h2>
+                <h2>Elige un curso para comenzar tu estudio</h2>
             </div>
 
             {{-- <div class="carousel-outer">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>  --}}
 
             <div class="bottom-text">
                 <a href="" class="theme-btn btn-style-one small">Ver todos cursos</a>

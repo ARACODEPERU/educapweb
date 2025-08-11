@@ -15,7 +15,7 @@
         <div class="container pb-100">
             <div class="row">
                 @foreach ( $courses as $course)
-                    <div class="course-block-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="course-block-two col-md-12">
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">

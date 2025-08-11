@@ -3363,6 +3363,7 @@ Section Title
 ***/
 .main-slider {
   position: relative;
+  width: 100%;
 }
 
 .main-slider .title {
