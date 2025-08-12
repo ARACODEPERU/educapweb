@@ -664,6 +664,29 @@ class WebPageController extends Controller
             'person' => $person,
         ]);
     }
+            // la funcion thanks es la que funciona para CPROD
+    public function thanks($id)
+    {
+
+
+            $sale = OnliSale::with('details.item')->where('id', $id)->first();
+
+            if ($sale) {
+                // Obtener los onli_item_id de los detalles de la venta
+                $itemIds = $sale->details->pluck('onli_item_id')->toArray();
+
+                // Obtener los cursos (OnliItem) que coincidan con los onli_item_id
+                $courses = OnliItem::whereIn('id', $itemIds)->get();
+            } else {
+                // Si no se encuentra la venta, inicializar cursos como una colección vacía
+                $courses = collect();
+            }
+
+            return view('pages.thanks', [
+                'sale' => $sale,
+                'courses' => $courses,
+            ]);
+    }
 
     private function enviar_correo_con_cursos($sale_id)
     {

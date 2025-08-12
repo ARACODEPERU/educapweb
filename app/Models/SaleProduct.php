@@ -22,8 +22,17 @@ class SaleProduct extends Model
         'entity_name_product'
     ];
 
+    protected $casts = [
+        'product' => 'array',
+        'saleProduct' => 'array'
+    ];
     public function sale()
     {
         return $this->belongsTo(Sale::class, 'sale_id', 'id');
+    }
+    // Nueva relación con AcaCourse
+    public function course()
+    {
+        return $this->belongsTo(AcaCourse::class, 'product_id');
     }
 }

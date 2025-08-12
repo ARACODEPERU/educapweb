@@ -235,7 +235,7 @@ class WebController extends Controller
 
                     foreach ($products as $product) {
                         $this->matricular_curso($product, $product['student_id']);
-                        //llenando los detalles de la nota de venta
+
                         $xpro = AcaCourse::find($product['item_id']);
                         SaleProduct::create([
                             'sale_id' => $sale_note->id,
@@ -252,9 +252,20 @@ class WebController extends Controller
                     $sale->save();
 
                     ///enviar correo
-                    Mail::to($sale->email)
+                    try {
+                        Mail::to($sale->email)
                         ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
 
+                    } catch (\Throwable $th) {
+                        try {
+                            //si hay error se enviará este
+                        Mail::to(env('MAIL_FROM_ADDRESS'))
+                        ->send(new ConfirmPurchaseMail(OnliSale::with('details.item')->where('id', $id)->first()));
+
+                        } catch (\Throwable $th) {
+                            //throw $th;
+                        }
+                    }
 
                     return response()->json([
                         'status' => $payment->status,
