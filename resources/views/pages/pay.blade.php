@@ -158,85 +158,88 @@
 
 @stop
 @section('javaScripts')
-    @if ($preference_id)
-        <script>
-            const mp = new MercadoPago("{{ env('MERCADOPAGO_KEY') }}", {
-                locale: 'es-PE'
-            });
-            const bricksBuilder = mp.bricks();
-            const renderCardPaymentBrick = async (bricksBuilder) => {
-                const settings = {
-                    initialization: {
-                        preferenceId: "{{ $preference_id }}",
-                        amount: {{ $price }},
-                    },
-                    customization: {
-                        visual: {
-                            style: {
-                                customVariables: {
-                                    theme: 'bootstrap',
-                                }
-                            }
-                        },
-                        paymentMethods: {
-                            maxInstallments: 1,
+@if ($preference)
+<script>
+    const mp = new MercadoPago("{{ env('MERCADOPAGO_KEY') }}", {
+        locale: 'es-PE'
+    });
+    const bricksBuilder = mp.bricks();
+    const renderCardPaymentBrick = async (bricksBuilder) => {
+        const settings = {
+            initialization: {
+                preferenceId: "{{ $preference }}",
+                amount: {{ $total }},
+            },
+            customization: {
+                visual: {
+                    style: {
+                        customVariables: {
+                            theme: 'bootstrap',
                         }
-                    },
-                    callbacks: {
-                        onReady: () => {
-                            // callback llamado cuando Brick esté listo
-                        },
-                        onSubmit: (cardFormData) => {
-                            cardFormData.sale_id = "{{ $sale_id }}";
-                            //  callback llamado cuando el usuario haga clic en el botón enviar los datos
-                            //  ejemplo de envío de los datos recolectados por el Brick a su servidor
-                            return new Promise((resolve, reject) => {
-                                fetch("{{ route('web_client_account_process') }}", {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                                        },
-                                        body: JSON.stringify(cardFormData)
-                                    })
-                                    .then((response) => {
-                                        if (!response.ok) {
-                                            return response.json().then(error => {
-                                                throw new Error(error.error);
-                                            });
-                                        }
-                                        return response.json();
+                    }
+                },
+                paymentMethods: {
+                    maxInstallments: 1,
+                }
+            },
+            callbacks: {
+                onReady: () => {
+                    // callback llamado cuando Brick esté listo
+                },
+                onSubmit: (cardFormData) => {
+                    //  callback llamado cuando el usuario haga clic en el botón enviar los datos
+                    //  ejemplo de envío de los datos recolectados por el Brick a su servidor
+                    let products = @json($products);
+                    return new Promise((resolve, reject) => {
+                        cardFormData.products = products;
+                        const personInvoice = @json($personInvoice ?? null);
+                        fetch("{{ route('web_process_payment', [$sale_id, $student_id]) }}", {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                                },
+                                body: JSON.stringify({ // Envía un único objeto con ambos datos
+                                                        cardFormData: cardFormData,
+                                                        personInvoice: personInvoice
+                                                    })
+                            }).then((response) => {
+                                if (!response.ok) {
+                                    return response.json().then(error => {
+                                        throw new Error(error.error);
+                                    });
+                                }
+                                return response.json();
 
-                                    })
-                                    .then((data) => {
-                                        if (data.status == 'approved') {
-                                            window.location.href = data.url;
-                                        } else {
-                                            alert(data.message);
-                                            window.location.reload();
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        if (error instanceof SyntaxError) {
-                                            // Si hay un error de sintaxis al analizar la respuesta JSON
-                                            alert('Error al procesar el pago.');
-                                        } else {
-                                            // Mostrar la alerta con el mensaje de error devuelto por el backend
-                                            alert(error.message);
-                                        }
-                                        window.location.reload();
-                                    })
-                            });
-                        },
-                        onError: (error) => {
-                            console.log(error)
-                        },
-                    },
-                };
-                window.cardPaymentBrickController = await bricksBuilder.create('cardPayment',
-                    'cardPaymentBrick_container', settings);
-            };
-            renderCardPaymentBrick(bricksBuilder);
-        </script>
-    @endif
+                            })
+                            .then((data) => {
+                                if (data.status == 'approved') {
+                                    window.location.href = data.url;
+                                } else {
+                                    alert('No se pudo continuar el proceso');
+                                    window.location.href = data.url;
+                                }
+                            })
+                            .catch((error) => {
+                                if (error instanceof SyntaxError) {
+                                    // Si hay un error de sintaxis al analizar la respuesta JSON
+                                    alert('Error al procesar el pago.');
+                                } else {
+                                    // Mostrar la alerta con el mensaje de error devuelto por el backend
+                                    alert(error.message);
+                                }
+                            })
+                    });
+                },
+                onError: (error) => {
+                    console.log(error)
+                },
+            },
+        };
+        window.cardPaymentBrickController = await bricksBuilder.create('cardPayment',
+            'cardPaymentBrick_container', settings);
+    };
+    renderCardPaymentBrick(bricksBuilder);
+</script>
+@endif
 @stop

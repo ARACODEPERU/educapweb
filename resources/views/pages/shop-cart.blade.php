@@ -25,7 +25,7 @@
     </section>
     <!-- end main-content -->
 
-    
+
 
     {{-- codigo de recapcha --}}
     <script type="text/javascript">
@@ -141,90 +141,141 @@
                     </div>
                     <div class="col-md-4">
                         <h4>Datos del alumno</h4>
-                        <form class="form" method="POST" action="{{ route('web_client_account_store') }}" id ="CartForm">
-                            @csrf
-                            <div id="divCartHidden" style="display: none">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 mb-10">
-                                    <input type="text" name="names" class="form-control" placeholder="Nombres"
-                                        value="{{ old('names') }}">
-                                    @error('names')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
+
+
+                        @auth
+                                                            {{-- USUARIO LOGUEADO --}}
+                            <form class="form" method="POST" action="{{ route('paying_auth') }}" id ="CartForm">
+                                @csrf
+                                <div id="divCartHidden" style="display: none">
                                 </div>
-                                <div class="col-md-6 mb-10">
-                                    <input type="text" name="app" class="form-control" placeholder="Apellido Paterno"
-                                        value="{{ old('app') }}">
-                                    @error('app')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col-md-12 mb-10">
+                                        <span>Hola: {{ Auth::user()->name }}</span>
+                                    </div>
+
+                                    <div class="col-md-12 mb-10">
+                                        Estás a punto de aprender y crecer con nosotros.
+                                        <span>tu cuenta es: {{ Auth::user()->email }}</span>
+                                    </div>
+
+                                    <div class="mb-30">
+                                        <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
+                                            data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'
+                                            disabled>
+                                            <span class="btn-title">Pagar</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-10">
-                                    <input type="text" name="apm" class="form-control" placeholder="Apellido Materno"
-                                        value="{{ old('apm') }}">
-                                    @error('apm')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
+                            </form>
+                        @else
+                                                                {{-- USUARIO Sin loguear --}}
+                            <form class="form" method="POST" action="{{ route('paying') }}" id ="CartForm">
+                                @csrf
+                                <div id="divCartHidden" style="display: none">
                                 </div>
-                                <div class="col-md-6 mb-10">
-                                    <select name="document_type" class="form-control">
-                                        <option value="">Tipo de documento</option>
-                                        <option value="1" {{ old('document_type') == '1' ? 'selected' : '' }}>DNI
-                                        </option>
-                                        <option value="6" {{ old('document_type') == '6' ? 'selected' : '' }}>RUC
-                                        </option>
-                                        <option value="0" {{ old('document_type') == '0' ? 'selected' : '' }}>
-                                            Doc.trib.no.dom.sin.ruc</option>
-                                    </select>
-                                    @error('document_type')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col-md-12 mb-10">
+                                        <input type="text" name="names" class="form-control" placeholder="Nombres"
+                                            value="{{ old('names') }}">
+                                        @error('names')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 mb-10">
+                                        <input type="text" name="app" class="form-control" placeholder="Apellido Paterno"
+                                            value="{{ old('app') }}">
+                                        @error('app')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 mb-10">
+                                        <input type="text" name="apm" class="form-control" placeholder="Apellido Materno"
+                                            value="{{ old('apm') }}">
+                                        @error('apm')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 mb-10">
+                                        <select name="type" class="form-control">
+                                            <option value="">Tipo de documento</option>
+                                            <option value="1" {{ old('document_type') == '1' ? 'selected' : '' }}>DNI
+                                            </option>
+                                            <option value="6" {{ old('document_type') == '6' ? 'selected' : '' }}>RUC
+                                            </option>
+                                            <option value="0" {{ old('document_type') == '0' ? 'selected' : '' }}>
+                                                Doc.trib.no.dom.sin.ruc</option>
+                                        </select>
+                                        @error('document_type')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 mb-10">
+                                        <input type="text" name="dni" class="form-control" placeholder="N° Documento"
+                                            value="{{ old('dni') }}">
+                                        @error('dni')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-10">
+                                        <input type="text" name="phone" class="form-control" placeholder="Teléfono"
+                                            value="{{ old('phone') }}">
+                                        @error('phone')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-10">
+                                        <input type="text" name="email" class="form-control"
+                                            placeholder="Correo electrónico" value="{{ old('email') }}">
+                                        @error('email')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-10">
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Contraseña" value="{{ old('password') }}">
+                                        @error('password')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-10">
+                                        <input type="password" name="password2" class="form-control"
+                                            placeholder="Repita Contraseña" value="{{ old('password2') }}">
+                                        @error('password2')
+                                            <span class="text-danger"
+                                                style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-30">
+                                        <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
+                                            data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'
+                                            disabled>
+                                            <span class="btn-title">Crear cuenta para Pagar</span>
+                                        </button>
+                                        <a href="{{ route('login') }}" class="theme-btn btn-style-one">
+                                            <span class="btn-title">Ya tengo una cuenta / login</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-10">
-                                    <input type="text" name="number" class="form-control" placeholder="N° Documento"
-                                        value="{{ old('number') }}">
-                                    @error('number')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="mb-10">
-                                    <input type="text" name="phone" class="form-control" placeholder="Teléfono"
-                                        value="{{ old('phone') }}">
-                                    @error('phone')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="mb-10">
-                                    <input type="text" name="email" class="form-control"
-                                        placeholder="Correo electrónico" value="{{ old('email') }}">
-                                    @error('email')
-                                        <span class="text-danger"
-                                            style="font-size: 11px;line-height: 1.2;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="mb-30">
-                                    <button class="theme-btn btn-style-one" id="btn-crear-cuenta"
-                                        data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'
-                                        disabled>
-                                        <span class="btn-title">Crear cuenta para Pagar</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        @endauth
+
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
+
     <!-- Main Footer -->
     <x-footer />
     <!--End Main Footer -->
@@ -376,7 +427,7 @@
     </script>
     {!! htmlScriptTagJsApi([
         'callback_then' => 'callbackThen',
-    
+
         'callback_catch' => 'callbackCatch',
     ]) !!}
     <!--cart Start-->

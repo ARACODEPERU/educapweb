@@ -40,6 +40,11 @@ Route::get('/gracias', [WebPageController::class, 'thanks'])->name('web_thanks')
 Route::get('/email', [WebPageController::class, 'email'])->name('web_email');
 Route::get('/contactanos', [WebPageController::class, 'contact'])->name('web_contact_us');
 
+//nuevos metodos adaptados de GLobalCpa
+Route::post('/safe_pay', [WebPageController::class, 'pagar'])->name('paying');
+Route::post('/user_safe_pay', [WebPageController::class, 'pagar_auth'])->name('paying_auth');
+Route::put('/process_payment/{id}/{student_id}', [WebController::class, 'processPayment'])->name('web_process_payment');
+
 
 Route::get('/politicas-de-privacidad', [WebPageController::class, 'privacypolicies'])->name('web_privacy_policies');
 
@@ -81,6 +86,9 @@ Route::get('/mipais', function () {
 //         ->send(new StudentRegistrationMailable('data'));
 //     return 'mensaje enviado';
 // });
+
+
+
 
 
 
@@ -211,7 +219,7 @@ Route::middleware('auth')->group(function () {
         'person/birthdays',
         [PersonController::class, 'getBirthdays']
     )->name('person-birthdays');
-	
+
     Route::get('calendar/index', [CalendarController::class, 'index'])->name('calendar');
     ///////////////META FACEBOOK WHATSAPP/////////////////
 

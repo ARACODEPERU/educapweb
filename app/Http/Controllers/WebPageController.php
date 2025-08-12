@@ -50,7 +50,7 @@ class WebPageController extends Controller
         $courses = OnliItem::with('course')->get();
         $courses = $courses->shuffle();
         $categories = AcaCategoryCourse::all();
-        
+
         return view('pages.home', [
             'courses' => $courses,
             'categories' => $categories
@@ -268,6 +268,104 @@ class WebPageController extends Controller
         return view('pages.shop-cart');
     }
 
+    public function pagar_auth(Request $request){ //pago cuando es usuario autenticado
+
+        $productids = $request->get('item_id');
+        $person = Person::where('id', Auth::user()->person_id)->first();
+        $comprador_nombre = $person->full_name;
+        $comprador_telefono = $person->telephone;
+        $comprador_email = $request->get('email');
+        $student = AcaStudent::where('person_id', $person->id)->first();
+
+        $preference_id = null;
+
+        try {
+            DB::beginTransaction();
+            MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
+            $client = new PreferenceClient();
+            $items = [];
+            $products = [];
+            $total = 0;
+            $type_doc = "";
+            if(Auth::user()->document_type_id == 1) $type_doc = "DNI";
+            if(Auth::user()->document_type_id == 2) $type_doc = "RUC";
+            if(Auth::user()->document_type_id == 3) $type_doc = "PASAPORTE";
+            if(Auth::user()->document_type_id == 4) $type_doc = "CARNET DE EXTRANJERIA";
+
+            $user = Auth::user();
+            $person = Person::where('id', $user->person_id)->first();
+
+            $sale = OnliSale::create([
+                'module_name'                   => 'Onlineshop',
+                'person_id'                     => $person->id,
+                'clie_full_name'                => $comprador_nombre,
+                'phone'                         => $comprador_telefono,
+                'email'                         => $comprador_email,
+                'response_status'               => 'pendiente',
+            ]);
+
+            $productquantity = 1;
+
+            foreach ($productids as $key => $id) {
+
+                $product = OnliItem::find($id);
+
+                //$this->matricular_curso($product, $student); //poner esto al final de pagar!!!!! revisar
+
+                array_push($items, [
+                    'id' => $id,
+                    'title' => $product->name,
+                    'quantity'      => floatval($productquantity),
+                    'currency_id'   => 'PEN',
+                    'unit_price'    => floatval($product->price)
+                ]);
+
+                array_push($products, [
+                    'image' => $product->image,
+                    'name' => $product->name,
+                    'item_id' => $product->item_id,
+                    'student_id' => $student->id,
+                    'price' => floatval($product->price),
+                    'quantity'      => floatval($productquantity),
+                    'total' => (floatval($productquantity) * floatval($product->price))
+                ]);
+
+                $total = $total + (floatval($productquantity) * floatval($product->price));
+
+                OnliSaleDetail::create([
+                    'sale_id'       => $sale->id,
+                    'item_id'       => $product->item_id,
+                    'entitie'       => $product->entitie,
+                    'price'         => $product->price,
+                    'quantity'      => floatval($productquantity),
+                    'onli_item_id'  => $id
+                ]);
+            }
+
+            $preference = $client->create([
+                "items" => $items,
+            ]);
+
+            $preference_id =  $preference->id;
+            //dd($preference);
+            DB::commit();
+        } catch (\MercadoPago\Exceptions\MPApiException $e) {
+            // Manejar la excepción
+            DB::rollback();
+            $response = $e->getApiResponse();
+            dd($response); // Mostrar la respuesta para obtener más detalles
+        }
+
+
+        return view('pages/pay', [
+            'preference' => $preference_id,
+            'products' => $products,
+            'total' => $total,
+            'sale_id' => $sale->id,
+            'student_id' => $student->id,
+        ]);
+    }
+
     public function pagar(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -278,6 +376,17 @@ class WebPageController extends Controller
             'dni' => 'required|numeric|unique:people,number',
             'phone' => 'required|string|max:255',
             'email' => 'required|unique:people,email',
+            'password' => 'required|string|min:8',
+            'password2' => 'required|string|min:8|same:password',
+        ], [
+            // Mensajes personalizados
+            'dni.required' => 'El campo DNI es obligatorio.',
+            'dni.numeric' => 'El campo DNI debe ser un número.',
+            'dni.unique' => 'El DNI ingresado ya está registrado.',
+            'password.required' => 'El campo contraseña es obligatorio.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password2.required' => 'El campo repetir contraseña es obligatorio.',
+            'password2.same' => 'Las contraseñas no coinciden.',
         ]);
 
         if ($validator->fails()) {
@@ -286,6 +395,9 @@ class WebPageController extends Controller
                 ->withInput();
         }
 
+
+
+
         $productids = $request->get('item_id');
 
         $comprador_nombre = $request->get('names');
@@ -293,6 +405,7 @@ class WebPageController extends Controller
         $comprador_email = $request->get('email');
 
         $preference_id = null;
+
         try {
             DB::beginTransaction();
             MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_TOKEN'));
@@ -329,7 +442,7 @@ class WebPageController extends Controller
                 $user = User::create([
                     'name' => $person->names,
                     'email' => $person->email,
-                    'password' => Hash::make($person->number),
+                    'password' => Hash::make($request->get('password')),
                     'person_id' => $person->id
                 ]);
                 Auth::login($user);
@@ -360,7 +473,7 @@ class WebPageController extends Controller
 
                 $product = OnliItem::find($id);
 
-                $this->matricular_curso($product, $student);
+                //$this->matricular_curso($product, $student); //poner esto al final de pagar!!!!! revisar
 
                 array_push($items, [
                     'id' => $id,
@@ -374,6 +487,8 @@ class WebPageController extends Controller
                     'image' => $product->image,
                     'name' => $product->name,
                     'price' => floatval($product->price),
+                    'student_id' => $student->id,
+                    'item_id'       => $product->item_id,
                     'quantity'      => floatval($productquantity),
                     'total' => (floatval($productquantity) * floatval($product->price))
                 ]);
@@ -401,14 +516,26 @@ class WebPageController extends Controller
             // );
 
             $preference_id =  $preference->id;
+
+            // Auth::logout();         //quitar esto no va
+            // DB::rollback();         //quitar esto no va
+            // dd($preference);        //quitar esto no va
             DB::commit();
         } catch (\MercadoPago\Exceptions\MPApiException $e) {
             // Manejar la excepción
+            Auth::logout();
             DB::rollback();
             $response = $e->getApiResponse();
-            //dd($response); // Mostrar la respuesta para obtener más detalles
+            dd($response); // Mostrar la respuesta para obtener más detalles
         }
-        //route('web_gracias_por_comprar_tu_entrada', $sale->id);
+
+        return view('pages/pay', [
+            'preference' => $preference_id,
+            'products' => $products,
+            'total' => $total,
+            'sale_id' => $sale->id,
+            'student_id' => $student->id
+        ]);
 
     }
 
