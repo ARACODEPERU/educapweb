@@ -7,13 +7,14 @@
     <x-header />
     <!--End Main Header -->
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
+    <section class="page-title"
+        style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
             <div class="title-outer">
-                <h1 class="title">{{$item->name}}</h1>
+                <h1 class="title">{{ $item->name }}</h1>
                 <ul class="page-breadcrumb">
-                    <li><a href="">{{route('index_main')}}</a></li>
-                    <li>Descripción del Curso</li>
+                    <li><a href="{{ route('index_main') }}">Home</a></li>
+                    <li>Descripción del programa</li>
                 </ul>
             </div>
         </div>
@@ -65,32 +66,34 @@
                                         <div class="content">
                                             <div class="text">
                                                 @if (count($course->teachers) > 0)
-                                        @foreach ($course->teachers as $teach)
-                                            <div class="row" style="margin-bottom: 20px;">
-                                                <div class="col-md-2">
-                                                    <a href="">
-                                                        <img style="width: 150px; margin-bottom: 10px; margin-left: 10px;"
-                                                            src="{{ asset('storage/'. $teach->teacher->person->image) }}" alt="img">
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <h2 style="font-size: 18px;">
-                                                        <b>
-                                                            {{ $teach->teacher->person->names . ' ' . $teach->teacher->person->father_lastname . ' ' . $teach->teacher->person->mother_lastname }}
-                                                        </b>
-                                                    </h2>
-                                                    @if (count($teach->teacher->person->resumes))
-                                                        @foreach ($teach->teacher->person->resumes as $resume)
-                                                        <div class="list-item-aracode" style="font-size: 17px;">
-                                                            <span class="list-icon-aracode">•</span>
-                                                            {{ $resume->description }}
+                                                    @foreach ($course->teachers as $teach)
+                                                        <div class="row" style="margin-bottom: 20px;">
+                                                            <div class="col-md-2">
+                                                                <a href="">
+                                                                    <img style="width: 150px; margin-bottom: 10px; margin-left: 10px;"
+                                                                        src="{{ asset('storage/' . $teach->teacher->person->image) }}"
+                                                                        alt="img">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <h2 style="font-size: 18px;">
+                                                                    <b>
+                                                                        {{ $teach->teacher->person->names . ' ' . $teach->teacher->person->father_lastname . ' ' . $teach->teacher->person->mother_lastname }}
+                                                                    </b>
+                                                                </h2>
+                                                                @if (count($teach->teacher->person->resumes))
+                                                                    @foreach ($teach->teacher->person->resumes as $resume)
+                                                                        <div class="list-item-aracode"
+                                                                            style="font-size: 17px;">
+                                                                            <span class="list-icon-aracode">•</span>
+                                                                            {{ $resume->description }}
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                        @endforeach
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
