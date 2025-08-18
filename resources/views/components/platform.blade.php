@@ -5,11 +5,31 @@
                 <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
                     <div class="inner-column">
                         <div class="sec-title">
-                            <h2>Formación a distancia para desarrollar tus habilidades</h2>
+                            <span class="sub-title">Tu formación al alcance de un clic</span>
+                            <h2>Aprende desde cualquier lugar</h2>
                             <div class="text">
-                                Descripción corta de la sección
+                                Nuestra plataforma virtual CPROD te brinda la oportunidad de capacitarte con la misma calidad académica 
+                                que en la modalidad presencial, pero con la flexibilidad que necesitas para organizar tu tiempo y avanzar 
+                                a tu propio ritmo.
                             </div>
                         </div>
+                        <ul class="list-style-one" style="margin-top: -20px;">
+                            <li style="margin-top: -10px;">
+                                <i class="icon fa fa-check"></i> Acceso 24/7: Ingresa a tus cursos cuando quieras y desde cualquier dispositivo.
+                            </li>
+                            <li style="margin-top: -10px;">
+                                <i class="icon fa fa-check"></i> Clases grabadas y en vivo: Revisa el contenido todas las veces que lo necesites.
+                            </li>
+                            <li style="margin-top: -10px;">
+                                <i class="icon fa fa-check"></i> Docentes internacionales: Aprende de especialistas con experiencia en el deporte a nivel global.
+                            </li>
+                            <li style="margin-top: -10px;">
+                                <i class="icon fa fa-check"></i> Material exclusivo: Descarga recursos actualizados y prácticos para tu formación.
+                            </li>
+                            <li style="margin-top: -10px;">
+                                <i class="icon fa fa-check"></i> Certificación digital: Acredita tus estudios con certificados reconocidos que fortalecen tu perfil profesional.
+                            </li>
+                        </ul>
                     </div>
                 </div>
 

@@ -10,7 +10,7 @@
                     <img style="width: 100%;" src="{{ asset('themes/webpage/images/about.jpg') }}" alt="">
                 </div>
                 <div class="content-column col-md-6 order-2 wow fadeInRight" data-wow-delay="600ms">
-                    <div class="inner-column">
+                    <div class="inner-column" style="margin-top: -10px;">
                         <div class="sec-title">
                             <span class="sub-title">CPROD</span>
                             <h2>Capacitación Profesional Deportiva</h2>
@@ -27,15 +27,15 @@
                         </div>
 
                         <ul class="list-style-one">
-                            <li><i class="icon fa fa-check"></i> Seminarios y talleres presenciales y virtuales.</li>
-                            <li>
+                            <li style="margin-top: -10px;"><i class="icon fa fa-check"></i> Seminarios y talleres presenciales y virtuales.</li>
+                            <li style="margin-top: -15px;">
                                 <i class="icon fa fa-check"></i> Programas certificados y diplomados.
                             </li>
-                            <li>
+                            <li style="margin-top: -15px;">
                                 <i class="icon fa fa-check"></i> Conferencias con ponentes nacionales 
                                 e internacionales.
                             </li>
-                            <li>
+                            <li style="margin-top: -15px;">
                                 <i class="icon fa fa-check"></i> Acceso exclusivo a nuestra 
                                 plataforma educativa virtual CPROD.
                             </li>
