@@ -165,10 +165,7 @@
     <script src="{{ asset('themes/webpage/js/owl.js') }}"></script>
     <script src="{{ asset('themes/webpage/js/script.js') }}"></script>
 
-    <script>
-       var myCarousel = document.querySelector('#myCarousel')
-var carousel = new bootstrap.Carousel(myCarousel)
-    </script>
+    
 </body>
 
 </html>

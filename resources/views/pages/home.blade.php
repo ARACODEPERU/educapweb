@@ -26,9 +26,8 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3"></div>
                 @foreach ( $courses as $course)
-                    <div class="course-block-two col-md-6">
+                    <div class="course-block-two col-md-4">
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
@@ -36,7 +35,7 @@
                                         <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
                                     </a>
                                 </figure>
-                                <span class="price">S/ {{ $course->price }}</span>
+                                {{-- <span class="price">S/ {{ $course->price }}</span> --}}
                                 <div class="value">{{ $course->category_description }}</div>
                             </div>
                             <div class="content-box">
@@ -58,7 +57,6 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md-3"></div>
             </div>
 
             <div class="bottom-text">

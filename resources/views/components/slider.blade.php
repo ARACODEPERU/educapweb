@@ -4,19 +4,14 @@
         <figure>
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}"
-                alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}"
-                alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
         </figure>
     </div>
 
     <style>
-        body {
-            margin: 0;
-        }
-
+        
         div#slider {
             overflow: hidden;
         }
@@ -78,8 +73,6 @@
             }
         }
     </style>
-
-
 
     {{-- <section class="main-slider">
         <div class="rev_slider_wrapper" id="rev_slider_one_wrapper" data-source="gallery">
