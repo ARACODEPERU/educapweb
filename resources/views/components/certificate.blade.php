@@ -19,8 +19,8 @@
                 <div class="col-md-6">
                     {{-- <img src="{{ asset('themes/webpage/images/resource/cta.png') }}" alt=""> --}}
                     <div style="width: 100%; padding: 40px 0px;">
-                        <img style="width: 100%;" src="https://netzun.com/_nuxt/img/certificado-netzun-siu.01abb78.jpg"
-                            alt="Modelo de certificado opcional de nuestro curso">
+                        <img style="width: 100%;" src="{{ asset('themes/webpage/images/MC.jpg') }}"
+                            alt="Modelo de certificado">
                     </div>
                 </div>
             </div>
