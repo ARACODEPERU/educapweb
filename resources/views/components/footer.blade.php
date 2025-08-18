@@ -1,22 +1,31 @@
 <div>
-    <footer class="main-footer" style="background: #000000;
+    <footer class="main-footer"
+        style="background: #000000;
 background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, rgba(5, 10, 39, 1) 100%);">
-        
+
 
         <!--Widgets Section-->
         <div class="widgets-section">
             <div class="auto-container">
+                <div class="row" style="margin-top: -50px;">
+                    <div class="col-md-12">
+                        <div class="logo" style="text-align: center;">
+                            <a href="">
+                                <img style="height: 150px;" src="{{ asset('themes/webpage/images/logoblanco.png') }}"
+                                    alt="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
                 <div class="row">
                     <!--Footer Column-->
                     <div class="footer-column col-md-4">
                         <div class="footer-widget about-widget">
-                            <div class="logo">
-                                <a href="">
-                                    <img src="{{ asset('themes/webpage/images/Logo-cprod-white.png') }}" alt="" title="">
-                                </a>
-                            </div>
+                            <h4 class="widget-title">Sobre Nosotros</h4>
                             <p>
-                                CPROD capacita y certifica a entrenadores y profesionales del fútbol formativo con programas, talleres y diplomados online de alcance internacional.
+                                CPROD capacita y certifica a entrenadores y profesionales del fútbol formativo con
+                                programas, talleres y diplomados online de alcance internacional.
                             </p>
                         </div>
                     </div>
@@ -67,9 +76,12 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
                                     </li>
                                 </ul>
                                 <ul class="social-icon-two">
-                                    <li><a target="_blank" href="https://www.facebook.com/cprod.oficial"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a target="_blank" href="https://www.instagram.com/cprod.oficial/"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a target="_blamk" href="https://www.youtube.com/@CPROD-capacitaci%C3%B3n"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/cprod.oficial"><i
+                                                class="fab fa-facebook"></i></a></li>
+                                    <li><a target="_blank" href="https://www.instagram.com/cprod.oficial/"><i
+                                                class="fab fa-instagram"></i></a></li>
+                                    <li><a target="_blamk" href="https://www.youtube.com/@CPROD-capacitaci%C3%B3n"><i
+                                                class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>
