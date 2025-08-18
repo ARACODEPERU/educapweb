@@ -42,7 +42,7 @@
                             <span class="icon icon-papper-plan"></span>
                         </div>
                         <figure class="image overlay-anim wow fadeInUp">
-                            <img src="{{ asset('themes/webpage/images/resource/about-3.jpg') }}" alt="">
+                            <img src="{{ asset('themes/webpage/images/cvonline.jpg') }}" alt="">
                         </figure>
                     </div>
                 </div>
