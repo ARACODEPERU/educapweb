@@ -26,6 +26,7 @@
             </div>
 
             <div class="row">
+                <div class="col-md-3"></div>
                 @foreach ( $courses as $course)
                     <div class="course-block-two col-md-6">
                         <div class="inner-box">
@@ -57,6 +58,7 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="col-md-3"></div>
             </div>
 
             <div class="bottom-text">
