@@ -36,14 +36,14 @@
                                     </a>
                                 </figure>
                                 {{-- <span class="price">S/ {{ $course->price }}</span> --}}
-                                <div class="value">{{ $course->category_description }}</div>
+                                <div class="value">{{ $course->course->type_description }}</div>
                             </div>
                             <div class="content-box">
-                                <h5 class="title">
+                                <h6 class="title">
                                     <a href="{{ route('web_course_description', $course->id) }}">
                                         {{ $course->name }}
                                     </a>
-                                </h5>
+                                </h6>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a href="{{ route('web_course_description', ['id' => $course->id]) }}"
