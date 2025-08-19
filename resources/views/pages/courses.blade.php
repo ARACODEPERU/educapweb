@@ -5,7 +5,7 @@
     <!-- Main Header-->
     <x-header />
     <!--End Main Header -->
-    
+
     <!-- Start main-content -->
     <x-page-header-courses />
     <!-- end main-content -->
@@ -14,16 +14,16 @@
     <section class="">
         <div class="container pb-100">
             <div class="row">
-                @foreach ( $courses as $course)
+                @foreach ($courses as $course)
                     <div class="course-block-two col-md-4">
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
                                     <a href="{{ route('web_course_description', $course->id) }}">
-                                        <img src="{{ asset('storage/'.$course->course->image) }}" alt="">
+                                        <img src="{{ asset('storage/' . $course->course->image) }}" alt="">
                                     </a>
                                 </figure>
-                                <span class="price">S/ {{ $course->price }}</span>
+                                {{-- <span class="price">S/ {{ $course->price }}</span> --}}
                                 <div class="value">{{ $course->category_description }}</div>
                             </div>
                             <div class="content-box">
@@ -32,15 +32,22 @@
                                         {{ $course->name }}
                                     </a>
                                 </h5>
-                                <a href="{{route('web_course_description', ['id' => $course->id])}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
-                                    Más Información
-                                </a>
-                                <a class="theme-btn btn-style-cart small"
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{ route('web_course_description', ['id' => $course->id]) }}"
+                                            class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                            Información
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="theme-btn btn-style-cart small"
                                             onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })"
                                             style="width: 100%;">
-                                    <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
-                                    &nbsp;Agregar al carrito
-                                </a>
+                                            <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
+                                            &nbsp;Agregar
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,7 +56,7 @@
         </div>
     </section>
     <!-- End Courses Section-->
-    
+
     <!-- Main Footer -->
     <x-footer />
     <!--End Main Footer -->

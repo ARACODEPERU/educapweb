@@ -44,15 +44,22 @@
                                         {{ $course->name }}
                                     </a>
                                 </h5>
-                                <a href="{{route('web_course_description', ['id' => $course->id])}}" class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
-                                    Más Información
-                                </a>
-                                <a class="theme-btn btn-style-cart small"
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{ route('web_course_description', ['id' => $course->id]) }}"
+                                            class="theme-btn btn-style-one small" style="margin-bottom: 10px; width: 100%;">
+                                            Información
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="theme-btn btn-style-cart small"
                                             onclick="agregarAlCarrito({ id: {{ $course->id }}, nombre: '{{ $course->name }}', precio: {{ $course->price }} })"
                                             style="width: 100%;">
-                                    <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
-                                    &nbsp;Agregar al carrito
-                                </a>
+                                            <i class="lnr-icon-shopping-cart" style="font-size: 18px;"></i>
+                                            &nbsp;Agregar
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
