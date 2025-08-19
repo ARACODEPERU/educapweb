@@ -38,6 +38,7 @@ class AcaStudentController extends Controller
     private $igv;
     private $top;
     private $icbper;
+    private $displayVideo = false;
 
     /**
      * Display a listing of the resource.
@@ -50,6 +51,11 @@ class AcaStudentController extends Controller
         $this->igv = Parameter::where('parameter_code', 'P000001')->value('value_default');
         $this->top = Parameter::where('parameter_code', 'P000002')->value('value_default');
         $this->icbper = Parameter::where('parameter_code', 'P000004')->value('value_default');
+        $parameterValue = Parameter::where('parameter_code', 'P000019')->value('value_default');
+        if($parameterValue){
+            $this->displayVideo = ($parameterValue === 'true');
+        }
+
     }
 
     public function index()
@@ -424,7 +430,7 @@ class AcaStudentController extends Controller
 
         // También puedes verificar múltiples roles a la vez
         if ($user->hasAnyRole(['admin', 'Docente', 'Administrador'])) {
-            $courses = AcaCourse::with('modules.themes.contents')
+            $mycourses = AcaCourse::with('modules.themes.contents')
                 ->with('teacher.person')->where('status', true)
                 ->with('category')
                 ->with('modality')
@@ -434,93 +440,157 @@ class AcaStudentController extends Controller
                     $course->can_view = true; // Campo adicional
                     return $course;
                 });
+
+
         } else {
-            // $courses = AcaCourse::with(['modules.themes.contents', 'modality', 'category', 'teacher.person'])
-            //     ->with('registrations') // Para validar los cursos registrados
-            //     ->get()
-            //     ->map(function ($course) use ($studentSubscribed, $student_id) {
-            //         // Verificar si el curso es gratuito
-            //         $isFree = is_null($course->price) || floatval($course->price) == 0.00;
-            //         $isProgram = $course->type_description == 'Programas de especialización' ? true : false;
-            //         // Verificar si el alumno está registrado en este curso
-            //         $isRegistered = $course->registrations->contains('student_id', $student_id);
-
-            //         // Verificar si el alumno tiene una suscripción activa
-            //         $hasActiveSubscription = $studentSubscribed !== null;
-
-            //         // Lógica para determinar si puede ver
-            //         if ($hasActiveSubscription || $isRegistered || $isFree) {
-            //             if ($isProgram) {
-            //                 if ($isRegistered) {
-            //                     $course->can_view = true;
-            //                 } else {
-            //                     $course->can_view = false;
-            //                 }
-            //             } else {
-            //                 $course->can_view = true;
-            //             }
-            //         } else {
-            //             $course->can_view = false; // Campo adicional
-            //         }
-
-            //         return $course;
-            //     });
-
-            $mycourses = AcaCourse::with('modules.themes.contents')
-                ->with('modality')
-                ->with('teacher.person')->whereHas('registrations', function ($query) use ($student_id) {
-                    $query->where('student_id', $student_id);
-                })->orderBy('id', 'DESC')
-                ->get();
-
-            $result = AcaCourse::with(['modules.themes.contents', 'modality', 'teacher.person'])
-                ->whereDoesntHave('registrations', function ($query) use ($student_id) {
-                    $query->where('student_id', $student_id);
-                })
-                ->get();
-
-            // Agrupar cursos
-            $grouped = [];
-
-            foreach ($result as $course) {
-                if (empty($course->price) || $course->price == 0) {
-                    $grouped['Cursos gratis'][] = $course;
-                } else {
-                    $grouped[$course->type_description][] = $course;
-                }
-            }
-
-            // Ordenar alfabéticamente por clave del grupo
-            ksort($grouped);
-
-            // Transformar al formato deseado
-            $courses = collect($grouped)->map(function ($items, $type_description) {
-                return [
-                    'type_description' => $type_description,
-                    'courses' => $items,
-                ];
-            })->values(); // values() para que los índices sean numéricos
-            //dd($courses);
+            $mycourses = $this->getAllCoursesWithAccessStatus();
         }
+        // Agrupar cursos
+        $grouped = [];
+
+        foreach ($mycourses as $course) {
+            if (empty($course->price) || $course->price == 0) {
+                $grouped['Cursos gratis'][] = $course;
+            } else {
+                $grouped[$course->type_description][] = $course;
+            }
+        }
+
+        // Ordenar alfabéticamente por clave del grupo
+        ksort($grouped);
+
+        // Transformar al formato deseado
+        $courses = collect($grouped)->map(function ($items, $type_description) {
+            return [
+                'type_description' => $type_description,
+                'courses' => $items,
+            ];
+        })->values(); // values() para que los índices sean numéricos
+        //dd($courses);
 
         $certificates = AcaCertificate::with('course')
             ->where('student_id', $student_id)
             ->get();
 
-
-
-
+        //dd($this->displayVideo);
         return Inertia::render('Academic::Students/Courses', [
             'mycourses' => $mycourses,
             'courses' => $courses,
             'studentSubscribed' => $studentSubscribed,
-            'certificates' => $certificates
+            'certificates' => $certificates,
+            'P000019' => $this->displayVideo
         ]);
+    }
+
+    public function getAllCoursesWithAccessStatus()
+    {
+        $user = Auth::user();
+        $studentId = AcaStudent::where('person_id', $user->person_id)->value('id');
+
+        // 1. Verificar si el estudiante tiene una suscripción activa
+        $hasActiveSubscription = AcaStudentSubscription::where('student_id', $studentId)
+                                                      ->where('status', true)
+                                                      ->exists();
+
+        // 2. Obtener los IDs de los cursos en los que el estudiante está matriculado
+        $registeredCourseIds = AcaCapRegistration::where('student_id', $studentId)
+                                                  ->pluck('course_id')
+                                                  ->toArray();
+
+        // 3. Obtener todos los cursos disponibles
+        $allCourses = AcaCourse::with('modules.themes.contents')
+                ->with('modality')
+                ->with('teacher.person')
+                ->orderBy('description')
+                ->get();
+
+        // 4. Procesar cada curso para determinar 'can_view'
+        $coursesWithAccess = $allCourses->map(function ($course) use ($hasActiveSubscription, $registeredCourseIds) {
+            $canView = false; // Valor por defecto
+
+            // Condición 4: Si el tipo es 'Programas de especialización', NUNCA se puede ver (a menos que haya una lógica de compra/pago específica no indicada)
+            if ($course->type_description === 'Programas de especialización') {
+                if (in_array($course->id, $registeredCourseIds)) {
+                    $canView = true;
+                } else {
+                    $canView = false;
+                }
+
+            }
+            // Condición 3: Suscripción activa (siempre puede ver, excepto los de especialización)
+            elseif ($hasActiveSubscription) {
+                $canView = true;
+            }
+            // Condición 2: El estudiante está matriculado en el curso
+            elseif (in_array($course->id, $registeredCourseIds)) {
+                $canView = true;
+            }
+            // Condición 1: El curso es gratis
+            elseif ($course->price == 0 || is_null($course->price)) {
+                $canView = true;
+            }
+
+            // Agrega el campo 'can_view' al objeto del curso
+            $course->can_view = $canView;
+
+            return $course;
+        });
+
+        return $coursesWithAccess;
+    }
+
+    public function checkCourseAccess(int $studentId, int $courseId): bool
+    {
+        // Obtener la información del curso
+        $course = AcaCourse::find($courseId);
+
+        // Si el curso no existe, no hay acceso.
+        if (!$course) {
+            return false;
+        }
+
+        // Condición 4: Si el tipo es 'Programas de especialización', NO pasa (a menos que haya lógica de compra/pago específica)
+        if ($course->type_description === 'Programas de especialización') {
+
+            $isRegistered = AcaCapRegistration::where('student_id', $studentId)
+                                          ->where('course_id', $courseId)
+                                          ->exists();
+            if ($isRegistered) {
+                return true;
+            }else{
+                 return false;
+            }
+        }
+
+        // Condición 3: Si el estudiante tiene una suscripción activa, pasa
+        $hasActiveSubscription = AcaStudentSubscription::where('student_id', $studentId)
+                                                      ->where('status', true)
+                                                      ->exists();
+
+        if ($hasActiveSubscription) {
+            return true;
+        }
+
+        // Condición 2: Si el estudiante está matriculado en este curso, pasa
+        $isRegistered = AcaCapRegistration::where('student_id', $studentId)
+                                          ->where('course_id', $courseId)
+                                          ->exists();
+        if ($isRegistered) {
+            return true;
+        }
+
+        // Condición 1: Si el curso es gratis, pasa
+        if ($course->price == 0 || is_null($course->price)) {
+            return true;
+        }
+
+        // Si ninguna de las condiciones anteriores se cumple, el estudiante no tiene acceso
+        return false;
     }
 
     public function courseLessons($id)
     {
-
+        //dd($id);
         // Obtener el curso con relaciones
         $course = AcaCourse::with(['modules.themes.contents'])->where('id', $id)->first();
 
@@ -530,15 +600,14 @@ class AcaStudentController extends Controller
         }
 
         // Verificar si el estudiante está matriculado
-        $isEnrolled = $course->registrations()
-            ->where('student_id', AcaStudent::where('person_id', Auth::user()->person_id)->value('id'))
-            ->exists();
+        $studentId = AcaStudent::where('person_id', Auth::user()->person_id)->value('id');
+        $isEnrolled = $this->checkCourseAccess($studentId, $id);
 
         // Verificar si el curso es gratuito
         $isFree = $course->price == 0 || is_null($course->price);
-
+        //dd($isEnrolled);
         // Denegar acceso si no está matriculado y el curso no es gratis
-        if (!$isEnrolled && !$isFree) {
+        if (!$isEnrolled) {
             abort(403, 'No tienes acceso a este curso.');
         }
 
@@ -1049,4 +1118,105 @@ class AcaStudentController extends Controller
             'type_content' => $request->get('type_content')
         ]);
     }
+
+    public function getSubscriptionStatuses()
+    {
+        $allSubscriptions = collect(); // Colección para almacenar todas las suscripciones con sus mensajes
+
+        // --- 1. Suscripciones a punto de vencer (en los próximos 7 días) ---
+
+        // Vence HOY
+        $today = Carbon::now()->startOfDay();
+        $endOfToday = Carbon::now()->endOfDay();
+        $expiringToday = AcaStudentSubscription::with('student.person')
+            ->whereBetween('date_end', [$today, $endOfToday])
+            ->where('status', true)
+            ->get()
+            ->each(function ($subscription) {
+                $subscription->number_days = 0;
+                $subscription->expiration_message = 'Termina hoy';
+            });
+
+        $allSubscriptions = $allSubscriptions->concat($expiringToday);
+
+        // Vence en 1 día (mañana)
+        $tomorrowStart = Carbon::now()->addDays(1)->startOfDay();
+        $tomorrowEnd = Carbon::now()->addDays(1)->endOfDay();
+        $expiringTomorrow = AcaStudentSubscription::with('student.person')
+            ->whereBetween('date_end', [$tomorrowStart, $tomorrowEnd])
+            ->where('status', true)
+            ->get()
+            ->each(function ($subscription) {
+                $subscription->number_days = 1;
+                $subscription->expiration_message = 'Termina en 1 día';
+            });
+        $allSubscriptions = $allSubscriptions->concat($expiringTomorrow);
+
+        // Vence en 6 días (específico para tu ejemplo, puedes ajustar el rango)
+        // Esto sería entre el inicio del día +2 y el final del día +6
+        $dayTwoStart = Carbon::now()->addDays(2)->startOfDay();
+        $daySixEnd = Carbon::now()->addDays(6)->endOfDay();
+        $expiringInSixDays = AcaStudentSubscription::with('student.person')
+            ->whereBetween('date_end', [$dayTwoStart, $daySixEnd])
+            ->where('status', true)
+            ->get()
+            ->each(function ($subscription) {
+                // Aquí calculamos cuántos días faltan para ser más precisos
+                $daysRemaining = Carbon::now()->startOfDay()->diffInDays($subscription->date_end, false);
+                $subscription->number_days = $daysRemaining;
+                $subscription->expiration_message = "Termina en {$daysRemaining} días";
+            });
+        $allSubscriptions = $allSubscriptions->concat($expiringInSixDays);
+
+
+        // --- 2. Suscripciones Vencidas ---
+
+        // Venció hace 1 día
+        $oneDayAgoStart = Carbon::now()->subDays(1)->startOfDay();
+        $oneDayAgoEnd = Carbon::now()->subDays(1)->endOfDay();
+        $expiredOneDayAgo = AcaStudentSubscription::with('student.person')
+            ->whereBetween('date_end', [$oneDayAgoStart, $oneDayAgoEnd])
+            ->where('status', false) // Asumiendo que false es "vencido"
+            ->get()
+            ->each(function ($subscription) {
+                $subscription->number_days = -1;
+                $subscription->expiration_message = 'Terminó hace 1 día';
+            });
+        $allSubscriptions = $allSubscriptions->concat($expiredOneDayAgo);
+
+
+        // Venció hace 2 días
+        $twoDaysAgoStart = Carbon::now()->subDays(2)->startOfDay();
+        $twoDaysAgoEnd = Carbon::now()->subDays(2)->endOfDay();
+        $expiredTwoDaysAgo = AcaStudentSubscription::with('student.person')
+            ->whereBetween('date_end', [$twoDaysAgoStart, $twoDaysAgoEnd])
+            ->where('status', false)
+            ->get()
+            ->each(function ($subscription) {
+                $subscription->number_days = -2;
+                $subscription->expiration_message = 'Terminó hace 2 días';
+            });
+        $allSubscriptions = $allSubscriptions->concat($expiredTwoDaysAgo);
+
+        // Si quieres capturar todas las demás que están simplemente "vencidas" (antes de 2 días)
+        $moreThanTwoDaysAgo = Carbon::now()->subDays(2)->startOfDay();
+        $expiredBeforeTwoDaysAgo = AcaStudentSubscription::with('student.person')
+            ->where('date_end', '<', $moreThanTwoDaysAgo)
+            ->where('status', false)
+            ->get()
+            ->each(function ($subscription) {
+                // Calcular días exactos transcurridos si es necesario, o un mensaje genérico
+                $daysAgo = Carbon::now()->startOfDay()->diffInDays($subscription->date_end, true); // true para valor absoluto
+                $subscription->number_days = -$daysAgo;
+                $subscription->expiration_message = "Terminó hace {$daysAgo} días";
+            });
+        $allSubscriptions = $allSubscriptions->concat($expiredBeforeTwoDaysAgo);
+
+
+        // Puedes ordenar la colección final si lo deseas, por ejemplo, por fecha de fin
+        $allSubscriptions = $allSubscriptions->sortBy('date_end')->values(); // .values() para reindexar el array
+        //dd($allSubscriptions);
+        return response()->json($allSubscriptions);
+    }
+
 }
