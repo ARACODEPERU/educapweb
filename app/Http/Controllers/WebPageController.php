@@ -48,7 +48,8 @@ class WebPageController extends Controller
     public function index()
     {
         $courses = OnliItem::with('course')->get();
-        $courses = $courses->shuffle();
+        // $courses = $courses->shuffle(); // Carga de manera aleatoria
+        $courses = $courses->sortByDesc('created_at'); // Cambia 'created_at' por el campo que desees usar para ordenar
         $categories = AcaCategoryCourse::all();
 
         return view('pages.home', [
@@ -70,7 +71,8 @@ class WebPageController extends Controller
     public function courses()
     {
         $courses = OnliItem::with('course')->get();
-        $courses = $courses->shuffle();
+        // $courses = $courses->shuffle(); // Carga de manera aleatoria
+        $courses = $courses->sortByDesc('created_at'); // Cambia 'created_at' por el campo que desees usar para ordenar
         $categories = AcaCategoryCourse::all();
 
 
