@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="accordion block">
+                                {{-- <li class="accordion block">
                                     <div class="acc-btn">Beneficios
                                         <div class="icon fa fa-plus"></div>
                                     </div>
@@ -97,7 +97,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="accordion block">
                                     <div class="acc-btn">Preguntas Frecuentes
                                         <div class="icon fa fa-plus"></div>
