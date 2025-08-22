@@ -252,6 +252,7 @@ class WebPageController extends Controller
             ->get()
             ->shuffle()
             ->take(3);
+            
 
         return view('pages.course-description', [
             'course' => $course,

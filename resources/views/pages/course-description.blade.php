@@ -46,18 +46,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                {{-- <li class="accordion block">
-                                    <div class="acc-btn">Beneficios
-                                        <div class="icon fa fa-plus"></div>
-                                    </div>
-                                    <div class="acc-content">
-                                        <div class="content">
-                                            <div class="text">
-                                                {!! $course->brochure->resolution !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> --}}
                                 <li class="accordion block">
                                     <div class="acc-btn">Plana Docentes
                                         <div class="icon fa fa-plus"></div>
@@ -94,6 +82,18 @@
                                                         </div>
                                                     @endforeach
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">Beneficios
+                                        <div class="icon fa fa-plus"></div>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                {!! $course->brochure->benefits !!}
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
 
                         <div class="course-details-price">
                             <p class="course-details-price-text">Precio del curso</p>
-                            <p class="course-details-price-amount">S/ 50.00</p>
+                            <h6 class="course-details-price-amount">S/ {{ $item->price }}</h6>
                             <a class="theme-btn btn-style-two course-details-price-btn">
                                 <i class="lnr-icon-shopping-cart" style="font-size: 20px;"></i>&nbsp; Agregar al carrito
                             </a>
