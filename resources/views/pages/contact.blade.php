@@ -58,7 +58,7 @@
 							<span class="sub-title">¿Necesitas ayuda?</span>
 							<h2>Ponte en contacto con nosotros</h2>
 							<div class="text">
-								Texto corto que invite a comunicarse con la institución
+								Estamos listos para resolver tus dudas y brindarte toda la información que necesitas.
 							</div>
 						</div>
 						<ul class="list-unstyled contact-details__info">
@@ -68,7 +68,7 @@
 								</div>
 								<div class="text">
 									<h6>¿Tienes alguna pregunta?</h6>
-									<a href="tel:980089850">+51 977627207</a>
+									<a href="tel:907728496">(+51) 907728496</a>
 								</div>
 							</li>
 							<li>
@@ -78,7 +78,7 @@
 								<div class="text">
 									<h6>Escribenos</h6>
 									<a href="">
-                                        correo@dominio.com
+                                        admi.cprod@gmail.com
                                     </a>
 								</div>
 							</li>
@@ -88,7 +88,7 @@
 								</div>
 								<div class="text">
 									<h6>Visitanos</h6>
-									<span>Dirección de la oficina principal</span>
+									<span>Domus Hogares Sector 6 mz A lote 1</span>
 								</div>
 							</li>
 						</ul>
