@@ -149,7 +149,7 @@
                             </a>
                         </div>
 
-                        <div class="latest-course mb-30">
+                        {{-- <div class="latest-course mb-30">
                             <h4 class="latest-course-title mb-30">Nuevos Cursos</h4>
                             <div class="latest-course-item">
                                 <div class="latest-course-img">
@@ -158,14 +158,6 @@
                                 <div class="latest-course-content">
                                     <h5><a href="page-course-details.php">Modern Languages</a></h5>
                                     <a class="latest-course-author" href="#">Categoria</a>
-                                    {{-- <div class="latest-course-stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8</span>
-                                    </div> --}}
                                 </div>
                             </div>
                             <div class="latest-course-item">
@@ -175,14 +167,6 @@
                                 <div class="latest-course-content">
                                     <h5><a href="page-course-details.php">Modern Technologies</a></h5>
                                     <a class="latest-course-author" href="#">Categoria</a>
-                                    {{-- <div class="latest-course-stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>5.0</span>
-                                    </div> --}}
                                 </div>
                             </div>
                             <div class="latest-course-item">
@@ -192,17 +176,9 @@
                                 <div class="latest-course-content">
                                     <h5><a href="page-course-details.php">Development Studies</a></h5>
                                     <a class="latest-course-author" href="#">Categoria</a>
-                                    {{-- <div class="latest-course-stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>4.9</span>
-                                    </div> --}}
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

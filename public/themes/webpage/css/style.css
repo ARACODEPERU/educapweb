@@ -8590,8 +8590,8 @@ Page Title
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding: 80px 0 80px;
-  min-height: 250px;
+  padding: 45px 0 40px;
+  min-height: 200px;
 }
 .page-title:before {
   position: absolute;
