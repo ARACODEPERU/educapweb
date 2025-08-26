@@ -29,15 +29,15 @@
                         <small>Llamanos al:</small><br> (+51) 907 728 496
                     </a>
                     <div class="ui-btn-outer">
-                    <button class="ui-btn ui-btn search-btn">
-                        <span class="icon lnr lnr-icon-search"></span>
-                    </button>
-                </div>
-                <a href="{{ route('web_carrito') }}" class="ui-btn cart-icon">
-                    <i class="lnr-icon-shopping-cart"></i>
-                    <span class="cart-count contador" id="contadorCarritoWeb">0</span>
-                    <span id="contadorCarritoMovil" hidden style="color: white; display: none;"></span>
-                </a>
+                        <button class="ui-btn ui-btn search-btn">
+                            <span class="icon lnr lnr-icon-search"></span>
+                        </button>
+                    </div>
+                    <a href="{{ route('web_carrito') }}" class="ui-btn cart-icon">
+                        <i class="lnr-icon-shopping-cart"></i>
+                        <span class="cart-count contador" id="contadorCarritoWeb">0</span>
+                        <span id="contadorCarritoMovil" hidden style="color: white; display: none;"></span>
+                    </a>
                     <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="btn-title">Campus
                             Virtual</span></a>
 
@@ -73,7 +73,7 @@
                         <div class="contact-info-box">
                             <i class="icon lnr-icon-phone-handset"></i>
                             <span class="title">Llamanos</span>
-                            <a href="tel:+92880098670">+51 977627207</a>
+                            <a href="tel:+51907728496">(+51) 907728496</a>
                         </div>
                     </li>
                     <li>
@@ -82,7 +82,7 @@
                             <span class="icon lnr-icon-envelope1"></span>
                             <span class="title">E-mail</span>
                             <a href="">
-                                correo@dominio.com
+                                admi.cprod@gmail.com
                             </a>
                         </div>
                     </li>
@@ -91,16 +91,18 @@
                         <div class="contact-info-box">
                             <span class="icon lnr-icon-clock"></span>
                             <span class="title">Horarios</span>
-                            Mon - Sat 8:00 - 6:30, Sunday - CLOSED
+                            Lunes - Viernes: 9:00 am - 07:00 pm, Sabado: 9:00 am a 1:00 pm
                         </div>
                     </li>
                 </ul>
 
                 <ul class="social-links">
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/cprod.oficial"><i
+                                class="fab fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/cprod.oficial/"><i
+                                class="fab fa-instagram"></i></a></li>
+                    <li><a target="_blamk" href="https://www.youtube.com/@CPROD-capacitaci%C3%B3n"><i
+                                class="fab fa-youtube"></i></a></li>
                 </ul>
             </nav>
         </div><!-- End Mobile Menu -->
@@ -141,8 +143,7 @@
                                 <ul class="navigation clearfix">
                                     <!--Keep This Empty / Menu will come through Javascript-->
                                     <li style="margin-top: -5px;">
-                                        <a href="{{ route('login') }}" 
-                                            class="theme-btn btn-style-one" 
+                                        <a href="{{ route('login') }}" class="theme-btn btn-style-one"
                                             style="padding: 5px 18px; font-size: 13px;">
                                             <b style="color: #fff; ">Campus Virtual</b>
                                         </a>
