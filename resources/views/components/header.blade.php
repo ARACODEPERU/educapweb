@@ -18,6 +18,7 @@
                         <li><a href="{{ route('web_about') }}">Nosotros</a></li>
                         <li><a href="{{ route('web_courses') }}">Formación Continua</a></li>
                         <li><a href="{{ route('web_contact_us') }}">Contacto</a></li>
+                        <li><a href="{{ route('login') }}">Campus virtual</a></li>
                     </ul>
                 </nav>
                 <!-- Main Menu End-->
