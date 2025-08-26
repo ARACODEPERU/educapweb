@@ -6,8 +6,8 @@
         <div class="auto-container">
             <div class="row">
                 <!-- Image Column -->
-                <div class="image-column col-md-6">
-                    <img style="width: 100%;" src="{{ asset('themes/webpage/images/about.jpg') }}" alt="">
+                <div class="image-column col-md-6 btn-header-movile">
+                    <img class=" wow fadeInLeft" data-wow-delay="600ms" style="width: 100%;" src="{{ asset('themes/webpage/images/about.jpg') }}" alt="">
                 </div>
                 <div class="content-column col-md-6 order-2 wow fadeInRight" data-wow-delay="600ms">
                     <div class="inner-column" style="margin-top: -10px;">
