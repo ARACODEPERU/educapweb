@@ -10,8 +10,6 @@
             </div>
 
             <div class="row">
-                <div class="col-md-1"></div>
-
                 <div class="team-block col-md-3 wow fadeInUp">
                     <div class="inner-box">
                         <div class="image-box">
@@ -32,7 +30,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="team-block col-md-3 wow fadeInUp" data-wow-delay="400ms">
                     <div class="inner-box">
                         <div class="image-box">
@@ -52,7 +49,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="team-block col-md-3 wow fadeInUp" data-wow-delay="800ms">
                     <div class="inner-box">
                         <div class="image-box">
@@ -72,9 +68,25 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-1"></div>
-
+                <div class="team-block col-md-3 wow fadeInUp" data-wow-delay="800ms">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <img src="{{ asset('themes/webpage/images/4.jpg') }}" alt="">
+                            </figure>
+                            <span class="share-icon fa fa-share-alt"></span>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <h4 class="name">Maria Fernanda Martearena</h4>
+                            <span class="designation">Lic. en Nutrición</span>
+                        </div>
+                    </div>
+                </div>
                 {{-- <div class="team-block col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
                     <div class="inner-box">
                         <div class="image-box">
