@@ -18,7 +18,6 @@
                         <li><a href="{{ route('web_about') }}">Nosotros</a></li>
                         <li><a href="{{ route('web_courses') }}">Formación Continua</a></li>
                         <li><a href="{{ route('web_contact_us') }}">Contacto</a></li>
-                        <li><a href="{{ route('login') }}">Campus virtual</a></li>
                     </ul>
                 </nav>
                 <!-- Main Menu End-->
@@ -58,7 +57,7 @@
                 <div class="upper-box">
                     <div class="nav-logo">
                         <a href="">
-                            <img src="{{ asset('themes/webpage/images/Logo-CPROD.png') }}" alt=""
+                            <img src="{{ asset('themes/webpage/images/Logo-cprod-white.png') }}" alt=""
                                 title="">
                         </a>
                     </div>
@@ -67,6 +66,8 @@
 
                 <ul class="navigation clearfix">
                     <!--Keep This Empty / Menu will come through Javascript-->
+                    
+                        <li class="cv-movil"><a href="{{ route('login') }}" style="color: #ffffff;">Campus virtual</a></li>
                 </ul>
                 <ul class="contact-list-one">
                     <li>

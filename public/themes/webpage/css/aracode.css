@@ -37,6 +37,16 @@
   }
 
 
+  .cv-movil{
+    background: #6fa23d;
+    color: #ffffff;
+  }
+  
+  .cv-movil:hover{
+    background: #18591f;
+    color: #ffffff;
+  }
+
 
 
 
