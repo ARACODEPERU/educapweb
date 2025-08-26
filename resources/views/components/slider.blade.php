@@ -2,7 +2,7 @@
 
     <div id="slider">
         <figure>
-            <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod.jpg') }}" alt="">
