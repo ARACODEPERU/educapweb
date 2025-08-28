@@ -11,7 +11,7 @@
                             Al finalizar el curso recibirás un certificado reconocido que validará tus conocimientos, impulsará tu desarrollo profesional y te abrirá nuevas oportunidades laborales.
                         </p>
                         <a href="{{ route('web_courses') }}" class="theme-btn btn-style-one">
-                            <span class="btn-title">Ver Cusos</span>
+                            <span class="btn-title">Ver Cursos</span>
                         </a>
                     </div>
                 </div>
