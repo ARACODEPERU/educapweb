@@ -95,7 +95,7 @@ background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, r
             <div class="auto-container">
                 <div class="inner-container">
                     <div class="copyright-text">&copy; Copyright reservados a CPROD | Desarrollado por <a
-                            href="https://www.aracodeperu.com/">Aracode Smart Solutión</a>
+                            href="https://www.aracodeperu.com/">Aracode Smart Solutions</a>
                     </div>
                 </div>
             </div>
