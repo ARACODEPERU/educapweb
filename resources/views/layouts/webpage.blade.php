@@ -55,6 +55,13 @@
         <span class="fa fa-angle-up"></span>
     </div>
 
+    
+    <div id="whatsapp">
+        <a target="_blank" href="https://wa.link/jibpow" class="wtsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
 
     <style type="text/css">
         #whatsapp .wtsapp {

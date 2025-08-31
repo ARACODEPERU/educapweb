@@ -1,13 +1,5 @@
 <div>
 
-    
-    <div id="whatsapp">
-        <a target="_blank" href="https://wa.link/jibpow" class="wtsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
-
     <footer class="main-footer"
         style="background: #000000;
                 background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 10, 39, 1) 35%, rgba(5, 10, 39, 1) 100%);">
