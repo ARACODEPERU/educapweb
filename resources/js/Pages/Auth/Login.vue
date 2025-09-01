@@ -70,8 +70,8 @@
                         ></div>
                         <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                             <Link href="/" class="w-48 block lg:w-72 ms-10">
-                                <img style="width: 100%;" v-if="company.logo_negative == '/img/logo176x32_negativo.png'" :src="`${baseUrl}/img/logo176x32_negativo.png`" alt="Logo" class="w-full" />
-                                <img style="width: 100%;" v-else :src="`${baseUrl}storage/${company.logo_negative}`" alt="Logo" class="w-full" />
+                                <img v-if="company.logo_negative == '/img/logo176x32_negativo.png'" :src="`${baseUrl}/img/logo176x32_negativo.png`" alt="Logo" class="w-full" />
+                                <img v-else :src="`${baseUrl}storage/${company.logo_negative}`" alt="Logo" class="w-full" />
                             </Link>
                             <div class="mt-24 hidden w-full max-w-[430px] lg:block">
                                 <img :src="`${baseUrl}/themes/vristo/images/auth/login.svg`" alt="Cover Image" class="w-full" />
@@ -82,12 +82,12 @@
                         <div class="flex w-full max-w-[440px] items-center gap-2 lg:absolute lg:end-6 lg:top-6 lg:max-w-full">
                             <Link :href="route('index_main')" class="w-8 block lg:hidden">
                                 <template v-if="store.theme === 'light'">
-                                    <img v-if="company.isotipo == '/img/isotipo.png'" :src="`${baseUrl}/img/isotipo.png`" alt="Logo" class="mx-auto w-10" />
-                                    <img v-else :src="`${baseUrl}storage/${company.isotipo}`" alt="Logo" class="mx-auto w-10" />
+                                    <img v-if="company.isotipo == '/img/isotipo.png'" :src="`${baseUrl}/img/isotipo.png`" alt="Logo" class="mx-auto w-20" />
+                                    <img v-else :src="`${baseUrl}storage/${company.isotipo}`" alt="Logo" class="mx-auto w-20" />
                                 </template>
                                 <template v-if="store.theme === 'dark'">
-                                    <img v-if="company.isotipo_negative == '/img/isotipo_negativo.png'" :src="`${baseUrl}/img/isotipo_negativo.png`" alt="Logo" class="mx-auto w-10" />
-                                    <img v-else :src="`${baseUrl}storage/${company.isotipo_negative}`" alt="Logo" class="mx-auto w-10" />
+                                    <img v-if="company.isotipo_negative == '/img/isotipo_negativo.png'" :src="`${baseUrl}/img/isotipo_negativo.png`" alt="Logo" class="mx-auto w-20" />
+                                    <img v-else :src="`${baseUrl}storage/${company.isotipo_negative}`" alt="Logo" class="mx-auto w-20" />
                                 </template>
                             </Link>
                             <!-- <div class="dropdown ms-auto w-max">
