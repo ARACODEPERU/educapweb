@@ -1,5 +1,6 @@
 <div>
     <header class="main-header header-style-one" id="home">
+        <meta charset="UTF-8">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <!-- Main box -->
         <div class="main-box">
@@ -66,7 +67,7 @@
 
                 <ul class="navigation clearfix">
                     <!--Keep This Empty / Menu will come through Javascript-->
-                    
+
                         <li class="cv-movil"><a href="{{ route('login') }}" style="color: #ffffff;">Campus virtual</a></li>
                 </ul>
                 <ul class="contact-list-one">

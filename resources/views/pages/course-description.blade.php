@@ -7,7 +7,7 @@
     <x-header />
     <!--End Main Header -->
     <!-- Start main-content -->
-    <section class="page-title"
+    <section class="page-title sticky-header fixed-header animated slideInDown"
         style="background-image: url({{ asset('themes/webpage/images/background/page-title.jpg') }});">
         <div class="auto-container">
             <div class="title-outer">
@@ -143,7 +143,7 @@
                         <div class="course-details-price">
                             <p class="course-details-price-text">Precio del curso</p>
                             <h6 class="course-details-price-amount">S/ {{ $item->price }}</h6>
-                            <a class="theme-btn btn-style-two course-details-price-btn" 
+                            <a class="theme-btn btn-style-two course-details-price-btn"
                                 onclick="agregarAlCarrito({ id: {{ $item->id }}, nombre: '{{ $item->name }}', precio: {{ $item->price }} })">
                                 <i class="lnr-icon-shopping-cart" style="font-size: 20px;"></i>&nbsp; Agregar al carrito
                             </a>
