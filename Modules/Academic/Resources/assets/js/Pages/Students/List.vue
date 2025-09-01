@@ -318,10 +318,12 @@
                                                     <div class="text-info">{{ student.countCourses ?? 0 }}</div>
                                                     <div>Cursos</div>
                                                 </div>
+                                                <!-- 
                                                 <div class="flex-auto">
                                                     <div class="text-info">{{ student.countSubscriptions ?? 0 }}</div>
                                                     <div>Suscripciones</div>
                                                 </div>
+                                                -->
                                                 <div class="flex-auto">
                                                     <div class="text-info">{{ student.countCertificates ?? 0 }}</div>
                                                     <div>Certificados</div>
