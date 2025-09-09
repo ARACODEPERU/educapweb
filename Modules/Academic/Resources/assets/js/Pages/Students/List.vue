@@ -311,7 +311,9 @@
                                     </div>
                                     <div class="px-6 pb-24 -mt-10 relative">
                                         <div class="shadow-md bg-white dark:bg-gray-900 rounded-md px-2 py-4">
-                                            <div class="text-xl">{{ student.full_name }}</div>
+                                            <div class="text-xl">
+                                                {{ student.names }}&ensp; {{ student.father_lastname }}&ensp; {{ student.mother_lastname }}
+                                            </div>
                                             <div class="text-white-dark">{{ student.role }}</div>
                                             <div class="flex items-center justify-between flex-wrap mt-6 gap-3">
                                                 <div class="flex-auto">
@@ -357,7 +359,7 @@
                                         </div>
                                         <div class="mt-6 grid grid-cols-1 gap-4 ltr:text-left rtl:text-right">
                                             <div class="flex items-center">
-                                                <div class="flex-none ltr:mr-2 rtl:ml-2">Num. de identificación :</div>
+                                                <div class="flex-none ltr:mr-2 rtl:ml-2">N° de identificación :</div>
                                                 <div class="truncate text-white-dark">{{ student.number }}</div>
                                             </div>
                                             <div class="flex items-center">
