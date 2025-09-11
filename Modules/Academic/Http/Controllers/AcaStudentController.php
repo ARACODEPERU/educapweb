@@ -67,9 +67,6 @@ class AcaStudentController extends Controller
                 'aca_students.student_code',
                 'people.document_type_id',
                 'people.full_name',
-                'people.names',
-                'people.father_lastname',
-                'people.mother_lastname',
                 'people.number',
                 'people.telephone',
                 'people.email',
@@ -179,7 +176,7 @@ class AcaStudentController extends Controller
         $path = null;
         $destination = 'uploads/students';
         $file = $request->file('image');
-
+        //dd($request->get('industry_id'));
         $per = Person::updateOrCreate(
             [
                 'document_type_id'      => $request->get('document_type_id'),
@@ -238,7 +235,8 @@ class AcaStudentController extends Controller
                 'information'   => $request->get('description'),
                 'avatar'        => $path,
                 'person_id'     => $per->id,
-                'local_id'      => 1
+                'local_id'      => 1,
+                'tour_completed'=> false
             ]
         );
 
