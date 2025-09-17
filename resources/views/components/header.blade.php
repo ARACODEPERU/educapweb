@@ -1,12 +1,7 @@
 <div>
     <header class="main-header header-style-one" id="home">
         <meta charset="UTF-8">
-        @php
-    $parameters = new \App\Models\Parameter();
-    $P000022=$parameters->where('parameter_code', 'P000022')->value('value_default')?? "";
-    $cadena_decodificada = htmlspecialchars_decode($P000022, ENT_QUOTES);
-    @endphp
-    {!! $cadena_decodificada !!}
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <!-- Main box -->
         <div class="main-box">
