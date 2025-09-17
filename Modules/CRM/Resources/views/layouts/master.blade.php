@@ -13,13 +13,6 @@
     <meta name="keywords" content="{{ $keywords ?? '' }}">
     <meta name="author" content="{{ $author ?? '' }}">
 
-    @php
-    $parameters = new \App\Models\Parameter();
-    $P000022=$parameters->where('parameter_code', 'P000022')->value('value_default')?? "";
-    $cadena_decodificada = htmlspecialchars_decode($P000022, ENT_QUOTES);
-    @endphp
-    {!! $cadena_decodificada !!}
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
