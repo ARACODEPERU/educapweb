@@ -2,13 +2,14 @@
 
     <div id="slider">
         <figure>
-            @foreach ($sliders as $slide)
+            {{-- @foreach ($sliders as $slide)
                 <img src="{{ asset('storage/'.$slide->content) }}" alt="">
-            @endforeach
-            {{-- <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
+            @endforeach --}}
             <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt=""> --}}
+            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
         </figure>
     </div>
 
