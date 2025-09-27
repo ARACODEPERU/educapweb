@@ -2,16 +2,17 @@
 
     <div id="slider">
         <figure>
+            @foreach ($sliders as $slide)
+                <img src="{{ $slide->content }}" alt="">
+            @endforeach
+            {{-- <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
             <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
-            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt="">
+            <img src="{{ asset('themes/webpage/images/slider-cprod-2.jpg') }}" alt=""> --}}
         </figure>
     </div>
 
     <style>
-        
         div#slider {
             overflow: hidden;
         }
