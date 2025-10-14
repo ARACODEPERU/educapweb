@@ -77,7 +77,7 @@
         <div class="slider">
             @foreach ($sliders as $k => $slide)
                 <a href="{{ $slide->item->items[1]->content }}">
-                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen">
+                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen" class="w-full">
                 </a>
             @endforeach
         </div>
