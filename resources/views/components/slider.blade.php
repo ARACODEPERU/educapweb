@@ -77,7 +77,7 @@
         <div class="slider">
             @foreach ($sliders as $k => $slide)
                 <a href="{{ $slide->item->items[1]->content }}">
-                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen" class="w-full">
+                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen">
                 </a>
             @endforeach
         </div>
@@ -90,7 +90,7 @@
     <style>
         .slider-container {
             position: relative;
-            max-width: 100%;
+            width: 100%;
             margin-top: 0px;
             overflow: hidden;
             /* Oculta las imágenes fuera del contenedor */
@@ -107,10 +107,11 @@
             /* Centra horizontalmente */
             align-items: center;
             /* Centra verticalmente */
+            width: 100%;
         }
 
         .slider img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
             flex-shrink: 0;
             /* Impide que las imágenes se encojan */
