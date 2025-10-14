@@ -75,8 +75,10 @@
 
     <div class="slider-container">
         <div class="slider">
-            @foreach ($sliders as $slide)
-                <img src="{{ $slide->content }}" alt="Imagen 1">
+            @foreach ($sliders as $k => $slide)
+                <a href="{{ $slide->item->items[1]->content }}">
+                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen">
+                </a>
             @endforeach
         </div>
         <button class="prev-button">&#10094;</button>
@@ -89,7 +91,7 @@
         .slider-container {
             position: relative;
             max-width: 100%;
-            margin-top: 70px;
+            margin-top: 0px;
             overflow: hidden;
             /* Oculta las imágenes fuera del contenedor */
             border-radius: 8px;
