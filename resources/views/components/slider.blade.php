@@ -102,10 +102,15 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
             /* Transición suave del deslizamiento */
+            display: flex;
+            justify-content: center;
+            /* Centra horizontalmente */
+            align-items: center;
+            /* Centra verticalmente */
         }
 
         .slider img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
             flex-shrink: 0;
             /* Impide que las imágenes se encojan */
