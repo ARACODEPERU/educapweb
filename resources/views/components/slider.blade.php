@@ -10,75 +10,10 @@
         </figure>
     </div> --}}
 
-    {{-- <style>
-        div#slider {
-            overflow: hidden;
-        }
-
-        /* las imágenes no van a salir del márgen de la pantalla*/
-        div#slider figure img {
-            width: 20%;
-            float: left;
-        }
-
-        div#slider figure {
-            position: relative;
-            width: 500%;
-            margin: 0;
-            left: 0;
-            text-align: left;
-            font-size: 0;
-            animation: 20s slidy infinite;
-            /*el movimiento se va a mantener de forma indefinida -infinito-*/
-        }
-
-
-        /*esta parte del código define el movimiento de las imágenes a la izquierda*/
-        @keyframes slidy {
-            0% {
-                left: 0%;
-            }
-
-            20% {
-                left: 0%;
-            }
-
-            25% {
-                left: -100%;
-            }
-
-            45% {
-                left: -100%;
-            }
-
-            50% {
-                left: -200%;
-            }
-
-            70% {
-                left: -200%;
-            }
-
-            75% {
-                left: -300%;
-            }
-
-            95% {
-                left: -300%;
-            }
-
-            100% {
-                left: -400%;
-            }
-        }
-    </style> --}}
-
     <div class="slider-container">
         <div class="slider">
-            @foreach ($sliders as $k => $slide)
-                <a href="{{ $slide->item->items[1]->content }}">
-                    <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen">
-                </a>
+            @foreach ($sliders as $slide)
+                <img src="{{ asset('storage/' . $slide->item->items[0]->content) }}" alt="Imagen 1"> 
             @endforeach
         </div>
         <button class="prev-button">&#10094;</button>
@@ -86,11 +21,10 @@
     </div>
 
 
-
     <style>
         .slider-container {
             position: relative;
-            width: 100%;
+            max-width: 100%;
             margin-top: 0px;
             overflow: hidden;
             /* Oculta las imágenes fuera del contenedor */
@@ -102,12 +36,6 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
             /* Transición suave del deslizamiento */
-            display: flex;
-            justify-content: center;
-            /* Centra horizontalmente */
-            align-items: center;
-            /* Centra verticalmente */
-            width: 100%;
         }
 
         .slider img {
