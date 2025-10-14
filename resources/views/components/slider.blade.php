@@ -76,7 +76,7 @@
     <div class="slider-container">
         <div class="slider">
             @foreach ($sliders as $slide)
-                <img src="{{ $slide->content }}" alt="Imagen 1">
+                <img src="{{ asset('storage/'.$slide->content) }}" alt="Imagen 1">
             @endforeach
         </div>
         <button class="prev-button">&#10094;</button>
