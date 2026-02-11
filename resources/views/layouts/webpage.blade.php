@@ -239,7 +239,7 @@
         </p>
 
         <div class="footer">
-            &copy; {{ date('Y') }} {{ config('app.name', 'CPROD') }}. Todos los derechos reservados.
+            &copy; {{ date('Y') }} CPROD. Todos los derechos reservados.
         </div>
     </div>
 
