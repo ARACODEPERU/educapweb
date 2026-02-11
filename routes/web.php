@@ -26,19 +26,39 @@ use Illuminate\Support\Facades\Mail;
 use Modules\Blog\Http\Controllers\BlogController;
 use Modules\Sales\Http\Controllers\SalesController;
 
+
+
+
+Route::get('/mantenimiento', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+
 // Rutas en Blade
-Route::get('/home', [WebPageController::class, 'index'])->name('index_main2');
+Route::get('/home', [WebPageController::class, 'maintenance'])->name('web_maintenance');
 
 // Route::get('/', [WebPageController::class, 'construction'])->name('construction');
-Route::get('/', [WebPageController::class, 'index'])->name('index_main');
-Route::get('/nosotros', [WebPageController::class, 'about'])->name('web_about');
-Route::get('/cursos', [WebPageController::class, 'courses'])->name('web_courses');
-Route::get('/curso-descripcion/{id}', [WebPageController::class, 'coursedescription'])->name('web_course_description');
-Route::get('/carrito', [WebPageController::class, 'shopcart'])->name('web_carrito');
-Route::get('/pagar', [WebPageController::class, 'pay'])->name('web_pay');
-Route::get('/gracias/{id}', [WebPageController::class, 'thanks'])->name('web_thanks');
-Route::get('/email', [WebPageController::class, 'email'])->name('web_email');
-Route::get('/contactanos', [WebPageController::class, 'contact'])->name('web_contact_us');
+Route::get('/', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/nosotros', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/cursos', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/curso-descripcion/{id}', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/carrito', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/pagar', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/gracias/{id}', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/email', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+Route::get('/contactanos', [WebPageController::class, 'maintenance'])->name('web_maintenance');
+
+
+// Rutas en Blade
+// Route::get('/home', [WebPageController::class, 'index'])->name('index_main2');
+
+// Route::get('/', [WebPageController::class, 'construction'])->name('construction');
+// Route::get('/', [WebPageController::class, 'index'])->name('index_main');
+// Route::get('/nosotros', [WebPageController::class, 'about'])->name('web_about');
+// Route::get('/cursos', [WebPageController::class, 'courses'])->name('web_courses');
+// Route::get('/curso-descripcion/{id}', [WebPageController::class, 'coursedescription'])->name('web_course_description');
+// Route::get('/carrito', [WebPageController::class, 'shopcart'])->name('web_carrito');
+// Route::get('/pagar', [WebPageController::class, 'pay'])->name('web_pay');
+// Route::get('/gracias/{id}', [WebPageController::class, 'thanks'])->name('web_thanks');
+// Route::get('/email', [WebPageController::class, 'email'])->name('web_email');
+// Route::get('/contactanos', [WebPageController::class, 'contact'])->name('web_contact_us');
 
 //nuevos metodos adaptados de GLobalCpa
 Route::post('/safe_pay', [WebPageController::class, 'pagar'])->name('paying');

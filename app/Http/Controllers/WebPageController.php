@@ -63,6 +63,12 @@ class WebPageController extends Controller
         return view('pages.about');
     }
 
+    
+    public function maintenance()
+    {
+        return view('pages.maintenance');
+    }
+
     // public function courses()
     // {
     //     return view('pages.courses');
